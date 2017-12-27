@@ -1,0 +1,90 @@
+/* globals __DEV__ */
+import Phaser from 'phaser'
+import Chicken from '../sprites/Chicken'
+import RoboChicken from '../sprites/RoboChicken'
+import Cage from '../sprites/Cage'
+import Mushroom from '../sprites/Mushroom'
+import config from '../config'
+
+export default class extends Phaser.State {
+  init (game) {
+    this.stage.backgroundColor = '#ff0000'
+  }
+  preload () {}
+
+  create () {
+    Phaser.Canvas.setImageRenderingCrisp(game.canvas);
+    game.physics.startSystem(Phaser.Physics.ARCADE);
+    game.physics.arcade.gravity.y = 300;
+    game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+
+    const bannerText = 'Phaser + ES6 + Webpack'
+
+    this.cage = new Cage({ game })
+
+    this.chicken = new Chicken({
+      game: this.game,
+      x: this.world.centerX,
+      y: this.world.centerY,
+      asset: 'chicken'
+    })
+
+    this.roboChickens = game.add.group();
+
+    for (let i = 0; i < 7; i++) {
+      for (let j = 0; j < 5; j++) {
+        if (i !== 3 || j !== 2) {
+          this.roboChickens.add(new RoboChicken({
+            game: this.game,
+            x: i * 32 + 16,
+            y: j * 32 + 16,
+            asset: 'chicken'
+          }))
+        }
+      }
+    }
+
+    this.jumping = false;
+
+    game.add.group(this.cage);
+
+    game.physics.arcade.enable([ this.roboChickens, this.chicken, this.cage ], Phaser.Physics.ARCADE);
+    this.cage.setAll('body.immovable', true);
+    this.cage.setAll('body.allowGravity', false);
+
+    this.chicken.body.bounce.y = 0.2;
+    this.chicken.body.collideWorldBounds = true;
+    // this.roboChicken.body.bounce.y = 0.2;
+    // this.roboChicken.body.collideWorldBounds = true;
+
+    this.cursors = game.input.keyboard.createCursorKeys();
+
+    game.add.existing(this.chicken)
+    game.add.existing(this.roboChickens)
+  }
+
+  update() {
+    const collision = game.physics.arcade.collide(this.chicken, this.cage);
+    game.physics.arcade.collide(this.roboChickens, this.cage);
+
+    if (this.cursors.left.isDown) {
+      this.chicken.moveLeft()
+    } else if (this.cursors.right.isDown) {
+      this.chicken.moveRight()
+    } else if (this.cursors.up.isDown && collision && !this.jumping) {
+      this.chicken.jump();
+      this.jumping = true;
+    } else if (this.jumping && collision) {
+      this.jumping = false;
+    } else if (collision) {
+      this.chicken.idle()
+    }
+  }
+
+  render () {
+    if (__DEV__) {
+      // this.game.debug.body(this.chicken)
+      // this.game.debug.body(this.cage)
+    }
+  }
+}
