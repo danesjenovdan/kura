@@ -1,33 +1,33 @@
 /* globals __DEV__ */
-import Phaser from 'phaser'
-import Chicken from '../sprites/Chicken'
-import RoboChicken from '../sprites/RoboChicken'
-import Cage from '../sprites/Cage'
-import Mushroom from '../sprites/Mushroom'
-import config from '../config'
+import Phaser from 'phaser';
+import Chicken from '../sprites/Chicken';
+import RoboChicken from '../sprites/RoboChicken';
+import Cage from '../sprites/Cage';
+import Mushroom from '../sprites/Mushroom';
+import config from '../config';
 
 export default class extends Phaser.State {
-  init (game) {
-    this.stage.backgroundColor = '#ff0000'
+  init(game) {
+    this.stage.backgroundColor = '#ff0000';
   }
-  preload () {}
+  preload() {}
 
-  create () {
+  create() {
     Phaser.Canvas.setImageRenderingCrisp(game.canvas);
     game.physics.startSystem(Phaser.Physics.ARCADE);
     game.physics.arcade.gravity.y = 300;
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 
-    const bannerText = 'Phaser + ES6 + Webpack'
+    const bannerText = 'Phaser + ES6 + Webpack';
 
-    this.cage = new Cage({ game })
+    this.cage = new Cage({ game });
 
     this.chicken = new Chicken({
       game: this.game,
       x: this.world.centerX,
       y: this.world.centerY,
-      asset: 'chicken'
-    })
+      asset: 'chicken',
+    });
 
     this.roboChickens = game.add.group();
 
@@ -38,8 +38,8 @@ export default class extends Phaser.State {
             game: this.game,
             x: i * 32 + 16,
             y: j * 32 + 16,
-            asset: 'chicken'
-          }))
+            asset: 'chicken',
+          }));
         }
       }
     }
@@ -48,7 +48,7 @@ export default class extends Phaser.State {
 
     game.add.group(this.cage);
 
-    game.physics.arcade.enable([ this.roboChickens, this.chicken, this.cage ], Phaser.Physics.ARCADE);
+    game.physics.arcade.enable([this.roboChickens, this.chicken, this.cage], Phaser.Physics.ARCADE);
     this.cage.setAll('body.immovable', true);
     this.cage.setAll('body.allowGravity', false);
 
@@ -58,9 +58,8 @@ export default class extends Phaser.State {
     // this.roboChicken.body.collideWorldBounds = true;
 
     this.cursors = game.input.keyboard.createCursorKeys();
-
-    game.add.existing(this.chicken)
-    game.add.existing(this.roboChickens)
+    game.add.existing(this.chicken);
+    game.add.existing(this.roboChickens);
   }
 
   update() {
@@ -68,20 +67,20 @@ export default class extends Phaser.State {
     game.physics.arcade.collide(this.roboChickens, this.cage);
 
     if (this.cursors.left.isDown) {
-      this.chicken.moveLeft()
+      this.chicken.moveLeft();
     } else if (this.cursors.right.isDown) {
-      this.chicken.moveRight()
+      this.chicken.moveRight();
     } else if (this.cursors.up.isDown && collision && !this.jumping) {
       this.chicken.jump();
       this.jumping = true;
     } else if (this.jumping && collision) {
       this.jumping = false;
     } else if (collision) {
-      this.chicken.idle()
+      this.chicken.idle();
     }
   }
 
-  render () {
+  render() {
     if (__DEV__) {
       // this.game.debug.body(this.chicken)
       // this.game.debug.body(this.cage)

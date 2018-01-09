@@ -1,28 +1,32 @@
-import Phaser from 'phaser'
-import Chicken from './Chicken'
+import Chicken from './Chicken';
 
 export default class extends Chicken {
-  constructor (config) {
+  constructor(config) {
     super(config);
-    this.counter = Math.floor(Math.random() * 300);
+    this.counter = 0;
+    this.generateRandomActionPoint();
   }
 
-  update () {
-    if (this.counter === 300) {
+  generateRandomActionPoint() {
+    this.randomAction = [
+      this.moveLeft,
+      this.moveRight,
+      this.jump,
+    ][Math.floor(Math.random() * 3)];
+    this.randomPoint = Math.floor(Math.random() * 90);
+    this.randomFinish = Math.floor(Math.random() * 100) + 10;
+  }
+
+  update() {
+    if (this.counter === this.randomFinish) {
       this.counter = 0;
-      this.leftPoint = Math.floor(Math.random() * 300);
-      this.rightPoint = Math.floor(Math.random() * 300);
-      this.jumpPoint = Math.floor(Math.random() * 300);
+      this.generateRandomActionPoint();
     } else {
-      this.counter++;
+      this.counter += 1;
     }
 
-    if (this.counter > this.leftPoint && this.counter < this.leftPoint + 10) {
-      this.moveLeft()
-    } else if (this.counter > this.rightPoint && this.counter < this.rightPoint + 10) {
-      this.moveRight()
-    } else if (this.counter > this.jumpPoint && this.counter < this.jumpPoint + 10) {
-      this.jump()
+    if (this.counter > this.randomPoint && this.counter < this.randomPoint + 20) {
+      this.randomAction();
     } else {
       this.idle();
     }
