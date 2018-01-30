@@ -1,24 +1,16 @@
-/* globals __DEV__ */
+/* globals __DEV__ game */
 import Phaser from 'phaser';
 import Chicken from '../sprites/Chicken';
 import RoboChicken from '../sprites/RoboChicken';
 import Cage from '../sprites/Cage';
-import Mushroom from '../sprites/Mushroom';
-import config from '../config';
+// import config from '../config';
 
 export default class extends Phaser.State {
-  init(game) {
-    this.stage.backgroundColor = '#ff0000';
-  }
-  preload() {}
-
   create() {
     Phaser.Canvas.setImageRenderingCrisp(game.canvas);
     game.physics.startSystem(Phaser.Physics.ARCADE);
     game.physics.arcade.gravity.y = 300;
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-
-    const bannerText = 'Phaser + ES6 + Webpack';
 
     this.cage = new Cage({ game });
 
@@ -31,13 +23,13 @@ export default class extends Phaser.State {
 
     this.roboChickens = game.add.group();
 
-    for (let i = 0; i < 7; i++) {
-      for (let j = 0; j < 5; j++) {
+    for (let i = 0; i < 7; i += 1) {
+      for (let j = 0; j < 5; j += 1) {
         if (i !== 3 || j !== 2) {
           this.roboChickens.add(new RoboChicken({
             game: this.game,
-            x: i * 32 + 16,
-            y: j * 32 + 16,
+            x: (i * 32) + 16,
+            y: (j * 32) + 16,
             asset: 'chicken',
           }));
         }
