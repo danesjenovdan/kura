@@ -19,6 +19,8 @@ export default class extends Phaser.State {
     game.physics.arcade.gravity.y = 300;
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 
+
+
     this.cage = new Cage({ game });
 
     this.chicken = new Chicken({
@@ -59,6 +61,20 @@ export default class extends Phaser.State {
     this.cursors = game.input.keyboard.createCursorKeys();
     game.add.existing(this.chicken);
     game.add.existing(this.roboChickens);
+
+
+    //  Our BitmapData (same size as our canvas)
+    const bitmapData = game.make.bitmapData(224, 160);
+
+    //  Add it to the world or we can't see it
+    bitmapData.addToWorld();
+    const grd = bitmapData.context.createRadialGradient(112, 80, 0, 112, 80, 112);
+    grd.addColorStop(0, 'rgba(255, 255, 255, 0)');
+    grd.addColorStop(0.5, 'rgba(0, 0, 0, 0.75');
+    grd.addColorStop(1, 'rgba(0, 0, 0, 1');
+
+    bitmapData.cls();
+    bitmapData.circle(112, 80, 138, grd);
   }
 
   update() {
