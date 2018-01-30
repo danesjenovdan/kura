@@ -6,7 +6,14 @@ import Cage from '../sprites/Cage';
 // import config from '../config';
 
 export default class extends Phaser.State {
+  preload() {
+    game.load.audio('soundtrack', 'assets/audio/kure.mp3');
+  }
+
   create() {
+    const music = game.add.audio('soundtrack');
+    music.play();
+
     Phaser.Canvas.setImageRenderingCrisp(game.canvas);
     game.physics.startSystem(Phaser.Physics.ARCADE);
     game.physics.arcade.gravity.y = 300;
