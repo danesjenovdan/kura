@@ -1,6 +1,5 @@
 import 'pixi';
 import 'p2';
-import Phaser from 'phaser';
 
 import BootState from './states/Boot';
 import SplashState from './states/Splash';
@@ -24,4 +23,4 @@ class Game extends Phaser.Game {
   }
 }
 
-window.game = new Game();
+new Game();

@@ -1,6 +1,11 @@
-import Phaser from 'phaser';
+enum Direction {
+  Left = 'Left',
+  Right = 'Right',
+}
 
 export default class extends Phaser.Sprite {
+  direction: Direction
+
   constructor({ game, x, y, asset }) {
     super(game, x, y, asset);
 
@@ -13,16 +18,16 @@ export default class extends Phaser.Sprite {
     this.animations.add('jumpRight', [6], 0, true);
     this.smoothed = false;
     this.anchor.setTo(0.5);
-    this.direction = Math.random() > 0.5 ? 'Left' : 'Right';
+    this.direction = Math.random() > 0.5 ? Direction.Left : Direction.Right;
   }
 
   moveLeft() {
-    this.direction = 'Left';
+    this.direction = Direction.Left;
     this.animations.play('walkLeft');
     this.body.velocity.x = -75;
   }
   moveRight() {
-    this.direction = 'Right';
+    this.direction = Direction.Right;
     this.animations.play('walkRight');
     this.body.velocity.x = 75;
   }

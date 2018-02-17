@@ -1,4 +1,4 @@
-export const centerGameObjects = (objects) => {
+export const centerGameObjects = (objects: Array<object>) => {
   objects.forEach((object) => {
     object.anchor.setTo(0.5);
   });

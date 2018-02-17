@@ -1,27 +1,30 @@
-/* globals __DEV__ game */
-import Phaser from 'phaser';
+/* globals __DEV__ */
 import Chicken from '../sprites/Chicken';
 import RoboChicken from '../sprites/RoboChicken';
 import Cage from '../sprites/Cage';
 // import config from '../config';
 
 export default class extends Phaser.State {
+  cage: Cage
+  chicken: Chicken
+  roboChickens: Phaser.Group
+  jumping: boolean
+  cursors: Phaser.CursorKeys
+
   preload() {
-    game.load.audio('soundtrack', 'assets/audio/kure.mp3');
+    this.game.load.audio('soundtrack', 'assets/audio/kure.mp3');
   }
 
   create() {
-    const music = game.add.audio('soundtrack');
-    music.play();
+    const music = this.game.add.audio('soundtrack');
+    // music.play();
 
-    Phaser.Canvas.setImageRenderingCrisp(game.canvas);
-    game.physics.startSystem(Phaser.Physics.ARCADE);
-    game.physics.arcade.gravity.y = 300;
-    game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    Phaser.Canvas.setImageRenderingCrisp(this.game.canvas);
+    this.game.physics.startSystem(Phaser.Physics.ARCADE);
+    this.game.physics.arcade.gravity.y = 300;
+    this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 
-
-
-    this.cage = new Cage({ game });
+    this.cage = new Cage({ game: this.game });
 
     this.chicken = new Chicken({
       game: this.game,
@@ -30,7 +33,7 @@ export default class extends Phaser.State {
       asset: 'chicken',
     });
 
-    this.roboChickens = game.add.group();
+    this.roboChickens = this.game.add.group();
 
     for (let i = 0; i < 7; i += 1) {
       for (let j = 0; j < 5; j += 1) {
@@ -47,9 +50,9 @@ export default class extends Phaser.State {
 
     this.jumping = false;
 
-    game.add.group(this.cage);
+    this.game.add.group(this.cage);
 
-    game.physics.arcade.enable([this.roboChickens, this.chicken, this.cage], Phaser.Physics.ARCADE);
+    this.game.physics.arcade.enable([this.roboChickens, this.chicken, this.cage], Phaser.Physics.ARCADE);
     this.cage.setAll('body.immovable', true);
     this.cage.setAll('body.allowGravity', false);
 
@@ -58,13 +61,13 @@ export default class extends Phaser.State {
     // this.roboChicken.body.bounce.y = 0.2;
     // this.roboChicken.body.collideWorldBounds = true;
 
-    this.cursors = game.input.keyboard.createCursorKeys();
-    game.add.existing(this.chicken);
-    game.add.existing(this.roboChickens);
+    this.cursors = this.game.input.keyboard.createCursorKeys();
+    this.game.add.existing(this.chicken);
+    this.game.add.existing(this.roboChickens);
 
 
     //  Our BitmapData (same size as our canvas)
-    const bitmapData = game.make.bitmapData(224, 160);
+    const bitmapData = this.game.make.bitmapData(224, 160);
 
     //  Add it to the world or we can't see it
     bitmapData.addToWorld();
@@ -78,8 +81,8 @@ export default class extends Phaser.State {
   }
 
   update() {
-    const collision = game.physics.arcade.collide(this.chicken, this.cage);
-    game.physics.arcade.collide(this.roboChickens, this.cage);
+    const collision = this.game.physics.arcade.collide(this.chicken, this.cage);
+    this.game.physics.arcade.collide(this.roboChickens, this.cage);
 
     if (this.cursors.left.isDown) {
       this.chicken.moveLeft();
