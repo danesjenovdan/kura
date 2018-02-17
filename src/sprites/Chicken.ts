@@ -3,11 +3,20 @@ enum Direction {
   Right = 'Right',
 }
 
+type ChickenParams = {
+  game: Phaser.Game,
+  x: number,
+  y: number,
+  poopPool: Phaser.Group
+};
+
 export default class extends Phaser.Sprite {
   direction: Direction
+  poopPool: any
+  myPoop: Phaser.Sprite
 
-  constructor({ game, x, y, asset }) {
-    super(game, x, y, asset);
+  constructor({game, x, y, poopPool}: ChickenParams) {
+    super(game, x, y, 'chicken');
 
     this.animations.add('walkLeft', [1, 0], 10, true);
     this.animations.add('walkRight', [2, 9], 10, true);
@@ -19,6 +28,11 @@ export default class extends Phaser.Sprite {
     this.smoothed = false;
     this.anchor.setTo(0.5);
     this.direction = Math.random() > 0.5 ? Direction.Left : Direction.Right;
+
+    this.game.physics.enable(this, Phaser.Physics.ARCADE);
+    this.body.bounce.y = 0.2;
+    this.body.collideWorldBounds = true;
+    this.poopPool = poopPool;
   }
 
   moveLeft() {
@@ -38,5 +52,16 @@ export default class extends Phaser.Sprite {
   jump() {
     this.animations.play(`jump${this.direction}`);
     this.body.velocity.y = -30;
+  }
+  poop() {
+    if (this.myPoop && this.myPoop.alive) {
+      return
+    }
+    const width = this.body.width;
+    const offsetX = Math.floor(width / 4) * (this.direction === Direction.Left ? 1 : -1)
+    this.myPoop = this.poopPool.produce(
+      this.body.x + this.body.width / 2 + offsetX,
+      this.body.y + this.body.height
+    );
   }
 }

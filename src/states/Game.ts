@@ -2,6 +2,7 @@
 import Chicken from '../sprites/Chicken';
 import RoboChicken from '../sprites/RoboChicken';
 import Cage from '../sprites/Cage';
+import Poop from '../sprites/Poop';
 // import config from '../config';
 
 export default class extends Phaser.State {
@@ -10,6 +11,7 @@ export default class extends Phaser.State {
   roboChickens: Phaser.Group
   jumping: boolean
   cursors: Phaser.CursorKeys
+  poop: Poop
 
   preload() {
     this.game.load.audio('soundtrack', 'assets/audio/kure.mp3');
@@ -26,12 +28,17 @@ export default class extends Phaser.State {
 
     this.cage = new Cage({ game: this.game });
 
+    this.poop = new Poop({
+      game: this.game
+    })
+
     this.chicken = new Chicken({
       game: this.game,
       x: this.world.centerX,
       y: this.world.centerY,
-      asset: 'chicken',
+      poopPool: this.poop,
     });
+
 
     this.roboChickens = this.game.add.group();
 
@@ -42,26 +49,17 @@ export default class extends Phaser.State {
             game: this.game,
             x: (i * 32) + 16,
             y: (j * 32) + 16,
-            asset: 'chicken',
+            poopPool: this.poop,
           }));
         }
       }
     }
 
     this.jumping = false;
+    this.cursors = this.game.input.keyboard.createCursorKeys();
 
     this.game.add.group(this.cage);
-
-    this.game.physics.arcade.enable([this.roboChickens, this.chicken, this.cage], Phaser.Physics.ARCADE);
-    this.cage.setAll('body.immovable', true);
-    this.cage.setAll('body.allowGravity', false);
-
-    this.chicken.body.bounce.y = 0.2;
-    this.chicken.body.collideWorldBounds = true;
-    // this.roboChicken.body.bounce.y = 0.2;
-    // this.roboChicken.body.collideWorldBounds = true;
-
-    this.cursors = this.game.input.keyboard.createCursorKeys();
+    // this.game.add.existing(this.poop);
     this.game.add.existing(this.chicken);
     this.game.add.existing(this.roboChickens);
 
@@ -78,6 +76,8 @@ export default class extends Phaser.State {
 
     bitmapData.cls();
     bitmapData.circle(112, 80, 138, grd);
+
+    this.game.world.bringToTop(this.poop);
   }
 
   update() {
@@ -88,6 +88,8 @@ export default class extends Phaser.State {
       this.chicken.moveLeft();
     } else if (this.cursors.right.isDown) {
       this.chicken.moveRight();
+    } else if (this.cursors.down.isDown) {
+      this.chicken.poop();
     } else if (this.cursors.up.isDown && collision && !this.jumping) {
       this.chicken.jump();
       this.jumping = true;

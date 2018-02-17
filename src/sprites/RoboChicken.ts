@@ -1,8 +1,20 @@
 import Chicken from './Chicken';
 
+type ChickenParams = {
+  game: Phaser.Game,
+  x: number,
+  y: number,
+  poopPool: Phaser.Group
+};
+
 export default class extends Chicken {
-  constructor(config) {
-    super(config);
+  counter: number
+  randomPoint: number
+  randomFinish: number
+  randomAction: Function
+
+  constructor(params: ChickenParams) {
+    super(params);
     this.counter = 0;
     this.generateRandomActionPoint();
   }
@@ -12,7 +24,8 @@ export default class extends Chicken {
       this.moveLeft,
       this.moveRight,
       this.jump,
-    ][Math.floor(Math.random() * 3)];
+      this.poop,
+    ][Math.floor(Math.random() * 4)];
     this.randomPoint = Math.floor(Math.random() * 90);
     this.randomFinish = Math.floor(Math.random() * 100) + 10;
   }
