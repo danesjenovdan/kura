@@ -11,7 +11,6 @@ export default class extends Phaser.State {
 
     this.load.setPreloadSprite(this.loaderBar);
     this.load.spritesheet('chicken', 'assets/images/chicken.png', 22, 29);
-    this.load.image('mushroom', 'assets/images/mushroom2.png');
     this.load.image('cage-vertical', 'assets/images/cage-vertical.png');
     this.load.image('cage-horizontal', 'assets/images/cage-horizontal.png');
     this.load.imageFromTexture('poop', ['6'], 1, 1);

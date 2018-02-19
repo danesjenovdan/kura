@@ -18,7 +18,7 @@ export default class extends Phaser.State {
   }
 
   create() {
-    const music = this.game.add.audio('soundtrack');
+    // const music = this.game.add.audio('soundtrack');
     // music.play();
 
     Phaser.Canvas.setImageRenderingCrisp(this.game.canvas);
@@ -27,10 +27,7 @@ export default class extends Phaser.State {
     this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 
     this.cage = new Cage({ game: this.game });
-
-    this.poop = new Poop({
-      game: this.game
-    })
+    this.poop = new Poop({ game: this.game })
 
     this.chicken = new Chicken({
       game: this.game,
@@ -59,7 +56,6 @@ export default class extends Phaser.State {
     this.cursors = this.game.input.keyboard.createCursorKeys();
 
     this.game.add.group(this.cage);
-    // this.game.add.existing(this.poop);
     this.game.add.existing(this.chicken);
     this.game.add.existing(this.roboChickens);
 
@@ -75,6 +71,7 @@ export default class extends Phaser.State {
     grd.addColorStop(1, 'rgba(0, 0, 0, 1');
 
     bitmapData.cls();
+    // @ts-ignore
     bitmapData.circle(112, 80, 138, grd);
 
     this.game.world.bringToTop(this.poop);
@@ -101,9 +98,9 @@ export default class extends Phaser.State {
   }
 
   render() {
-    if (__DEV__) {
+    // if (__DEV__) {
       // this.game.debug.body(this.chicken)
       // this.game.debug.body(this.cage)
-    }
+    // }
   }
 }
