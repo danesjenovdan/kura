@@ -16,6 +16,5 @@ export default class extends Phaser.Group {
     this.game.physics.enable(this, Phaser.Physics.ARCADE);
     this.setAll('body.immovable', true);
     this.setAll('body.allowGravity', false);
-
   }
 }
