@@ -10,10 +10,15 @@ type ChickenParams = {
   poopPool: Phaser.Group
 };
 
+const BUTT_POSITION = {
+  Left: [16, 27],
+  Right: [5, 27],
+}
+
 export default class extends Phaser.Sprite {
   direction: Direction
   poopPool: any
-  myPoop: Phaser.Sprite
+  myPoop: Phaser.Sprite | null
 
   constructor({game, x, y, poopPool}: ChickenParams) {
     super(game, x, y, 'chicken');
@@ -57,11 +62,16 @@ export default class extends Phaser.Sprite {
     if (this.myPoop && this.myPoop.alive) {
       return
     }
-    const width = this.body.width;
-    const offsetX = Math.floor(width / 4) * (this.direction === Direction.Left ? 1 : -1)
-    this.myPoop = this.poopPool.produce(
-      this.body.x + this.body.width / 2 + offsetX,
-      this.body.y + this.body.height
+
+    const poop = this.poopPool.produce(
+      this.body.x + BUTT_POSITION[this.direction][0],
+      this.body.y + BUTT_POSITION[this.direction][1],
     );
+
+    // Remove reference to current poop sprite so pooping isn't disabled if it
+    // gets assigned to another chicken.
+    poop.events.onKilled.addOnce(() => this.myPoop = null);
+
+    this.myPoop = poop;
   }
 }

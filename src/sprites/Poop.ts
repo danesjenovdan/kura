@@ -2,9 +2,6 @@ export default class extends Phaser.Group {
   constructor(config: { game: Phaser.Game }) {
     super(config.game)
 
-    this.game.physics.enable(this, Phaser.Physics.ARCADE);
-
-
     this.enableBody = true;
     this.physicsBodyType = Phaser.Physics.ARCADE;
 
@@ -13,7 +10,7 @@ export default class extends Phaser.Group {
     this.setAll('outOfBoundsKill', true);
   }
 
-  produce(x: number, y: number) {
+  produce(x: number, y: number): Phaser.Sprite {
     const poop = this.getFirstDead();
     poop.reset(x, y);
     return poop;
