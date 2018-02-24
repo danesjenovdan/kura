@@ -9,12 +9,7 @@ import config from './config';
 
 class Game extends Phaser.Game {
   constructor() {
-    const docElement = document.documentElement;
-    const width = Math.min(docElement.clientWidth, config.gameWidth);
-    const height = Math.min(docElement.clientHeight, config.gameHeight);
-
-    super(width, height, Phaser.WEBGL, 'content', undefined, true, false);
-
+    super(config.gameWidth, config.gameHeight);
     this.state.add('Boot', BootState, false);
     this.state.add('Splash', SplashState, false);
     this.state.add('Game', GameState, false);
