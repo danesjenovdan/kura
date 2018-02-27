@@ -1,18 +1,27 @@
-export default class extends Phaser.Group {
-  constructor(config: { game: Phaser.Game }) {
-    super(config.game)
+import Cage from './Cage';
 
-    this.enableBody = true;
-    this.physicsBodyType = Phaser.Physics.ARCADE;
+const POOP_COLORS = [0xD9CD9E, 0xCD8846, 0xD1B683, 0xCABFA5];
 
-    this.createMultiple(50, 'poop');
-    this.setAll('checkWorldBounds', true);
-    this.setAll('outOfBoundsKill', true);
+export default class extends Phaser.Sprite {
+  onHitFloor: Phaser.Signal
+  cage: Cage
+
+  constructor({game, x, y, cage}: {
+    game: Phaser.Game,
+    x: number,
+    y: number,
+    cage: Cage
+  }) {
+    super(game, x, y, 'poop');
+    this.onHitFloor = new Phaser.Signal();
+    this.cage = cage;
+    this.tint = POOP_COLORS[Math.floor(Math.random() * POOP_COLORS.length)];
   }
 
-  produce(x: number, y: number): Phaser.Sprite {
-    const poop = this.getFirstDead();
-    poop.reset(x, y);
-    return poop;
+  update() {
+    const collision = this.game.physics.arcade.collide(this, this.cage);
+    if (collision) {
+      this.onHitFloor.dispatch();
+    }
   }
 }

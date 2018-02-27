@@ -2,8 +2,7 @@
 import Chicken from '../sprites/Chicken';
 import RoboChicken from '../sprites/RoboChicken';
 import Cage from '../sprites/Cage';
-import Poop from '../sprites/Poop';
-// import config from '../config';
+import PoopPool from '../sprites/PoopPool';
 
 export default class extends Phaser.State {
   cage: Cage
@@ -11,15 +10,15 @@ export default class extends Phaser.State {
   roboChickens: Phaser.Group
   jumping: boolean
   cursors: Phaser.CursorKeys
-  poop: Poop
+  poopPool: PoopPool
 
   preload() {
     this.game.load.audio('soundtrack', 'assets/audio/kure.mp3');
   }
 
   create() {
-    // const music = this.game.add.audio('soundtrack');
-    // music.play();
+    const music = this.game.add.audio('soundtrack');
+    music.play();
 
     Phaser.Canvas.setImageRenderingCrisp(this.game.canvas);
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -28,15 +27,14 @@ export default class extends Phaser.State {
     this.game.stage.backgroundColor = '#eee';
 
     this.cage = new Cage({ game: this.game });
-    this.poop = new Poop({ game: this.game })
+    this.poopPool = new PoopPool({ game: this.game }, this.cage)
 
     this.chicken = new Chicken({
       game: this.game,
       x: this.world.centerX,
       y: this.world.centerY,
-      poopPool: this.poop,
+      poopPool: this.poopPool,
     });
-
 
     this.roboChickens = this.game.add.group();
 
@@ -47,7 +45,7 @@ export default class extends Phaser.State {
             game: this.game,
             x: (i * 32) + 16,
             y: (j * 32) + 16,
-            poopPool: this.poop,
+            poopPool: this.poopPool,
           }));
         }
       }
@@ -60,6 +58,7 @@ export default class extends Phaser.State {
     this.game.add.existing(this.chicken);
     this.game.add.existing(this.roboChickens);
 
+    this.game.world.bringToTop(this.poopPool);
 
     //  Our BitmapData (same size as our canvas)
     const bitmapData = this.game.make.bitmapData(224, 160);
@@ -68,14 +67,13 @@ export default class extends Phaser.State {
     bitmapData.addToWorld();
     const grd = bitmapData.context.createRadialGradient(112, 80, 0, 112, 80, 112);
     grd.addColorStop(0, 'rgba(255, 255, 255, 0)');
-    grd.addColorStop(0.5, 'rgba(0, 0, 0, 0.75');
+    grd.addColorStop(0.3, 'rgba(0, 0, 0, 0.3');
     grd.addColorStop(1, 'rgba(0, 0, 0, 1');
 
     bitmapData.cls();
     // @ts-ignore
     bitmapData.circle(112, 80, 138, grd);
 
-    this.game.world.bringToTop(this.poop);
   }
 
   update() {

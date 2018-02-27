@@ -1,10 +1,11 @@
 import Chicken from './Chicken';
+import PoopPool from './PoopPool';
 
 type ChickenParams = {
   game: Phaser.Game,
   x: number,
   y: number,
-  poopPool: Phaser.Group
+  poopPool: PoopPool
 };
 
 export default class extends Chicken {
