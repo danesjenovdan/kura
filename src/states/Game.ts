@@ -4,15 +4,17 @@ import Chicken from '../sprites/Chicken';
 import EggMeter from '../sprites/EggMeter';
 import PoopPool from '../sprites/PoopPool';
 import RoboChicken from '../sprites/RoboChicken';
+import Score from '../sprites/Score';
 
 export default class extends Phaser.State {
   cage: Cage
   chicken: Chicken
   eggMeter: EggMeter
-  roboChickens: Phaser.Group
   jumping: boolean
   keys: any
   poopPool: PoopPool
+  roboChickens: Phaser.Group
+  score: Score
 
   preload() {
     this.game.load.audio('soundtrack', 'assets/audio/kure.mp3');
@@ -36,6 +38,7 @@ export default class extends Phaser.State {
       x: this.world.centerX,
       y: this.world.centerY,
       poopPool: this.poopPool,
+      cage: this.cage,
     });
 
     this.roboChickens = this.game.add.group();
@@ -48,6 +51,7 @@ export default class extends Phaser.State {
             x: (i * 32) + 16,
             y: (j * 32) + 16,
             poopPool: this.poopPool,
+            cage: this.cage,
           }));
         }
       }
@@ -83,37 +87,31 @@ export default class extends Phaser.State {
     bitmapData.circle(112, 80, 138, grd);
 
     this.eggMeter = new EggMeter(this.game);
+    this.score = new Score(this.game);
   }
 
   update() {
-    const collision = this.game.physics.arcade.collide(this.chicken, this.cage);
-    this.game.physics.arcade.collide(this.roboChickens, this.cage);
-
     if (this.keys.space.isDown) {
-      if (this.eggMeter.inTheGreen()) {
-        this.chicken.layEgg();
-      }
-      this.eggMeter.resetMeter();
+      this.layEgg();
     } else if (this.keys.left.isDown) {
       this.chicken.moveLeft();
     } else if (this.keys.right.isDown) {
       this.chicken.moveRight();
     } else if (this.keys.down.isDown) {
       this.chicken.poop();
-    } else if (this.keys.up.isDown && collision && !this.jumping) {
+    } else if (this.keys.up.isDown) {
       this.chicken.jump();
-      this.jumping = true;
-    } else if (this.jumping && collision) {
-      this.jumping = false;
-    } else if (collision) {
+    } else {
       this.chicken.idle();
     }
   }
 
-  render() {
-    // if (__DEV__) {
-      // this.game.debug.body(this.chicken)
-      // this.game.debug.body(this.cage)
-    // }
+  layEgg() {
+    if (this.eggMeter.inTheGreen()) {
+      this.chicken.layEgg();
+      this.score.increase();
+    }
+
+    this.eggMeter.resetMeter();
   }
 }

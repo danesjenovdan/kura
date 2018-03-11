@@ -1,5 +1,6 @@
-import Poop from './Poop';
+import Cage from './Cage';
 import Egg from './Egg';
+import Poop from './Poop';
 import PoopPool from './PoopPool';
 
 enum Direction {
@@ -11,7 +12,8 @@ type ChickenParams = {
   game: Phaser.Game,
   x: number,
   y: number,
-  poopPool: PoopPool
+  poopPool: PoopPool,
+  cage: Cage
 };
 
 const BUTT_POSITION = {
@@ -20,12 +22,14 @@ const BUTT_POSITION = {
 }
 
 export default class extends Phaser.Sprite {
+  cage: Cage
   direction: Direction
   poopPool: PoopPool
   myPoop: Poop | null
   myEgg: Egg | null
+  jumping: boolean = false
 
-  constructor({game, x, y, poopPool}: ChickenParams) {
+  constructor({game, x, y, poopPool, cage}: ChickenParams) {
     super(game, x, y, 'chicken');
 
     this.animations.add('walkLeft', [1, 0], 10, true);
@@ -41,9 +45,15 @@ export default class extends Phaser.Sprite {
     this.direction = Math.random() > 0.5 ? Direction.Left : Direction.Right;
 
     this.game.physics.enable(this, Phaser.Physics.ARCADE);
-    this.body.bounce.y = 0.2;
+    // this.body.bounce.y = 0;
     this.body.collideWorldBounds = true;
+
     this.poopPool = poopPool;
+    this.cage = cage;
+  }
+
+  update() {
+    this.game.physics.arcade.collide(this, this.cage);
   }
 
   moveLeft() {
@@ -57,22 +67,29 @@ export default class extends Phaser.Sprite {
     this.body.velocity.x = 75;
   }
   idle() {
+    if (this.jumping) return;
+
     this.animations.play(`idle${this.direction}`);
     this.body.velocity.x = 0;
   }
   jump() {
+    if (this.jumping) return;
+
+    this.jumping = true;
     this.animations.play(`jump${this.direction}`);
-    this.body.velocity.y = -30;
+    this.body.velocity.y = -100;
+
+    this.game.time.events.add(
+      Phaser.Timer.SECOND / 4,
+      () => this.jumping = false
+    );
+
   }
   poop() {
-    if (this.myPoop) {
-      return
-    }
+    if (this.myPoop) return;
 
     this.animations.play(`poop${this.direction}`);
-
     const poop = this.poopPool.produce(this.getCurrentButtPosition());
-
     poop.onHitFloor.addOnce(() => this.myPoop = null);
 
     this.myPoop = poop;

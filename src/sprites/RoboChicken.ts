@@ -1,3 +1,4 @@
+import Cage from './Cage';
 import Chicken from './Chicken';
 import PoopPool from './PoopPool';
 
@@ -5,7 +6,8 @@ type ChickenParams = {
   game: Phaser.Game,
   x: number,
   y: number,
-  poopPool: PoopPool
+  poopPool: PoopPool,
+  cage: Cage,
 };
 
 export default class extends Chicken {
@@ -32,6 +34,8 @@ export default class extends Chicken {
   }
 
   update() {
+    super.update();
+
     if (this.counter === this.randomFinish) {
       this.counter = 0;
       this.generateRandomActionPoint();
