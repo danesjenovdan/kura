@@ -18,7 +18,7 @@ module.exports = {
     app: [
       path.resolve(__dirname, 'src/main.ts')
     ],
-    vendor: ['pixi', 'p2', 'phaser', 'webfontloader']
+    vendor: ['pixi', 'p2', 'phaser']
   },
   devtool: 'cheap-source-map',
   output: {
