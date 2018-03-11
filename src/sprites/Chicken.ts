@@ -63,7 +63,7 @@ export default class extends Phaser.Sprite {
     this.body.velocity.y = -30;
   }
   poop() {
-    if (this.myPoop && !this.myPoop.body.onFloor()) {
+    if (this.myPoop) {
       return
     }
 
