@@ -91,7 +91,7 @@ export default class extends Phaser.Sprite {
     egg.events.onOutOfBounds.addOnce(() => this.myEgg = null);
 
     this.myEgg = egg;
-  },
+  }
   getCurrentButtPosition() {
     return {
       x: Math.round(this.body.x) + BUTT_POSITION[this.direction][0],

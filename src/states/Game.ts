@@ -1,12 +1,14 @@
 /* globals __DEV__ */
-import Chicken from '../sprites/Chicken';
-import RoboChicken from '../sprites/RoboChicken';
 import Cage from '../sprites/Cage';
+import Chicken from '../sprites/Chicken';
+import EggMeter from '../sprites/EggMeter';
 import PoopPool from '../sprites/PoopPool';
+import RoboChicken from '../sprites/RoboChicken';
 
 export default class extends Phaser.State {
   cage: Cage
   chicken: Chicken
+  eggMeter: EggMeter
   roboChickens: Phaser.Group
   jumping: boolean
   keys: any
@@ -80,6 +82,7 @@ export default class extends Phaser.State {
     // @ts-ignore
     bitmapData.circle(112, 80, 138, grd);
 
+    this.eggMeter = new EggMeter(this.game);
   }
 
   update() {
@@ -87,7 +90,10 @@ export default class extends Phaser.State {
     this.game.physics.arcade.collide(this.roboChickens, this.cage);
 
     if (this.keys.space.isDown) {
-      this.chicken.layEgg();
+      if (this.eggMeter.inTheGreen()) {
+        this.chicken.layEgg();
+      }
+      this.eggMeter.resetMeter();
     } else if (this.keys.left.isDown) {
       this.chicken.moveLeft();
     } else if (this.keys.right.isDown) {
