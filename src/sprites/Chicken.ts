@@ -1,4 +1,5 @@
 import Poop from './Poop';
+import Egg from './Egg';
 import PoopPool from './PoopPool';
 
 enum Direction {
@@ -22,6 +23,7 @@ export default class extends Phaser.Sprite {
   direction: Direction
   poopPool: PoopPool
   myPoop: Poop | null
+  myEgg: Egg | null
 
   constructor({game, x, y, poopPool}: ChickenParams) {
     super(game, x, y, 'chicken');
@@ -69,13 +71,31 @@ export default class extends Phaser.Sprite {
 
     this.animations.play(`poop${this.direction}`);
 
-    const poop = this.poopPool.produce(
-      Math.round(this.body.x) + BUTT_POSITION[this.direction][0],
-      Math.round(this.body.y) + BUTT_POSITION[this.direction][1],
-    );
+    const poop = this.poopPool.produce(this.getCurrentButtPosition());
 
     poop.onHitFloor.addOnce(() => this.myPoop = null);
 
     this.myPoop = poop;
+  }
+  layEgg() {
+    if (this.myEgg) {
+      return;
+    }
+
+    this.animations.play(`poop${this.direction}`);
+    const egg = new Egg({
+      game: this.game,
+      ...this.getCurrentButtPosition()
+    });
+
+    egg.events.onOutOfBounds.addOnce(() => this.myEgg = null);
+
+    this.myEgg = egg;
+  },
+  getCurrentButtPosition() {
+    return {
+      x: Math.round(this.body.x) + BUTT_POSITION[this.direction][0],
+      y: Math.round(this.body.y) + BUTT_POSITION[this.direction][1],
+    }
   }
 }

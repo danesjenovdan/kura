@@ -9,7 +9,7 @@ export default class extends Phaser.State {
   chicken: Chicken
   roboChickens: Phaser.Group
   jumping: boolean
-  cursors: Phaser.CursorKeys
+  keys: any
   poopPool: PoopPool
 
   preload() {
@@ -52,7 +52,13 @@ export default class extends Phaser.State {
     }
 
     this.jumping = false;
-    this.cursors = this.game.input.keyboard.createCursorKeys();
+    this.keys = this.game.input.keyboard.addKeys({
+      up: Phaser.KeyCode.UP,
+      down: Phaser.KeyCode.DOWN,
+      left: Phaser.KeyCode.LEFT,
+      right: Phaser.KeyCode.RIGHT,
+      space: Phaser.KeyCode.SPACEBAR
+    });
 
     this.game.add.group(this.cage);
     this.game.add.existing(this.chicken);
@@ -80,13 +86,15 @@ export default class extends Phaser.State {
     const collision = this.game.physics.arcade.collide(this.chicken, this.cage);
     this.game.physics.arcade.collide(this.roboChickens, this.cage);
 
-    if (this.cursors.left.isDown) {
+    if (this.keys.space.isDown) {
+      this.chicken.layEgg();
+    } else if (this.keys.left.isDown) {
       this.chicken.moveLeft();
-    } else if (this.cursors.right.isDown) {
+    } else if (this.keys.right.isDown) {
       this.chicken.moveRight();
-    } else if (this.cursors.down.isDown) {
+    } else if (this.keys.down.isDown) {
       this.chicken.poop();
-    } else if (this.cursors.up.isDown && collision && !this.jumping) {
+    } else if (this.keys.up.isDown && collision && !this.jumping) {
       this.chicken.jump();
       this.jumping = true;
     } else if (this.jumping && collision) {

@@ -9,22 +9,13 @@ export default class extends Phaser.Group {
 
     this.enableBody = true;
     this.physicsBodyType = Phaser.Physics.ARCADE;
-
-    // this.createMultiple(500, 'poop');
     this.cage = cage;
-    // this.setAll('checkWorldBounds', true);
-    // this.setAll('outOfBoundsKill', true);
-    // this.setAll('body.collideWorldBounds', true);
-
   }
 
-  produce(x: number, y: number): Poop {
+  produce({x, y}: {x: number, y: number}): Poop {
     const poop = new Poop({game: this.game, x, y, cage: this.cage});
     this.add(poop);
     return poop;
-    // const poop = this.getFirstDead();
-    // poop.reset(x, y);
-    // return poop;
   }
 
 }
