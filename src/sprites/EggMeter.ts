@@ -9,14 +9,15 @@ export default class extends Phaser.Sprite {
     this.anchor.y = 0.5;
 
     this.game.add.existing(this);
-    this.egg = this.game.add.sprite(BAR_POSITION.x, BAR_POSITION.y, 'egg');
+    this.egg = this.game.make.sprite(0, 0, 'egg');
     this.egg.anchor.y = 0.5;
     this.egg.anchor.x = 0.444444;
+    this.addChild(this.egg);
   }
 
   update() {
     this.meterPosition = this.meterPosition < 184 ? this.meterPosition + 1 : 0;
-    this.egg.position.x = this.meterPosition + 20;
+    this.egg.position.x = this.meterPosition;
   }
 
   inTheGreen() {

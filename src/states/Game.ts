@@ -15,6 +15,7 @@ export default class extends Phaser.State {
   poopPool: PoopPool
   roboChickens: Phaser.Group
   score: Score
+  endGameTriggered: boolean = false
 
   preload() {
     this.game.load.audio('soundtrack', 'assets/audio/kure.mp3');
@@ -93,6 +94,10 @@ export default class extends Phaser.State {
   update() {
     if (this.keys.space.isDown) {
       this.layEgg();
+
+      if (this.score.currentScore > 10) {
+        this.triggerEndGame();
+      }
     } else if (this.keys.left.isDown) {
       this.chicken.moveLeft();
     } else if (this.keys.right.isDown) {
@@ -113,5 +118,28 @@ export default class extends Phaser.State {
     }
 
     this.eggMeter.resetMeter();
+  }
+
+  triggerEndGame() {
+    if (this.endGameTriggered) return;
+
+    this.eggMeter.kill();
+    this.score.kill();
+    const text = this.game.add.text(
+      22,
+      20,
+      'V Sloveniji se vsak dan proda 1234567 jajc iz baterijske reje. Življenje kokoši, ki jih znesejo, je približno tako zabavno, kot ta igra.',
+      {
+        fill: 'white',
+        fontWeight: 'bold',
+        fontSize: 16,
+        font: 'Arial',
+        wordWrap: true,
+        wordWrapWidth: 180,
+        stroke: 'black',
+        strokeThickness: 1,
+      }
+    )
+    text.lineSpacing = -5;
   }
 }
