@@ -17,5 +17,4 @@ export default class extends Phaser.Group {
     this.add(poop);
     return poop;
   }
-
 }

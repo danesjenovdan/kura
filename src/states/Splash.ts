@@ -8,7 +8,7 @@ export default class extends Phaser.State {
     this.load.image('cage-horizontal', 'assets/images/cage-horizontal.png');
     this.load.image('egg', 'assets/images/egg.png');
     this.load.image('meter', 'assets/images/egg-meter.png');
-    this.load.imageFromTexture('poop', ['2'], 1, 1);
+    this.load.imageFromTexture('poop', [' 2 ', '212'], 1, 1);
   }
 
   create() {

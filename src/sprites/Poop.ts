@@ -11,7 +11,7 @@ export default class extends Phaser.Sprite {
     game: Phaser.Game,
     x: number,
     y: number,
-    cage: Cage
+    cage: Cage,
   }) {
     super(game, x, y, 'poop');
     this.onHitFloor = new Phaser.Signal();
