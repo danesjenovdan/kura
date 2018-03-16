@@ -25,10 +25,8 @@ export default class extends Phaser.State {
     const music = this.game.add.audio('soundtrack');
     music.play();
 
-    Phaser.Canvas.setImageRenderingCrisp(this.game.canvas);
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     this.game.physics.arcade.gravity.y = 300;
-    this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     this.game.stage.backgroundColor = '#eee';
 
     this.cage = new Cage({ game: this.game });
