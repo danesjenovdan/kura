@@ -45,7 +45,6 @@ export default class extends Phaser.Sprite {
     this.direction = Math.random() > 0.5 ? Direction.Left : Direction.Right;
 
     this.game.physics.enable(this, Phaser.Physics.ARCADE);
-    // this.body.bounce.y = 0;
     this.body.collideWorldBounds = true;
 
     this.poopPool = poopPool;
