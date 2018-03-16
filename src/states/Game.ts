@@ -61,9 +61,13 @@ export default class extends Phaser.State {
     this.jumping = false;
     this.keys = this.game.input.keyboard.addKeys({
       up: Phaser.KeyCode.UP,
+      w: Phaser.KeyCode.W,
       down: Phaser.KeyCode.DOWN,
+      s: Phaser.KeyCode.S,
       left: Phaser.KeyCode.LEFT,
+      a: Phaser.KeyCode.A,
       right: Phaser.KeyCode.RIGHT,
+      d: Phaser.KeyCode.D,
       space: Phaser.KeyCode.SPACEBAR
     });
 
@@ -98,13 +102,13 @@ export default class extends Phaser.State {
       if (this.score.currentScore > 10) {
         this.triggerEndGame();
       }
-    } else if (this.keys.left.isDown) {
+    } else if (this.keys.left.isDown || this.keys.a.isDown) {
       this.chicken.moveLeft();
-    } else if (this.keys.right.isDown) {
+    } else if (this.keys.right.isDown || this.keys.d.isDown) {
       this.chicken.moveRight();
-    } else if (this.keys.down.isDown) {
+    } else if (this.keys.down.isDown || this.keys.s.isDown) {
       this.chicken.poop();
-    } else if (this.keys.up.isDown) {
+    } else if (this.keys.up.isDown || this.keys.w.isDown) {
       this.chicken.jump();
     } else {
       this.chicken.idle();
