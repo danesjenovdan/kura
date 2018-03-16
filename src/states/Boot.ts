@@ -9,7 +9,8 @@ export default class extends Phaser.State {
     this.load.image('egg', 'assets/images/egg.png');
     this.load.image('meter', 'assets/images/egg-meter.png');
     this.load.imageFromTexture('poop', [' 2 ', '212'], 1, 1);
-    this.load.bitmapFont('FixedSys', 'assets/fonts/font.png', 'assets/fonts/font.fnt')
+    this.load.bitmapFont('FixedSys', 'assets/fonts/font.png', 'assets/fonts/font.fnt');
+    this.load.audio('soundtrack', 'assets/audio/kure.mp3');
   }
 
   create() {

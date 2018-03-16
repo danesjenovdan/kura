@@ -5,6 +5,7 @@ import EggMeter from '../sprites/EggMeter';
 import PoopPool from '../sprites/PoopPool';
 import RoboChicken from '../sprites/RoboChicken';
 import Score from '../sprites/Score';
+import SoundControl from '../sprites/SoundControl';
 
 export default class extends Phaser.State {
   cage: Cage
@@ -17,19 +18,13 @@ export default class extends Phaser.State {
   score: Score
   endGameTriggered: boolean = false
   survival: boolean
+  soundControl: SoundControl
 
   init(survival: boolean) {
     this.survival = survival;
   }
 
-  preload() {
-    this.game.load.audio('soundtrack', 'assets/audio/kure.mp3');
-  }
-
   create() {
-    const music = this.game.add.audio('soundtrack');
-    music.play();
-
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     this.game.physics.arcade.gravity.y = 300;
     this.game.stage.backgroundColor = '#eee';
@@ -71,7 +66,8 @@ export default class extends Phaser.State {
       a: Phaser.KeyCode.A,
       right: Phaser.KeyCode.RIGHT,
       d: Phaser.KeyCode.D,
-      space: Phaser.KeyCode.SPACEBAR
+      space: Phaser.KeyCode.SPACEBAR,
+      f1: Phaser.KeyCode.F1,
     });
 
     this.game.add.group(this.cage);
@@ -96,10 +92,14 @@ export default class extends Phaser.State {
 
     this.eggMeter = new EggMeter(this.game);
     this.score = new Score(this.game, this.survival);
+    this.soundControl = new SoundControl(this.game);
   }
 
   update() {
-    if (this.keys.space.isDown) {
+    if (this.keys.f1.justReleased()) {
+      this.soundControl.toggle()
+    }
+    else if (this.keys.space.isDown) {
       this.layEgg();
 
       if (!this.survival && this.score.currentScore === 5) {
