@@ -103,6 +103,7 @@ export default class extends Phaser.State {
       this.layEgg();
 
       if (!this.survival && this.score.currentScore === 5) {
+        this.state.start('End');
       }
     } else if (this.keys.left.isDown || this.keys.a.isDown) {
       this.chicken.moveLeft();
@@ -124,25 +125,5 @@ export default class extends Phaser.State {
     }
 
     this.eggMeter.resetMeter();
-  }
-
-  triggerEndGame() {
-    if (this.endGameTriggered) return;
-
-    this.eggMeter.kill();
-    this.score.kill();
-    this.game.add.bitmapText(
-      22,
-      20,
-      'FixedSys',
-      'V Sloveniji se vsak dan\r' +
-      'proda 1234567 jajc iz\r' +
-      'baterijske reje. Živ-\r' +
-      'ljenje kokoši, ki jih\r' +
-      'znesejo, je približno\r' +
-      'tako zabavno, kot ta\r' +
-      'igra.',
-      16,
-    )
   }
 }
