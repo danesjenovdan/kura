@@ -1,14 +1,8 @@
-export default class extends Phaser.Text {
+export default class extends Phaser.BitmapText {
   currentScore: number = 0
 
   constructor(game: Phaser.Game) {
-    super(game, 204, 140, '0', {
-      font: 'Arial',
-      fontSize: 16,
-      fill: 'white',
-      fontWeight: 'bold',
-    })
-
+    super(game, 204, 140, 'FixedSys', '0', 16);
     this.game.add.existing(this);
   }
 

@@ -127,21 +127,18 @@ export default class extends Phaser.State {
 
     this.eggMeter.kill();
     this.score.kill();
-    const text = this.game.add.text(
+    this.game.add.bitmapText(
       22,
       20,
-      'V Sloveniji se vsak dan proda 1234567 jajc iz baterijske reje. Življenje kokoši, ki jih znesejo, je približno tako zabavno, kot ta igra.',
-      {
-        fill: 'white',
-        fontWeight: 'bold',
-        fontSize: 16,
-        font: 'Arial',
-        wordWrap: true,
-        wordWrapWidth: 180,
-        stroke: 'black',
-        strokeThickness: 1,
-      }
+      'FixedSys',
+      'V Sloveniji se vsak dan\r' +
+      'proda 1234567 jajc iz\r' +
+      'baterijske reje. Živ-\r' +
+      'ljenje kokoši, ki jih\r' +
+      'znesejo, je približno\r' +
+      'tako zabavno, kot ta\r' +
+      'igra.',
+      16,
     )
-    text.lineSpacing = -5;
   }
 }
