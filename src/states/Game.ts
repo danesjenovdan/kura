@@ -1,6 +1,7 @@
 /* globals __DEV__ */
 import Cage from '../sprites/Cage';
 import Chicken from '../sprites/Chicken';
+import ControlsOverlay from '../sprites/ControlsOverlay';
 import EggMeter from '../sprites/EggMeter';
 import PoopPool from '../sprites/PoopPool';
 import RoboChicken from '../sprites/RoboChicken';
@@ -19,6 +20,7 @@ export default class extends Phaser.State {
   endGameTriggered: boolean = false
   survival: boolean
   soundControl: SoundControl
+  controlsOverlay: ControlsOverlay
 
   init(survival: boolean) {
     this.survival = survival;
@@ -93,6 +95,7 @@ export default class extends Phaser.State {
     this.eggMeter = new EggMeter(this.game);
     this.score = new Score(this.game, this.survival);
     this.soundControl = new SoundControl(this.game);
+    this.controlsOverlay = new ControlsOverlay(this.game);
   }
 
   update() {

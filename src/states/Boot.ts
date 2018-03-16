@@ -8,8 +8,12 @@ export default class extends Phaser.State {
     this.load.image('cage-horizontal', 'assets/images/cage-horizontal.png');
     this.load.image('egg', 'assets/images/egg.png');
     this.load.image('meter', 'assets/images/egg-meter.png');
+    this.load.image('arrows', 'assets/images/arrows.png');
+    this.load.image('space', 'assets/images/space.png');
     this.load.imageFromTexture('poop', [' 2 ', '212'], 1, 1);
-    this.load.bitmapFont('FixedSys', 'assets/fonts/font.png', 'assets/fonts/font.fnt');
+    this.load.bitmapFont('FixedSys', 'assets/fonts/fixedsys.png', 'assets/fonts/fixedsys.fnt');
+    this.load.bitmapFont('Munro', 'assets/fonts/munro.png', 'assets/fonts/munro.fnt');
+    this.load.bitmapFont('MunroSmall', 'assets/fonts/munro-small.png', 'assets/fonts/munro-small.fnt');
     this.load.audio('soundtrack', 'assets/audio/kure.mp3');
   }
 
