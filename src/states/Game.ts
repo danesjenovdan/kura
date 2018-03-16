@@ -16,6 +16,11 @@ export default class extends Phaser.State {
   roboChickens: Phaser.Group
   score: Score
   endGameTriggered: boolean = false
+  survival: boolean
+
+  init(survival: boolean) {
+    this.survival = survival;
+  }
 
   preload() {
     this.game.load.audio('soundtrack', 'assets/audio/kure.mp3');
@@ -90,15 +95,14 @@ export default class extends Phaser.State {
     bitmapData.circle(112, 80, 138, grd);
 
     this.eggMeter = new EggMeter(this.game);
-    this.score = new Score(this.game);
+    this.score = new Score(this.game, this.survival);
   }
 
   update() {
     if (this.keys.space.isDown) {
       this.layEgg();
 
-      if (this.score.currentScore > 10) {
-        this.triggerEndGame();
+      if (!this.survival && this.score.currentScore === 5) {
       }
     } else if (this.keys.left.isDown || this.keys.a.isDown) {
       this.chicken.moveLeft();

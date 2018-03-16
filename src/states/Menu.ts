@@ -3,9 +3,12 @@ enum MenuPosition {
   Right = 140,
 }
 
+enum GameMode { STORY, SURVIVAL }
+
 export default class extends Phaser.State {
   chicken: Phaser.Sprite
   keys: any
+  selected: GameMode
 
   create() {
     this.chicken = this.game.add.sprite(MenuPosition.Left, 80, 'chicken');
@@ -35,18 +38,19 @@ export default class extends Phaser.State {
     }
   }
 
-
   pickStory() {
+    this.selected = GameMode.STORY;
     this.chicken.animations.play('left');
     this.chicken.position.x = MenuPosition.Left;
   }
 
   pickSurvival() {
+    this.selected = GameMode.SURVIVAL;
     this.chicken.animations.play('right');
     this.chicken.position.x = MenuPosition.Right;
   }
 
   startGame() {
-    this.state.start('Game');
+    this.state.start('Intro', true, false, this.selected === GameMode.SURVIVAL);
   }
 }
