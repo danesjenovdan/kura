@@ -24,6 +24,9 @@ export default class extends Phaser.State {
 
   init(survival: boolean) {
     this.survival = survival;
+    if (survival) {
+      this.game.time.events.add(Phaser.Timer.MINUTE, () => this.finish());
+    }
   }
 
   create() {
