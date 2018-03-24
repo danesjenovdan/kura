@@ -86,7 +86,7 @@ export default class extends Phaser.State {
     bitmapData.addToWorld();
     const grd = bitmapData.context.createRadialGradient(112, 80, 0, 112, 80, 112);
     grd.addColorStop(0, 'rgba(255, 255, 255, 0)');
-    grd.addColorStop(0.3, 'rgba(0, 0, 0, 0.3');
+    grd.addColorStop(0.166, 'rgba(0, 0, 0, 0.5');
     grd.addColorStop(1, 'rgba(0, 0, 0, 1');
 
     bitmapData.cls();
