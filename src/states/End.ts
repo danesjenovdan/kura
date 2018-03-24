@@ -23,6 +23,6 @@ export default class extends TextScreen {
   }
 
   continue() {
-    window.location.href = 'http://www.danesjenovdan.si';
+    window.location.href = '//www.imasjajca.si/';
   }
 }
