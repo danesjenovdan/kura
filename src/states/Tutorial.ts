@@ -28,6 +28,5 @@ export default class extends TextScreen {
     this.game.add.sprite(104, 24, 'arrows');
     this.game.add.sprite(98, 74, 'space');
     this.game.add.sprite(108, 112, 'egg');
-
   }
 }

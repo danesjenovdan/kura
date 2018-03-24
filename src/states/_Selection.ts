@@ -56,5 +56,5 @@ export default abstract class extends Phaser.State {
     this.selector.position.x = xOffset[position];
   }
 
-  abstract continue(selectedDirection: string): void
+  abstract continue(selectedDirection: Position): void
 }

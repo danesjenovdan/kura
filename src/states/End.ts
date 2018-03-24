@@ -5,8 +5,6 @@ export default class extends TextScreen {
 
   create() {
     super.create();
-    this.game.stage.backgroundColor = '#222';
-
     this.nextScreen = 'Menu';
     this.textObject.text =
       'Ne bo šlo! Kokošim v baterijski reji se nikoli ne zgodi nič novega. ' +

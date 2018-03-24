@@ -132,6 +132,7 @@ export default class extends Phaser.State {
 
   finish() {
     this.soundControl.stop();
-    this.state.start('End');
+    this.game.stage.backgroundColor = '#222';
+    this.state.start('LevelUp', true, false, this.survival);
   }
 }
