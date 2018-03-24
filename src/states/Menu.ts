@@ -50,6 +50,6 @@ export default class extends Phaser.State {
   }
 
   startGame() {
-    this.state.start('Intro', true, false, this.selected === GameMode.SURVIVAL);
+    this.state.start('Tutorial', true, false, this.selected === GameMode.SURVIVAL);
   }
 }

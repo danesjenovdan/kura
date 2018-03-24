@@ -6,6 +6,7 @@ import EndState from './states/End';
 import GameState from './states/Game';
 import IntroState from './states/Intro';
 import MenuState from './states/Menu';
+import TutorialState from './states/Tutorial';
 
 import config from './config';
 
@@ -15,6 +16,7 @@ class Game extends Phaser.Game {
 
     this.state.add('Menu', MenuState);
     this.state.add('Intro', IntroState);
+    this.state.add('Tutorial', TutorialState);
     this.state.add('Game', GameState);
     this.state.add('End', EndState);
 
