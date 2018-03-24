@@ -78,10 +78,7 @@ export default class extends Phaser.State {
 
     this.game.world.bringToTop(this.poopPool);
 
-    //  Our BitmapData (same size as our canvas)
     const bitmapData = this.game.make.bitmapData(224, 160);
-
-    //  Add it to the world or we can't see it
     bitmapData.addToWorld();
     const grd = bitmapData.context.createRadialGradient(112, 80, 0, 112, 80, 112);
     grd.addColorStop(0, 'rgba(255, 255, 255, 0)');
@@ -106,7 +103,7 @@ export default class extends Phaser.State {
       this.layEgg();
 
       if (!this.survival && this.score.currentScore === 5) {
-        this.state.start('End');
+        this.finish();
       }
     } else if (this.keys.left.isDown || this.keys.a.isDown) {
       this.chicken.moveLeft();
@@ -128,5 +125,10 @@ export default class extends Phaser.State {
     }
 
     this.eggMeter.resetMeter();
+  }
+
+  finish() {
+    this.soundControl.stop();
+    this.state.start('End');
   }
 }
