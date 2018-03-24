@@ -12,7 +12,7 @@ export default class extends TextScreen {
     this.nextScreen = 'Menu';
     const variableText = this.survival
       ? 'Kokoši v baterijski reji ne morejo nikoli odnehati. '
-      : 'Kokošim v baterijski reji se nikoli ne zgodi nič novega.';
+      : 'Kokošim v baterijski reji se nikoli ne zgodi nič novega. ';
     this.textObject.text =
       'Ne bo šlo! ' + variableText +
       'Njihovo življenje je približno tako zabavno kot ta igra.' +
