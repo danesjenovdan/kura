@@ -1,4 +1,4 @@
-import TextScreen from './TextScreen';
+import TextScreen from './_TextScreen';
 
 export default class extends TextScreen {
   survival: boolean
