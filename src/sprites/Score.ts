@@ -3,7 +3,7 @@ export default class extends Phaser.BitmapText {
   survival: boolean
 
   constructor(game: Phaser.Game, survival: boolean) {
-    super(game, 187 + (survival ? 16 : 0), 2, 'MunroSmall', '', 10);
+    super(game, 187 + (survival ? 8 : 0), 2, 'MunroSmall', '', 10);
     this.game.add.existing(this);
     this.survival = survival;
   }

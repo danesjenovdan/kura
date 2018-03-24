@@ -4,7 +4,9 @@ import 'p2';
 import BootState from './states/Boot';
 import EndState from './states/End';
 import GameState from './states/Game';
+import GiveUpState from './states/GiveUp';
 import IntroState from './states/Intro';
+import LevelUpState from './states/LevelUp';
 import MenuState from './states/Menu';
 import TutorialState from './states/Tutorial';
 
@@ -18,6 +20,8 @@ class Game extends Phaser.Game {
     this.state.add('Intro', IntroState);
     this.state.add('Tutorial', TutorialState);
     this.state.add('Game', GameState);
+    this.state.add('LevelUp', LevelUpState);
+    this.state.add('GiveUp', GiveUpState);
     this.state.add('End', EndState);
 
     this.state.add('Boot', BootState, true);

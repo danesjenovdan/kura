@@ -73,6 +73,7 @@ export default class extends Phaser.State {
       d: Phaser.KeyCode.D,
       space: Phaser.KeyCode.SPACEBAR,
       f1: Phaser.KeyCode.F1,
+      esc: Phaser.KeyCode.ESC,
     });
 
     this.game.add.group(this.cage);
@@ -99,7 +100,7 @@ export default class extends Phaser.State {
   }
 
   update() {
-    if (this.keys.f1.justReleased()) {
+    if (this.keys.f1.justPressed()) {
       this.soundControl.toggle()
     }
     else if (this.keys.space.isDown) {
@@ -116,6 +117,8 @@ export default class extends Phaser.State {
       this.chicken.poop();
     } else if (this.keys.up.isDown || this.keys.w.isDown) {
       this.chicken.jump();
+    } else if (this.keys.esc.isDown) {
+      this.state.start('GiveUp', true, false, this.survival);
     } else {
       this.chicken.idle();
     }
@@ -131,8 +134,11 @@ export default class extends Phaser.State {
   }
 
   finish() {
+    this.state.start('LevelUp', true, false, this.survival);
+  }
+
+  shutdown() {
     this.soundControl.stop();
     this.game.stage.backgroundColor = '#222';
-    this.state.start('LevelUp', true, false, this.survival);
   }
 }

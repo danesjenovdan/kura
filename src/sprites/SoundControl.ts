@@ -9,8 +9,9 @@ export default class extends Phaser.BitmapText {
 
   constructor(game: Phaser.Game) {
     super(game, 24, 2, 'MunroSmall', HelpText.UNMUTED, 10);
+    this.game.sound.mute = false;
     this.game.add.existing(this);
-    this.musicObject = this.game.sound.play('soundtrack', 1, true);
+    this.game.sound.play('soundtrack', 1, true);
   }
 
   toggle() {
@@ -19,6 +20,6 @@ export default class extends Phaser.BitmapText {
   }
 
   stop() {
-    this.musicObject.stop();
+    this.game.sound.removeAll();
   }
 }
