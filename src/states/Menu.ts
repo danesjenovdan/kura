@@ -22,10 +22,9 @@ export default class extends Phaser.State {
       enter: Phaser.KeyCode.ENTER
     });
 
-    const text = 'Story     Survival';
+    const text = 'Zgodba   Preživetje';
     this.game.add.bitmapText(30, 32, 'FixedSys', 'Izberi igralni način:', 16)
-    this.game.add.bitmapText(40, 112, 'FixedSys', text, 16)
-    this.game.stage.backgroundColor = '#222';
+    this.game.add.bitmapText(36, 112, 'FixedSys', text, 16)
   }
 
   update() {
