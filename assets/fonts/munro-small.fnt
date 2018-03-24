@@ -96,5 +96,6 @@
     <char id="56" x="9" y="113" width="4" height="5" xoffset="0" yoffset="2" xadvance="5" page="0" chnl="15"/>
     <char id="57" x="12" y="106" width="4" height="5" xoffset="0" yoffset="2" xadvance="5" page="0" chnl="15"/>
     <char id="32" x="0" y="0" width="0" height="0" xoffset="0" yoffset="2" xadvance="3" page="0" chnl="15"/>
+    <char id="353" x="38" y="30" width="3" height="7" xoffset="0" yoffset="0" xadvance="4" page="0" chnl="15"/>
   </chars>
 </font>

@@ -82,7 +82,6 @@ export default class extends Phaser.Sprite {
       Phaser.Timer.SECOND / 4,
       () => this.jumping = false
     );
-
   }
   poop() {
     if (this.myPoop) return;
