@@ -3,6 +3,7 @@ const BAR_POSITION = { x: 20, y: 15 }
 export default class extends Phaser.Sprite {
   private meterPosition: number = 0
   private egg: Phaser.Sprite
+  private progressBlocked: boolean = false
 
   constructor(game: Phaser.Game) {
     super(game, BAR_POSITION.x, BAR_POSITION.y, 'meter');
@@ -16,8 +17,10 @@ export default class extends Phaser.Sprite {
   }
 
   update() {
-    this.meterPosition = this.meterPosition < 184 ? this.meterPosition + 1 : 0;
-    this.egg.position.x = this.meterPosition;
+    if (!this.progressBlocked) {
+      this.meterPosition = this.meterPosition < 184 ? this.meterPosition + 1 : 0;
+      this.egg.position.x = this.meterPosition;
+    }
   }
 
   inTheGreen() {
@@ -26,5 +29,11 @@ export default class extends Phaser.Sprite {
 
   resetMeter() {
     this.meterPosition = 0;
+    this.egg.position.x = this.meterPosition;
+    this.progressBlocked = true;
+    this.game.time.events.add(
+      Phaser.Timer.SECOND * 2,
+      () => this.progressBlocked = false
+    );
   }
 }
