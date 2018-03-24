@@ -9,7 +9,7 @@ export default class extends Phaser.BitmapText {
   constructor(game: Phaser.Game) {
     super(game, 24, 2, 'MunroSmall', HelpText.UNMUTED, 10);
     this.game.add.existing(this);
-    this.game.sound.play('soundtrack');
+    this.game.sound.play('soundtrack', 1, true);
   }
 
   toggle() {
