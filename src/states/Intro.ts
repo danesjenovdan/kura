@@ -1,39 +1,20 @@
-export default class extends Phaser.State {
-  keys: any
+import TextScreen from './TextScreen';
+
+export default class extends TextScreen {
   survival: boolean
 
-  init(survival: boolean) {
-    this.survival = survival;
-  }
-
   create() {
-    this.keys = this.game.input.keyboard.addKeys({
-      enter: Phaser.KeyCode.ENTER,
-      space: Phaser.KeyCode.SPACEBAR,
-    });
+    super.create();
+    this.game.stage.backgroundColor = '#222';
 
-    let text =
-      'Uporabi puščice na tip-\nkovnici za premikanje.\n' +
-      '\nDa izležeš jajce, pravo-\nčasno pritisni presledek.\n';
+    this.nextScreen = 'Menu';
+    this.textObject.text =
+      'Nahajaš se v vesolju baterijskih kur, ki živijo za tvojo jutranjo ' +
+      'omleto. Prevzemi vlogo junaške koklje, premagaj eksistencialno krizo ' +
+      'in vzemi nase njeno življenjsko poslanstvo!' +
+      '\n\nPritisni tipko ENTER za nadaljevanje!';
+    this.textObject.position.y = 70;
 
-    if (this.survival) {
-      text += '\nZberi čimveč jajc, čas\nni omejen.'
-    }
-    else {
-      text += '\nZberi 5 jajc za napredo-\nvanje v drugo stopnjo.'
-    }
-
-    this.game.add.bitmapText(16, 12, 'FixedSys', text, 16)
-    this.game.time.events.add(Phaser.Timer.SECOND * 10, () => this.startGame());
-  }
-
-  update() {
-    if (this.keys.enter.isDown || this.keys.space.isDown) {
-      this.startGame();
-    }
-  }
-
-  startGame() {
-    this.state.start('Game', true, false, this.survival);
+    this.game.add.sprite(100, 28, 'chicken');
   }
 }

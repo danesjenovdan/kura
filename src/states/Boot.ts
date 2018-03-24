@@ -22,6 +22,6 @@ export default class extends Phaser.State {
     this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     this.game.cache.getBitmapFont('Munro').font.lineHeight = 11;
 
-    this.state.start('Menu');
+    this.state.start('Intro');
   }
 }
