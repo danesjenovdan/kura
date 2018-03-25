@@ -29,3 +29,11 @@ class Game extends Phaser.Game {
 }
 
 new Game();
+
+window.addEventListener('deviceorientation', event => {
+  var x = event.beta;  // In degree in the range [-180,180]
+  var y = event.gamma; // In degree in the range [-90,90]
+
+  console.log("beta : " + x);
+  console.log("gamma: " + y);
+});

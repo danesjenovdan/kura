@@ -20,7 +20,7 @@ export default class extends Phaser.State {
   }
 
   update() {
-    if (this.keys.enter.isDown || this.keys.space.isDown) {
+    if (this.keys.enter.isDown || this.keys.space.isDown || this.input.pointer1.isDown) {
       this.continue();
     }
   }

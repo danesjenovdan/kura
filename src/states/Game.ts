@@ -96,31 +96,57 @@ export default class extends Phaser.State {
     this.eggMeter = new EggMeter(this.game);
     this.score = new Score(this.game, this.survival);
     this.soundControl = new SoundControl(this.game);
-    this.controlsOverlay = new ControlsOverlay(this.game);
+    if (this.game.device.desktop) {
+      this.controlsOverlay = new ControlsOverlay(this.game);
+    }
+
+    this.input.onTap.add((pointer: Phaser.Pointer, doubletap: Boolean) => {
+      if (doubletap) {
+        this.layEgg();
+      }
+    }, this);
   }
 
   update() {
-    if (this.keys.f1.justPressed()) {
-      this.soundControl.toggle()
-    }
-    else if (this.keys.space.isDown) {
-      this.layEgg();
-
-      if (!this.survival && this.score.currentScore === 5) {
-        this.finish();
+    if (this.game.device.desktop) {
+      if (this.keys.f1.justPressed()) {
+        this.soundControl.toggle()
       }
-    } else if (this.keys.left.isDown || this.keys.a.isDown) {
-      this.chicken.moveLeft();
-    } else if (this.keys.right.isDown || this.keys.d.isDown) {
-      this.chicken.moveRight();
-    } else if (this.keys.down.isDown || this.keys.s.isDown) {
-      this.chicken.poop();
-    } else if (this.keys.up.isDown || this.keys.w.isDown) {
-      this.chicken.jump();
-    } else if (this.keys.esc.isDown) {
-      this.state.start('GiveUp', true, false, this.survival);
+      else if (this.keys.space.isDown) {
+        this.layEgg();
+      } else if (this.keys.left.isDown || this.keys.a.isDown) {
+        this.chicken.moveLeft();
+      } else if (this.keys.right.isDown || this.keys.d.isDown) {
+        this.chicken.moveRight();
+      } else if (this.keys.down.isDown || this.keys.s.isDown) {
+        this.chicken.poop();
+      } else if (this.keys.up.isDown || this.keys.w.isDown) {
+        this.chicken.jump();
+      } else if (this.keys.esc.isDown) {
+        this.state.start('GiveUp', true, false, this.survival);
+      } else {
+        this.chicken.idle();
+      }
     } else {
-      this.chicken.idle();
+      if (this.input.pointer1.worldX < 112 && this.input.pointer1.isDown) {
+        this.chicken.moveLeft();
+      }
+      
+      if (this.input.pointer1.worldX > 112 && this.input.pointer1.isDown) {
+        this.chicken.moveRight();
+      }
+      
+      if (this.input.pointer1.worldY > 80 && this.input.pointer1.isDown) {
+        this.chicken.poop();
+      }
+      
+      if (this.input.pointer1.worldY < 80 && this.input.pointer1.isDown) {
+        this.chicken.jump();
+      }
+
+      if (this.input.pointer1.isUp) {
+        this.chicken.idle();
+      }
     }
   }
 
@@ -131,6 +157,10 @@ export default class extends Phaser.State {
     }
 
     this.eggMeter.resetMeter();
+
+    if (!this.survival && this.score.currentScore === 5) {
+      this.finish();
+    }
   }
 
   finish() {

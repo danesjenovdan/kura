@@ -34,6 +34,22 @@ export default abstract class extends Phaser.State {
     }
 
     this.textObjects.title.anchor.setTo(0.5);
+
+    this.input.onTap.add((pointer: Phaser.Pointer) => {
+      if (pointer.worldX < 112) {
+        if (this.selected == Position.LEFT) {
+          this.continue(this.selected);
+        } else {
+          this.choose(Position.LEFT);
+        }
+      } else if (pointer.worldX > 112) {
+        if (this.selected == Position.RIGHT) {
+          this.continue(this.selected);
+        } else {
+        this.choose(Position.RIGHT);
+        }
+      }
+    }, this);
   }
 
   update() {
@@ -44,6 +60,20 @@ export default abstract class extends Phaser.State {
     } else if (this.keys.enter.isDown || this.keys.space.isDown) {
       this.continue(this.selected);
     }
+
+    // else if (this.input.pointer1.isDown && this.input.pointer1.worldX < 112) {
+    //   if (this.selected == Position.LEFT) {
+    //     this.continue(this.selected);
+    //   } else {
+    //     this.choose(Position.LEFT);
+    //   }
+    // } else if (this.input.pointer1.isDown && this.input.pointer1.worldX > 112) {
+    //   if (this.selected == Position.RIGHT) {
+    //     this.continue(this.selected);
+    //   } else {
+    //   this.choose(Position.RIGHT);
+    //   }
+    // }
   }
 
   choose(position: Position) {
@@ -54,6 +84,10 @@ export default abstract class extends Phaser.State {
       RIGHT: 164,
     };
     this.selector.position.x = xOffset[position];
+  }
+
+  onTap() {
+    alert('ping');
   }
 
   abstract continue(selectedDirection: Position): void
