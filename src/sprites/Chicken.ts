@@ -93,16 +93,14 @@ export default class extends Phaser.Sprite {
     this.myPoop = poop;
   }
   layEgg() {
-    if (this.myEgg) {
-      return;
-    }
+    if (this.myEgg) return;
 
     this.animations.play(`poop${this.direction}`);
     const egg = new Egg({
       game: this.game,
       ...this.getCurrentButtPosition()
     });
-
+    this.game.sound.play('egg');
     egg.events.onOutOfBounds.addOnce(() => this.myEgg = null);
 
     this.myEgg = egg;

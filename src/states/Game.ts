@@ -32,7 +32,7 @@ export default class extends Phaser.State {
   create() {
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     this.game.physics.arcade.gravity.y = 300;
-    this.game.stage.backgroundColor = '#eee';
+    this.game.stage.backgroundColor = '#925c3e';
 
     this.cage = new Cage({ game: this.game });
     this.poopPool = new PoopPool({ game: this.game }, this.cage)
@@ -131,15 +131,15 @@ export default class extends Phaser.State {
       if (this.input.pointer1.worldX < 112 && this.input.pointer1.isDown) {
         this.chicken.moveLeft();
       }
-      
+
       if (this.input.pointer1.worldX > 112 && this.input.pointer1.isDown) {
         this.chicken.moveRight();
       }
-      
+
       if (this.input.pointer1.worldY > 80 && this.input.pointer1.isDown) {
         this.chicken.poop();
       }
-      
+
       if (this.input.pointer1.worldY < 80 && this.input.pointer1.isDown) {
         this.chicken.jump();
       }
