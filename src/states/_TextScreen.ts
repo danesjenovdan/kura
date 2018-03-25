@@ -26,6 +26,7 @@ export default class extends Phaser.State {
   }
 
   continue() {
+    this.game.sound.play('ping');
     this.state.start(this.nextScreen, true, false, this.nextScreenPayload);
   }
 }

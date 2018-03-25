@@ -1,7 +1,4 @@
-enum Position {
-  LEFT = 'LEFT',
-  RIGHT = 'RIGHT',
-}
+import { Position } from '../types';
 
 export default abstract class extends Phaser.State {
   selector: Phaser.Sprite
@@ -90,5 +87,7 @@ export default abstract class extends Phaser.State {
     alert('ping');
   }
 
-  abstract continue(selectedDirection: Position): void
+  continue(selectedDirection: Position) {
+    this.game.sound.play('ping');
+  }
 }

@@ -1,14 +1,5 @@
-import Cage from './Cage';
 import Chicken from './Chicken';
-import PoopPool from './PoopPool';
-
-type ChickenParams = {
-  game: Phaser.Game,
-  x: number,
-  y: number,
-  poopPool: PoopPool,
-  cage: Cage,
-};
+import {ChickenParams} from '../types';
 
 export default class extends Chicken {
   counter: number
@@ -19,6 +10,7 @@ export default class extends Chicken {
   constructor(params: ChickenParams) {
     super(params);
     this.counter = 0;
+    this.robot = true;
     this.generateRandomActionPoint();
   }
 

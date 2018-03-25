@@ -14,7 +14,11 @@ export default class extends Phaser.State {
     this.load.bitmapFont('FixedSys', 'assets/fonts/fixedsys.png', 'assets/fonts/fixedsys.fnt');
     this.load.bitmapFont('Munro', 'assets/fonts/munro.png', 'assets/fonts/munro.fnt');
     this.load.bitmapFont('MunroSmall', 'assets/fonts/munro-small.png', 'assets/fonts/munro-small.fnt');
-    this.load.audio('soundtrack', 'assets/audio/kure.mp3');
+    this.load.audio('soundtrack', 'assets/audio/soundtrack.mp3');
+    this.load.audio('poop', 'assets/audio/poop.mp3');
+    this.load.audio('jump', 'assets/audio/jump.mp3');
+    this.load.audio('fanfare', 'assets/audio/fanfare.mp3');
+    this.load.audio('ping', 'assets/audio/ping.mp3');
   }
 
   create() {

@@ -1,4 +1,5 @@
 import Selection from './_Selection';
+import { Position } from '../types';
 
 export default class extends Selection {
   create() {
@@ -11,7 +12,8 @@ export default class extends Selection {
     this.textObjects.right.position.x = 116;
   }
 
-  continue(selectedOption: 'LEFT' | 'RIGHT') {
-    this.state.start('Tutorial', true, false, selectedOption === 'RIGHT');
+  continue(selectedOption: Position) {
+    super.continue(selectedOption);
+    this.state.start('Tutorial', true, false, selectedOption === Position.RIGHT);
   }
 }

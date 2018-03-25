@@ -2,19 +2,12 @@ import Cage from './Cage';
 import Egg from './Egg';
 import Poop from './Poop';
 import PoopPool from './PoopPool';
+import {ChickenParams} from '../types';
 
 enum Direction {
   Left = 'Left',
   Right = 'Right',
 }
-
-type ChickenParams = {
-  game: Phaser.Game,
-  x: number,
-  y: number,
-  poopPool: PoopPool,
-  cage: Cage
-};
 
 const BUTT_POSITION = {
   Left: [16, 27],
@@ -28,6 +21,7 @@ export default class extends Phaser.Sprite {
   myPoop: Poop | null
   myEgg: Egg | null
   jumping: boolean = false
+  robot: boolean = false
 
   constructor({game, x, y, poopPool, cage}: ChickenParams) {
     super(game, x, y, 'chicken');
@@ -77,6 +71,9 @@ export default class extends Phaser.Sprite {
     this.jumping = true;
     this.animations.play(`jump${this.direction}`);
     this.body.velocity.y = -100;
+    if (!this.robot) {
+      this.game.sound.play('jump');
+    }
 
     this.game.time.events.add(
       Phaser.Timer.SECOND / 4,
@@ -88,6 +85,9 @@ export default class extends Phaser.Sprite {
 
     this.animations.play(`poop${this.direction}`);
     const poop = this.poopPool.produce(this.getCurrentButtPosition());
+    if (!this.robot) {
+      this.game.sound.play('poop');
+    }
     poop.onHitFloor.addOnce(() => this.myPoop = null);
 
     this.myPoop = poop;

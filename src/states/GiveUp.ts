@@ -1,4 +1,5 @@
 import Selection from './_Selection';
+import { Position } from '../types';
 
 export default class extends Selection {
   survival: boolean
@@ -17,8 +18,9 @@ export default class extends Selection {
     this.textObjects.right.position.x = 136;
   }
 
-  continue(selectedOption: 'LEFT' | 'RIGHT') {
-    if(selectedOption === 'LEFT') {
+  continue(selectedOption: Position) {
+    super.continue(selectedOption);
+    if(selectedOption === Position.LEFT) {
       this.state.start('End', true, false, true);
     } else {
       this.state.start('Game', true, false, this.survival);
