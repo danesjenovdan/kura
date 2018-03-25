@@ -21,9 +21,9 @@ export default class extends TextScreen {
         'in vzemi nase njeno življenjsko poslanstvo!' +
         '\n\nDotakni se zaslona za nadaljevanje!';
     }
-    this.textObject.position.y = 70;
+    this.textObject.position.y = 78;
 
-    const chicken = this.game.add.sprite(112, 35, 'chicken');
+    const chicken = this.game.add.sprite(112, 38, 'chicken');
     chicken.scale.set(2);
     chicken.anchor.set(0.5);
     chicken.smoothed = false;
