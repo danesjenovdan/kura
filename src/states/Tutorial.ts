@@ -20,7 +20,7 @@ export default class extends TextScreen {
         'Da izležeš jajce, pravočasno pritisni presledek.\n\n\n\n';
     } else {
       text =
-        'Za premikanje se dotakni zaslona. Kura bo sledila tvojemu prstu.\n\n\n' +
+        'Kuro premikaš tako, da se dotikaš zaslona - sledila bo tvojemu prstu.\n\n\n' +
         'Da izležeš jajce, se dvakrat hitro dotakni zaslona.\n\n\n';
     }
 
