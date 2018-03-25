@@ -23,6 +23,11 @@ export default class extends TextScreen {
     }
     this.textObject.position.y = 70;
 
-    this.game.add.sprite(100, 28, 'chicken');
+    const chicken = this.game.add.sprite(112, 35, 'chicken');
+    chicken.scale.set(2);
+    chicken.anchor.set(0.5);
+    chicken.smoothed = false;
+    chicken.animations.add('idle', [0, 0, 0, 0, 0, 0, 0, 0, 10], 5, true);
+    chicken.animations.play('idle');
   }
 }
