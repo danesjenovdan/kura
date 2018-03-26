@@ -27,6 +27,6 @@ export default class extends TextScreen {
   }
 
   continue() {
-    window.location.href = '//www.imasjajca.si/';
+    window.location.href = 'https://imasjajca.com/';
   }
 }
