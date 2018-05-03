@@ -11,10 +11,10 @@ export default class extends Selection {
   create() {
     super.create();
 
-    this.textObjects.title.text = 'Ojej, a želiš odnehati?';
-    this.textObjects.left.text = 'Seveda!';
+    this.textObjects.title.text = 'Ojej, a želiš odnehati?'; // i18n
+    this.textObjects.left.text = 'Seveda!'; // i18n
     this.textObjects.left.position.x = 30;
-    this.textObjects.right.text = 'Ne še!';
+    this.textObjects.right.text = 'Ne še!'; // i18n
     this.textObjects.right.position.x = 136;
   }
 
