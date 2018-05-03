@@ -11,14 +11,14 @@ export default class extends TextScreen {
     super.create();
     this.nextScreen = 'Menu';
     const variableText = this.survival
-      ? 'Kokoši v baterijski reji ne morejo nikoli odnehati. '
-      : 'Kokošim v baterijski reji se nikoli ne zgodi nič novega. ';
+      ? 'Chicken in battery cages can never quit. ' // i18n
+      : 'Nothing new ever happens to them. '; // i18n
     const desktopMobileText = this.game.device.desktop
-      ? '\n\nPritisni tipko ENTER za ukrepanje!'
-      : '\n\nDotakni se zaslona za ukrepanje!';
+      ? '\n\nPress ENTER to do something about it!' // i18n
+      : '\n\nTouch the screen to do something about it!'; // i18n
     this.textObject.text =
-      'Ne bo šlo! ' + variableText +
-      'Njihovo življenje je približno tako zabavno kot ta igra.' +
+      'No go. :( ' + variableText + // i18n
+      'Their life is as fun as this game.' + // i18n
       desktopMobileText;
     
     this.textObject.position.y = 70;

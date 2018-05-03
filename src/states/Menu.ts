@@ -5,10 +5,10 @@ export default class extends Selection {
   create() {
     super.create();
 
-    this.textObjects.title.text = 'Izberi igralni način:'; // i18n
-    this.textObjects.left.text = 'Zgodba'; // i18n
+    this.textObjects.title.text = 'Choose game mode:'; // i18n
+    this.textObjects.left.text = 'Story'; // i18n
     this.textObjects.left.position.x = 30;
-    this.textObjects.right.text = 'Preživetje'; // i18n
+    this.textObjects.right.text = 'Survival'; // i18n
     this.textObjects.right.position.x = 116;
   }
 
