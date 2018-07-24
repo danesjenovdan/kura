@@ -12,11 +12,11 @@ export default class extends Selection {
     super.create();
     this.game.sound.play('fanfare');
 
-    this.textObjects.title.text = 'Congrats! Would you like to\ncontinue to the next level?'; // i18n
-    this.textObjects.left.text = 'Yup!'; // i18n
-    this.textObjects.left.position.x = 30;
-    this.textObjects.right.text = 'Not yet!'; // i18n
-    this.textObjects.right.position.x = 136;
+    this.textObjects.title.text = 'Good job! Would you like to\n  attempt the next level?'; // i18n
+    this.textObjects.left.text = 'Of course!'; // i18n
+    this.textObjects.left.position.x = 12;
+    this.textObjects.right.text = 'Not just yet!'; // i18n
+    this.textObjects.right.position.x = 110;
   }
 
   continue(selectedOption: Position) {

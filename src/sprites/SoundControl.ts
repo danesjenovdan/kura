@@ -1,6 +1,6 @@
 enum HelpText {
-  MUTED = 'F1: Unmute', // i18n
-  UNMUTED = 'F1: Mute', // i18n
+  MUTED = 'F1: UNMUTE', // i18n
+  UNMUTED = 'F1: MUTE', // i18n
 }
 
 export default class extends Phaser.BitmapText {
