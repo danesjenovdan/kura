@@ -20,8 +20,8 @@ export default class extends TextScreen {
         'To lay an egg, press the SPACEBAR on time.\n\n\n\n'; // i18n
     } else {
       text =
-        'Move the chicken by touching the screen - it will follow your finger.\n\n\n' + // i18n
-        'To lay an egg, double tab the screen at the right moment.\n\n\n'; // i18n
+        'Move the hen by touching the screen - it will follow your finger.\n\n\n' + // i18n
+        'To lay an egg, double tap the screen at the right moment.\n\n\n'; // i18n
     }
 
     if (this.survival) {

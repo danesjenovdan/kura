@@ -12,7 +12,7 @@ export default class extends TextScreen {
     this.nextScreen = 'Menu';
     const variableText = this.survival
       ? 'Battery-caged hens never experience anything new. ' // i18n
-      : 'Nothing new ever happens to them. '; // i18n
+      : 'Nothing new ever happens to battery-caged hens. '; // i18n
     const desktopMobileText = this.game.device.desktop
       ? '\n\nPress ENTER to do something about it!' // i18n
       : '\n\nTouch the screen to do something about it!'; // i18n
