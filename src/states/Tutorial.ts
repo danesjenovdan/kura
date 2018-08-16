@@ -16,19 +16,19 @@ export default class extends TextScreen {
 
     if (this.game.device.desktop) {
       text =
-        'Za premikanje uporabi puščice na tipkovnici.\n\n\n\n' +
-        'Da izležeš jajce, pravočasno pritisni presledek.\n\n\n\n';
+        'Use the arrow keys to move.\n\n\n\n' + // i18n
+        'To lay an egg, press the SPACEBAR on time.\n\n\n\n'; // i18n
     } else {
       text =
-        'Kuro premikaš tako, da se dotikaš zaslona - sledila bo tvojemu prstu.\n\n\n' +
-        'Da izležeš jajce, se dvakrat hitro dotakni zaslona.\n\n\n';
+        'Move the hen by touching the screen - it will follow your finger.\n\n\n' + // i18n
+        'To lay an egg, double tap the screen at the right moment.\n\n\n'; // i18n
     }
 
     if (this.survival) {
-      text += 'Igraj 1 minuto za napredovanje v naslednjo stopnjo.'
+      text += 'Lay eggs for 1 minute to advance to the next level.' // i18n
     }
     else {
-      text += 'Zberi 5 jajc za napredovanje v naslednjo stopnjo.'
+      text += 'Lay 5 eggs to advance to the next level.' // i18n
     }
 
     this.textObject.text = text;

@@ -11,22 +11,22 @@ export default class extends TextScreen {
     super.create();
     this.nextScreen = 'Menu';
     const variableText = this.survival
-      ? 'Kokoši v baterijski reji ne morejo nikoli odnehati. '
-      : 'Kokošim v baterijski reji se nikoli ne zgodi nič novega. ';
+      ? 'Battery-caged hens never experience anything new. ' // i18n
+      : 'Nothing new ever happens to battery-caged hens. '; // i18n
     const desktopMobileText = this.game.device.desktop
-      ? '\n\nPritisni tipko ENTER za ukrepanje!'
-      : '\n\nDotakni se zaslona za ukrepanje!';
+      ? '\n\nPress ENTER to do something about it!' // i18n
+      : '\n\nTouch the screen to do something about it!'; // i18n
     this.textObject.text =
-      'Ne bo šlo! ' + variableText +
-      'Njihovo življenje je približno tako zabavno kot ta igra.' +
+      'No can do! ' + variableText + // i18n
+      'Their life is about as fun as this game.' + // i18n
       desktopMobileText;
-    
+
     this.textObject.position.y = 70;
 
     this.game.add.sprite(100, 28, 'chicken');
   }
 
   continue() {
-    window.location.href = 'https://imasjajca.si/';
+    window.location.href = 'https://imasjajca.si/'; // i18n
   }
 }
