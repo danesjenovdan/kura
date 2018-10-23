@@ -7,6 +7,7 @@ import PoopPool from '../sprites/PoopPool';
 import RoboChicken from '../sprites/RoboChicken';
 import Score from '../sprites/Score';
 import SoundControl from '../sprites/SoundControl';
+import config from '../config';
 
 export default class extends Phaser.State {
   cage: Cage
@@ -52,8 +53,8 @@ export default class extends Phaser.State {
         if (i !== 3 || j !== 2) {
           this.roboChickens.add(new RoboChicken({
             game: this.game,
-            x: (i * 32) + 16,
-            y: (j * 32) + 16,
+            x: ((i * 32) + 16) * config.renderScale,
+            y: ((j * 32) + 16) * config.renderScale,
             poopPool: this.poopPool,
             cage: this.cage,
           }));
@@ -82,16 +83,22 @@ export default class extends Phaser.State {
 
     this.game.world.bringToTop(this.poopPool);
 
-    const bitmapData = this.game.make.bitmapData(224, 160);
-    bitmapData.addToWorld();
-    const grd = bitmapData.context.createRadialGradient(112, 80, 0, 112, 80, 112);
+    const bitmapData = this.game.make.bitmapData(config.gameWidth, config.gameHeight);
+
+    const radialImage = bitmapData.addToWorld(0, 0, 0, 0, config.renderScale, config.renderScale);
+    radialImage.smoothed = false;
+
+    const centerW = config.gameWidth / 2;
+    const centerH = config.gameHeight / 2;
+
+    const grd = bitmapData.context.createRadialGradient(centerW, centerH, 0, centerW, centerH, centerW);
     grd.addColorStop(0, 'rgba(255, 255, 255, 0)');
-    grd.addColorStop(0.166, 'rgba(0, 0, 0, 0.5');
-    grd.addColorStop(1, 'rgba(0, 0, 0, 1');
+    grd.addColorStop(0.166, 'rgba(0, 0, 0, 0.5)');
+    grd.addColorStop(1, 'rgba(0, 0, 0, 1)');
 
     bitmapData.cls();
     // @ts-ignore
-    bitmapData.circle(112, 80, 138, grd);
+    bitmapData.circle(centerW, centerH, config.gameWidth, grd);
 
     this.eggMeter = new EggMeter(this.game);
     this.score = new Score(this.game, this.survival);
@@ -128,19 +135,22 @@ export default class extends Phaser.State {
         this.chicken.idle();
       }
     } else {
-      if (this.input.pointer1.worldX < 112 && this.input.pointer1.isDown) {
+      const centerW = config.gameWidth / 2;
+      const centerH = config.gameHeight / 2;
+
+      if (this.input.pointer1.worldX < centerW && this.input.pointer1.isDown) {
         this.chicken.moveLeft();
       }
 
-      if (this.input.pointer1.worldX > 112 && this.input.pointer1.isDown) {
+      if (this.input.pointer1.worldX > centerW && this.input.pointer1.isDown) {
         this.chicken.moveRight();
       }
 
-      if (this.input.pointer1.worldY > 80 && this.input.pointer1.isDown) {
+      if (this.input.pointer1.worldY > centerH && this.input.pointer1.isDown) {
         this.chicken.poop();
       }
 
-      if (this.input.pointer1.worldY < 80 && this.input.pointer1.isDown) {
+      if (this.input.pointer1.worldY < centerH && this.input.pointer1.isDown) {
         this.chicken.jump();
       }
 

@@ -1,4 +1,5 @@
 import Cage from './Cage';
+import config from '../config';
 
 const POOP_COLORS = [0xD9CD9E, 0xCD8846, 0xD1B683, 0xCABFA5];
 
@@ -14,6 +15,8 @@ export default class extends Phaser.Sprite {
     cage: Cage,
   }) {
     super(game, x, y, 'poop');
+    this.scale.set(config.renderScale);
+
     this.onHitFloor = new Phaser.Signal();
     this.cage = cage;
     this.tint = POOP_COLORS[Math.floor(Math.random() * POOP_COLORS.length)];

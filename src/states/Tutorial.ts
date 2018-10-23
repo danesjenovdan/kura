@@ -1,4 +1,5 @@
 import TextScreen from './_TextScreen';
+import config from '../config';
 
 export default class extends TextScreen {
   survival: boolean
@@ -33,10 +34,24 @@ export default class extends TextScreen {
 
     this.textObject.text = text;
     if (this.game.device.desktop) {
-      this.textObject.position.y = 38;
-      this.game.add.sprite(104, 24, 'arrows');
-      this.game.add.sprite(98, 74, 'space');
-      this.game.add.sprite(108, 112, 'egg');
+      this.textObject.position.y = 38 * config.renderScale;
+
+      const centerW = config.gameWidth / 2 * config.renderScale;
+
+      const arrows = this.game.add.sprite(centerW, 20 * config.renderScale, 'arrows');
+      arrows.scale.set(2 * config.renderScale);
+      arrows.anchor.set(0.5);
+      arrows.smoothed = false;
+
+      const space = this.game.add.sprite(centerW, 65 * config.renderScale, 'space');
+      space.scale.set(2 * config.renderScale);
+      space.anchor.set(0.5);
+      space.smoothed = false;
+
+      const egg = this.game.add.sprite(centerW, 105 * config.renderScale, 'egg');
+      egg.scale.set(1 * config.renderScale);
+      egg.anchor.set(0.5);
+      egg.smoothed = false;
     } else {
       this.textObject.position.y = 28;
     }

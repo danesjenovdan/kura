@@ -3,6 +3,7 @@ import Egg from './Egg';
 import Poop from './Poop';
 import PoopPool from './PoopPool';
 import {ChickenParams} from '../types';
+import config from '../config';
 
 enum Direction {
   Left = 'Left',
@@ -10,8 +11,8 @@ enum Direction {
 }
 
 const BUTT_POSITION = {
-  Left: [16, 27],
-  Right: [5, 27],
+  Left: [16 * config.renderScale, 27 * config.renderScale],
+  Right: [5 * config.renderScale, 27 * config.renderScale],
 }
 
 export default class extends Phaser.Sprite {
@@ -25,6 +26,8 @@ export default class extends Phaser.Sprite {
 
   constructor({game, x, y, poopPool, cage}: ChickenParams) {
     super(game, x, y, 'chicken');
+
+    this.scale.set(config.renderScale);
 
     this.animations.add('walkLeft', [1, 0], 10, true);
     this.animations.add('walkRight', [2, 9], 10, true);
@@ -54,17 +57,20 @@ export default class extends Phaser.Sprite {
     this.animations.play('walkLeft');
     this.body.velocity.x = -75;
   }
+
   moveRight() {
     this.direction = Direction.Right;
     this.animations.play('walkRight');
     this.body.velocity.x = 75;
   }
+
   idle() {
     if (this.jumping) return;
 
     this.animations.play(`idle${this.direction}`);
     this.body.velocity.x = 0;
   }
+
   jump() {
     if (this.jumping) return;
 
@@ -80,6 +86,7 @@ export default class extends Phaser.Sprite {
       () => this.jumping = false
     );
   }
+
   poop() {
     if (this.myPoop) return;
 
@@ -92,6 +99,7 @@ export default class extends Phaser.Sprite {
 
     this.myPoop = poop;
   }
+
   layEgg() {
     if (this.myEgg) return;
 
@@ -105,6 +113,7 @@ export default class extends Phaser.Sprite {
 
     this.myEgg = egg;
   }
+
   getCurrentButtPosition() {
     return {
       x: Math.round(this.body.x) + BUTT_POSITION[this.direction][0],

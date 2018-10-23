@@ -10,12 +10,11 @@ export default class extends Selection {
 
   create() {
     super.create();
+    this.game.stage.backgroundColor = '#222';
 
     this.textObjects.title.text = 'Ak nç, vai vçlies padoties?'; // i18n
     this.textObjects.left.text = 'Jâ, noteikti!'; // i18n
-    this.textObjects.left.position.x = 30;
     this.textObjects.right.text = 'Vçl ne!'; // i18n
-    this.textObjects.right.position.x = 136;
   }
 
   continue(selectedOption: Position) {

@@ -10,13 +10,13 @@ export default class extends Selection {
 
   create() {
     super.create();
+    this.game.stage.backgroundColor = '#222';
+
     this.game.sound.play('fanfare');
 
-    this.textObjects.title.text = 'Labi pastrâdâts! Vai vçlies izmçìinât nâkamo lîmeni?'; // i18n
+    this.textObjects.title.text = 'Labi pastrâdâts! Vai vçlies\nizmçìinât nâkamo lîmeni?'; // i18n
     this.textObjects.left.text = 'Protams!'; // i18n
-    this.textObjects.left.position.x = 12;
     this.textObjects.right.text = 'Vçl ne!'; // i18n
-    this.textObjects.right.position.x = 110;
   }
 
   continue(selectedOption: Position) {

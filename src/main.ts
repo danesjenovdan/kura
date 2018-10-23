@@ -14,7 +14,7 @@ import config from './config';
 
 class Game extends Phaser.Game {
   constructor() {
-    super(config.gameWidth, config.gameHeight);
+    super(config.gameWidth * config.renderScale, config.gameHeight * config.renderScale);
 
     this.state.add('Menu', MenuState);
     this.state.add('Intro', IntroState);

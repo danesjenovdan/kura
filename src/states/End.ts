@@ -1,4 +1,5 @@
 import TextScreen from './_TextScreen';
+import config from '../config';
 
 export default class extends TextScreen {
   survival: boolean
@@ -9,7 +10,10 @@ export default class extends TextScreen {
 
   create() {
     super.create();
+    this.game.stage.backgroundColor = '#222';
+
     this.nextScreen = 'Menu';
+
     const variableText = this.survival
       ? 'Sprostos turçtu vistu dzîvçs nekad nekas jauns nenotiek. ' // i18n
       : 'Sprostos turçtas vistas nekad nepiedzîvo neko jaunu. '; // i18n
@@ -21,12 +25,17 @@ export default class extends TextScreen {
       'Viòu dzîve ir apmçram tikpat aizraujoða kâ ðî spçle.' + // i18n
       desktopMobileText;
 
-    this.textObject.position.y = 70;
+    this.textObject.position.y = 78 * config.renderScale;
 
-    this.game.add.sprite(100, 28, 'chicken');
+    const chicken = this.game.add.sprite(112 * config.renderScale, 38 * config.renderScale, 'chicken');
+    chicken.scale.set(2 * config.renderScale);
+    chicken.anchor.set(0.5);
+    chicken.smoothed = false;
+    chicken.animations.add('idle', [0, 0, 0, 0, 0, 0, 0, 0, 10], 5, true);
+    chicken.animations.play('idle');
   }
 
   continue() {
-    window.location.href = 'https://www.rikojies.lv/olu-cena#section01'; // i18n
+    window.location.href = config.finalURL;
   }
 }

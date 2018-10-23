@@ -1,4 +1,5 @@
 import TextScreen from './_TextScreen';
+import config from '../config';
 
 export default class extends TextScreen {
   survival: boolean
@@ -21,10 +22,10 @@ export default class extends TextScreen {
         'un pieòem savu dzîves sûtîbu!' + // i18n
         '\n\nPieskaries ekrânam, lai turpinâtu!'; // i18n
     }
-    this.textObject.position.y = 78;
+    this.textObject.position.y = 78 * config.renderScale;
 
-    const chicken = this.game.add.sprite(112, 38, 'chicken');
-    chicken.scale.set(2);
+    const chicken = this.game.add.sprite(112 * config.renderScale, 38 * config.renderScale, 'chicken');
+    chicken.scale.set(2 * config.renderScale);
     chicken.anchor.set(0.5);
     chicken.smoothed = false;
     chicken.animations.add('idle', [0, 0, 0, 0, 0, 0, 0, 0, 10], 5, true);

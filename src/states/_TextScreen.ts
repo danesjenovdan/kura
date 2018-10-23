@@ -1,3 +1,5 @@
+import config from '../config';
+
 export default class extends Phaser.State {
   keys: any
   survival: boolean
@@ -15,8 +17,8 @@ export default class extends Phaser.State {
       space: Phaser.KeyCode.SPACEBAR,
     });
 
-    this.textObject = this.game.add.bitmapText(16, 16, 'Munro', '', 10);
-    this.textObject.maxWidth = 192;
+    this.textObject = this.game.add.bitmapText(16, 16, 'PS2P', '', 6 * config.renderScale);
+    this.textObject.maxWidth = 192 * config.renderScale;
   }
 
   update() {
