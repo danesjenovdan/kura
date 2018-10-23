@@ -10,16 +10,16 @@ export default class extends TextScreen {
     this.nextScreen = 'Menu';
     if (this.game.device.desktop) {
       this.textObject.text =
-        'You are placed in a universe of battery-caged hens, who live for your morning ' + // i18n
-        'omelette. Take on the role of a superhen, conquer your existential crisis and ' + // i18n
-        'adopt its life mission!' + // i18n
-        '\n\nPress ENTER to continue!'; // i18n
+        'Tu esi nokïuvis sprostos turçtu vistu pasaulç. Viòas dzîvo tavas ikrîta ' + // i18n
+        'omletes dçï. Iejûties supervistas âdâ, pârvari savu eksistenciâlo krîzi ' + // i18n
+        'un pieòem savu dzîves sûtîbu!' + // i18n
+        '\n\nSpied ENTER, lai turpinâtu!'; // i18n
     } else {
       this.textObject.text =
-        'You are placed in a universe of battery-caged hens, who live for your morning ' + // i18n
-        'omelette. Take on the role of a superhen, conquer your existential crisis and ' + // i18n
-        'adopt its life mission!' + // i18n
-        '\n\nTouch the screen to continue!'; // i18n
+        'Tu esi nokïuvis sprostos turçtu vistu pasaulç. Viòas dzîvo tavas ikrîta ' + // i18n
+        'omletes dçï. Iejûties supervistas âdâ, pârvari savu eksistenciâlo krîzi ' + // i18n
+        'un pieòem savu dzîves sûtîbu!' + // i18n
+        '\n\nPieskaries ekrânam, lai turpinâtu!'; // i18n
     }
     this.textObject.position.y = 78;
 

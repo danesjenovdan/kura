@@ -12,10 +12,10 @@ export default class extends Selection {
     super.create();
     this.game.sound.play('fanfare');
 
-    this.textObjects.title.text = 'Good job! Would you like to\n  attempt the next level?'; // i18n
-    this.textObjects.left.text = 'Of course!'; // i18n
+    this.textObjects.title.text = 'Labi pastrâdâts! Vai vçlies izmçìinât nâkamo lîmeni?'; // i18n
+    this.textObjects.left.text = 'Protams!'; // i18n
     this.textObjects.left.position.x = 12;
-    this.textObjects.right.text = 'Not just yet!'; // i18n
+    this.textObjects.right.text = 'Vçl ne!'; // i18n
     this.textObjects.right.position.x = 110;
   }
 
