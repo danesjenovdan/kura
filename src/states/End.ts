@@ -27,6 +27,6 @@ export default class extends TextScreen {
   }
 
   continue() {
-    window.location.href = 'https://imasjajca.si/'; // i18n
+    window.location.href = 'https://www.rikojies.lv/olu-cena#section01'; // i18n
   }
 }
