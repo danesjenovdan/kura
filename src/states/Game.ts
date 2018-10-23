@@ -135,8 +135,8 @@ export default class extends Phaser.State {
         this.chicken.idle();
       }
     } else {
-      const centerW = config.gameWidth / 2;
-      const centerH = config.gameHeight / 2;
+      const centerW = config.gameWidth / 2 * config.renderScale;
+      const centerH = config.gameHeight / 2 * config.renderScale;
 
       if (this.input.pointer1.worldX < centerW && this.input.pointer1.isDown) {
         this.chicken.moveLeft();
