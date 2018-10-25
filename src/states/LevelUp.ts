@@ -14,9 +14,9 @@ export default class extends Selection {
 
     this.game.sound.play('fanfare');
 
-    this.textObjects.title.text = 'Labi pastrâdâts! Vai vçlies\nizmçìinât nâkamo lîmeni?'; // i18n
+    this.textObjects.title.text = 'Labi pastrâdâts! Vai vēlies\nizmēģinât nâkamo līmeni?'; // i18n
     this.textObjects.left.text = 'Protams!'; // i18n
-    this.textObjects.right.text = 'Vçl ne!'; // i18n
+    this.textObjects.right.text = 'Vēl ne!'; // i18n
   }
 
   continue(selectedOption: Position) {

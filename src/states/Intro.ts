@@ -11,15 +11,15 @@ export default class extends TextScreen {
     this.nextScreen = 'Menu';
     if (this.game.device.desktop) {
       this.textObject.text =
-        'Tu esi nokïuvis sprostos turçtu vistu pasaulç. Viòas dzîvo tavas ikrîta ' + // i18n
-        'omletes dçï. Iejûties supervistas âdâ, pârvari savu eksistenciâlo krîzi ' + // i18n
-        'un pieòem savu dzîves sûtîbu!' + // i18n
+        'Tu esi nokļuvis sprostos turētu vistu pasaulē. Viņas dzīvo tavas ikrīta ' + // i18n
+        'omletes dēļ. Iejûties supervistas âdâ, pârvari savu eksistenciâlo krīzi ' + // i18n
+        'un pieņem savu dzīves sûtību!' + // i18n
         '\n\nSpied ENTER, lai turpinâtu!'; // i18n
     } else {
       this.textObject.text =
-        'Tu esi nokïuvis sprostos turçtu vistu pasaulç. Viòas dzîvo tavas ikrîta ' + // i18n
-        'omletes dçï. Iejûties supervistas âdâ, pârvari savu eksistenciâlo krîzi ' + // i18n
-        'un pieòem savu dzîves sûtîbu!' + // i18n
+        'Tu esi nokļuvis sprostos turētu vistu pasaulē. Viņas dzīvo tavas ikrīta ' + // i18n
+        'omletes dēļ. Iejûties supervistas âdâ, pârvari savu eksistenciâlo krīzi ' + // i18n
+        'un pieņem savu dzīves sûtību!' + // i18n
         '\n\nPieskaries ekrânam, lai turpinâtu!'; // i18n
     }
     this.textObject.position.y = 78 * config.renderScale;

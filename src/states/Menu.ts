@@ -5,9 +5,9 @@ export default class extends Selection {
   create() {
     super.create();
 
-    this.textObjects.title.text = 'Izvçlies spçles reþîmu:'; // i18n
+    this.textObjects.title.text = 'Izvēlies spēles režīmu:'; // i18n
     this.textObjects.left.text = 'Stâsts'; // i18n
-    this.textObjects.right.text = 'Izdzîvoðana'; // i18n
+    this.textObjects.right.text = 'Izdzīvošana'; // i18n
   }
 
   continue(selectedOption: Position) {

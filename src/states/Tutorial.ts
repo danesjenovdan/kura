@@ -17,19 +17,19 @@ export default class extends TextScreen {
 
     if (this.game.device.desktop) {
       text =
-        'Izmanto bulttaustiòus, lai pârvietotos.\n\n\n\n' + // i18n
-        'Lai izdçtu olu, îstajâ laikâ nospied atstarpes taustiòu.\n\n\n\n'; // i18n
+        'Izmanto bulttaustiņus, lai pârvietotos.\n\n\n\n' + // i18n
+        'Lai izdētu olu, īstajâ laikâ nospied atstarpes taustiņu.\n\n\n\n'; // i18n
     } else {
       text =
         'Pieskaries ekrânam, lai pârvietotos – vista sekos tavam pirkstam.\n\n\n' + // i18n
-        'Lai izdçtu olu, îstajâ laikâ divreiz pieskaries ekrânam.\n\n\n'; // i18n
+        'Lai izdētu olu, īstajâ laikâ divreiz pieskaries ekrânam.\n\n\n'; // i18n
     }
 
     if (this.survival) {
-      text += 'Dçj olas 1 minûti, lai pârietu nâkamajâ lîmenî.' // i18n
+      text += 'Dēj olas 1 minûti, lai pârietu nâkamajâ līmenī.' // i18n
     }
     else {
-      text += 'Izdçj 5 olas, lai pârietu nâkamajâ lîmenî.' // i18n
+      text += 'Izdēj 5 olas, lai pârietu nâkamajâ līmenī.' // i18n
     }
 
     this.textObject.text = text;
