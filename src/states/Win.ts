@@ -7,7 +7,7 @@ export default class extends TextScreen {
     super.create();
     this.game.stage.backgroundColor = '#222';
 
-    this.nextScreen = 'Intro2';
+    this.nextScreen = 'Zicar';
     // if (this.game.device.desktop) {
     //   this.textObject.text =
     //     'You find your self in a world of battery chicken, who live for your morning ' + // i18n
@@ -22,7 +22,7 @@ export default class extends TextScreen {
     //   '\n\nTouch the screen to continue!'; // i18n
     // }
     this.textObject.text = 
-      `Letošnji november zaznamuje 3 leta, odkar je slovenska vlada na južni meji začela postavljati žico. T.i. tehnične ovire niso zmanjšale števila vstopov v Slovenijo, so jih pa naredile bolj nevarne.`
+      'THERE IS NO NEXT YET!\nUspelo ti je doseči begunsko taborišče, ki je prenatrpano, higienske razmere so neprimerne, manjka osnovnih potrebščin. Na Lezbosu je v enem takih kampov nastanjenih 6000 beguncev, prostora pa je le za 2000 oseb.'
     this.textObject.position.y = 78;
 
     const refugee = this.game.add.sprite(112, 38, 'refugee');

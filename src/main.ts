@@ -2,13 +2,12 @@ import 'pixi';
 import 'p2';
 
 import BootState from './states/Boot';
-import EndState from './states/End';
-import GameState from './states/Game';
-import GiveUpState from './states/GiveUp';
 import IntroState from './states/Intro';
-import LevelUpState from './states/LevelUp';
-import MenuState from './states/Menu';
-import TutorialState from './states/Tutorial';
+import Intro2State from './states/Intro2';
+import Intro3State from './states/Intro3';
+import ZicarState from './states/Zicar';
+import DeathState from './states/Death';
+import WinState from './states/Win';
 
 import config from './config';
 
@@ -16,13 +15,12 @@ class Game extends Phaser.Game {
   constructor() {
     super(config.gameWidth, config.gameHeight);
 
-    this.state.add('Menu', MenuState);
     this.state.add('Intro', IntroState);
-    this.state.add('Tutorial', TutorialState);
-    this.state.add('Game', GameState);
-    this.state.add('LevelUp', LevelUpState);
-    this.state.add('GiveUp', GiveUpState);
-    this.state.add('End', EndState);
+    this.state.add('Intro2', Intro2State);
+    this.state.add('Intro3', Intro3State);
+    this.state.add('Zicar', ZicarState);
+    this.state.add('Death', DeathState);
+    this.state.add('Win', WinState);
 
     this.state.add('Boot', BootState, true);
   }
