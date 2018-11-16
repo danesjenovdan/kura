@@ -15,3 +15,9 @@ export type TankParams = {
   y: number,
   tankTile: string,
 };
+
+export type PoliceParams = {
+  game: Phaser.Game,
+  x: number,
+  y: number,
+};

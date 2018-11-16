@@ -1,16 +1,16 @@
 import Refugee from '../sprites/Refugee';
-import Tank from '../sprites/Tank';
-import ControlsOverlay from '../sprites/ControlsOverlay';
+import Police from '../sprites/Police';
 
 export default class extends Phaser.State {
   keys: any;
   nextScreen: string;
   nextScreenPayload: any;
   refugee: Refugee;
-  tanks: Phaser.Group;
+  policeOfficers: Phaser.Group;
   tiles: Phaser.TileSprite;
   map: Phaser.Tilemap;
   mapLayer: Phaser.TilemapLayer;
+  tentLayer: Phaser.TilemapLayer;
   safetyLayer: Phaser.TilemapLayer;
 
   init() {
@@ -23,15 +23,18 @@ export default class extends Phaser.State {
 
     // MAP
     // Load the map.
-    this.map = this.game.add.tilemap('war');
+    this.map = this.game.add.tilemap('camp');
     this.map.addTilesetImage('ground', 'tiles');
-    this.map.addTilesetImage('tank', 'tank');
-    this.map.addTilesetImage('tank2', 'tank2');
-    this.map.addTilesetImage('tank3', 'tank3');
+    this.map.addTilesetImage('sotor1', 'sotor1');
+    this.map.addTilesetImage('sotor2', 'sotor2');
     console.log(this.map);
 
     this.mapLayer = this.map.createLayer('Terrain');
     this.mapLayer.resizeWorld();
+
+    this.tentLayer = this.map.createLayer('Tents');
+    this.map.setCollisionBetween(1, 28, true, this.tentLayer);
+    this.tentLayer.resizeWorld();
     // this.mapLayer.wrap = true;
 
     this.safetyLayer = this.map.createLayer('Safety');
@@ -59,61 +62,37 @@ export default class extends Phaser.State {
       y: this.world.height,
     });
 
-    console.log('map', this.map);
-    this.tanks = this.game.add.group();
+    this.policeOfficers = this.game.add.group();
     for (let key in this.map.objects) {
-      this.map.objects[key].forEach((tank: Tank) => {
-        this.tanks.add(new Tank({
+      this.map.objects[key].forEach((policeOfficer: Police) => {
+        this.policeOfficers.add(new Police({
           game: this.game,
-          x: tank.x,
-          y: tank.y,
-          tankTile: key,
+          x: policeOfficer.x,
+          y: policeOfficer.y,
         }));
       });
     }
-    // this.map.objects.tank.forEach((tank: Tank) => {
-    //   this.tanks.add(new Tank({
-    //     game: this.game,
-    //     x: tank.x,
-    //     y: tank.y,
-    //     tankTile: 'tank';
-    //   }));
-    // });;
-    // this.map.createFromObjects('Tanks', 5, 'tank', 0, true, false, this.tanks);
-
-    // for (let i = 0; i < 7; i += 1) {
-    //   for (let j = 0; j < 5; j += 1) {
-    //     if (i !== 3 || j !== 4) {
-    //       if (Math.random() > 0.3) {
-    //         this.tanks.add(new Tank({
-    //           game: this.game,
-    //           x: (i * 32) + 16,
-    //           y: (j * 32) + 16,
-    //         }));
-    //       }
-    //     }
-    //   }
-    // }
 
     this.game.add.existing(this.refugee);
-    this.game.add.existing(this.tanks);
+    this.game.add.existing(this.policeOfficers);
 
     console.log('create');
   }
 
   update() {
     // TANK COLLISION DETECTION
-    this.game.physics.arcade.collide(this.tanks, this.tanks, (tank1, tank2) => {
-      tank1.body.velocity.x = 0;
-      tank1.body.velocity.y = 0;
-      tank2.body.velocity.x = 0;
-      tank2.body.velocity.y = 0;
+    this.game.physics.arcade.collide(this.policeOfficers, this.policeOfficers, (policeOfficer1, policeOfficer2) => {
+      policeOfficer1.body.velocity.x = 0;
+      policeOfficer1.body.velocity.y = 0;
+      policeOfficer2.body.velocity.x = 0;
+      policeOfficer2.body.velocity.y = 0;
     });
-    this.game.physics.arcade.collide(this.tanks, this.safetyLayer);
-    this.game.physics.arcade.collide(this.refugee, this.tanks, () => {
+    this.game.physics.arcade.collide(this.policeOfficers, this.tentLayer);
+    this.game.physics.arcade.collide(this.refugee, this.policeOfficers, () => {
       this.nextScreen = 'Death';
       this.continue();
     });
+    this.game.physics.arcade.collide(this.refugee, this.tentLayer);
 
     if (this.refugee.y < 10) {
       this.continue();

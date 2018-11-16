@@ -2,7 +2,7 @@
  "infinite":false,
  "layers":[
         {
-         "data":[3, 3, 3, 3, 3, 3, 3, 4, 3, 3, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 3, 3, 4, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 3, 3, 4, 3, 3, 3, 3, 4, 3, 3, 3, 3, 3, 4, 3, 3, 4, 3, 3, 3, 3, 4, 3, 3, 3, 3, 3, 4, 3, 3, 4, 4, 4, 3, 3, 4, 3, 3, 3, 3, 3, 4, 3, 3, 3, 3, 4, 3, 3, 4, 4, 4, 3, 3, 3, 4, 4, 4, 4, 4, 4, 3, 3, 3, 3, 4, 4, 3, 3, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 3, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 3, 3, 3, 3, 3],
+         "data":[4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 4, 4, 2, 2, 2, 2, 2, 2, 2, 4, 4, 4, 2, 2, 4, 2, 2, 2, 2, 4, 4, 4, 2, 4, 4, 4, 2, 2, 2, 2, 2, 2, 4, 4, 4, 4, 2, 4, 4, 4, 2, 3, 3, 2, 3, 2, 3, 4, 3, 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 2, 3, 2, 3, 2, 4, 4, 4, 4, 2, 3, 3, 2, 3, 2, 3, 3, 3, 2, 2, 4, 4, 4, 2, 2, 2, 2, 3, 2, 2, 2, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 3, 2, 2, 2, 2, 2, 3, 3, 2, 2],
          "height":10,
          "id":1,
          "name":"Terrain",
@@ -14,187 +14,135 @@
          "y":0
         }, 
         {
-         "draworder":"topdown",
-         "id":2,
-         "name":"tank",
-         "objects":[
-                {
-                 "gid":5,
-                 "height":16,
-                 "id":50,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":13.5899025686448,
-                 "y":41.7688219663419
-                }, 
-                {
-                 "gid":5,
-                 "height":16,
-                 "id":51,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":155.861824623561,
-                 "y":41.7688219663419
-                }, 
-                {
-                 "gid":5,
-                 "height":16,
-                 "id":52,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":105.485385296723,
-                 "y":114.288751107174
-                }, 
-                {
-                 "gid":5,
-                 "height":16,
-                 "id":53,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":93.3064658990257,
-                 "y":62.8051372896368
-                }],
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 10, 0, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         "height":10,
+         "id":8,
+         "name":"Tents",
          "opacity":1,
-         "type":"objectgroup",
+         "properties":[
+                {
+                 "name":"collides",
+                 "type":"string",
+                 "value":"true"
+                }],
+         "type":"tilelayer",
          "visible":true,
+         "width":14,
          "x":0,
          "y":0
         }, 
         {
          "draworder":"topdown",
-         "id":5,
-         "name":"tank2",
+         "id":9,
+         "name":"Police",
          "objects":[
                 {
-                 "gid":6,
+                 "gid":11,
                  "height":16,
-                 "id":54,
+                 "id":63,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":55.1089459698849,
-                 "y":125.360496014172
+                 "x":40.1634857760173,
+                 "y":55.2632337054375
                 }, 
                 {
-                 "gid":6,
+                 "gid":11,
                  "height":16,
-                 "id":55,
+                 "id":64,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":55.1089459698849,
-                 "y":52.2869796279894
+                 "x":139.641339575081,
+                 "y":54.8131076701476
                 }, 
                 {
-                 "gid":6,
+                 "gid":11,
                  "height":16,
-                 "id":56,
+                 "id":65,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":169.147918511957,
-                 "y":102.109831709477
+                 "x":168.449405833633,
+                 "y":105.677349657904
                 }, 
                 {
-                 "gid":6,
+                 "gid":11,
                  "height":16,
-                 "id":57,
+                 "id":66,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":138.147032772365,
-                 "y":74.9840566873339
-                }],
-         "opacity":1,
-         "type":"objectgroup",
-         "visible":true,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "draworder":"topdown",
-         "id":6,
-         "name":"tank3",
-         "objects":[
-                {
-                 "gid":7,
-                 "height":16,
-                 "id":58,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":118.21789193977,
-                 "y":89.9309123117803
+                 "x":67.1710478934101,
+                 "y":111.078862081383
                 }, 
                 {
-                 "gid":7,
+                 "gid":11,
                  "height":16,
-                 "id":59,
+                 "id":67,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":170.808680248007,
-                 "y":83.2878653675819
+                 "x":11.3554195174649,
+                 "y":83.1710478934101
                 }, 
                 {
-                 "gid":7,
+                 "gid":11,
                  "height":16,
-                 "id":60,
+                 "id":68,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":96.074402125775,
-                 "y":39.5544729849424
+                 "x":122.536550234066,
+                 "y":32.3068059056536
                 }, 
                 {
-                 "gid":7,
+                 "gid":11,
                  "height":16,
-                 "id":61,
+                 "id":69,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":46.251550044287,
-                 "y":88.8237378210806
+                 "x":27.5599567879006,
+                 "y":134.935541951746
                 }, 
                 {
-                 "gid":7,
+                 "gid":11,
                  "height":16,
-                 "id":62,
+                 "id":70,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":80.5739592559787,
-                 "y":99.3418954827281
+                 "x":197.257472092186,
+                 "y":34.1073100468131
+                }, 
+                {
+                 "gid":11,
+                 "height":16,
+                 "id":71,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":171.150162045373,
+                 "y":52.1123514584084
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -202,8 +150,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":7,
- "nextobjectid":63,
+ "nextlayerid":10,
+ "nextobjectid":72,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"2018.11.14",
@@ -258,6 +206,45 @@
          "name":"tank3",
          "spacing":0,
          "tilecount":1,
+         "tileheight":16,
+         "tilewidth":16
+        }, 
+        {
+         "columns":1,
+         "firstgid":8,
+         "image":"..\/images\/sotor1.png",
+         "imageheight":16,
+         "imagewidth":16,
+         "margin":0,
+         "name":"sotor1",
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":16,
+         "tilewidth":16
+        }, 
+        {
+         "columns":2,
+         "firstgid":9,
+         "image":"..\/images\/sotor2.png",
+         "imageheight":16,
+         "imagewidth":32,
+         "margin":0,
+         "name":"sotor2",
+         "spacing":0,
+         "tilecount":2,
+         "tileheight":16,
+         "tilewidth":16
+        }, 
+        {
+         "columns":3,
+         "firstgid":11,
+         "image":"..\/images\/policija.png",
+         "imageheight":17,
+         "imagewidth":48,
+         "margin":0,
+         "name":"policija",
+         "spacing":0,
+         "tilecount":3,
          "tileheight":16,
          "tilewidth":16
         }],
