@@ -26,13 +26,16 @@ export default class extends Phaser.State {
 
     this.load.tilemap('war', 'assets/maps/war.json', null, Phaser.Tilemap.TILED_JSON);
     this.load.tilemap('camp', 'assets/maps/camp.json', null, Phaser.Tilemap.TILED_JSON);
-    this.load.image('tiles', 'assets/images/tiles.png');
+    this.load.image('tiles', 'assets/images/tla.png');
     this.load.image('tank', 'assets/images/tank.png');
     this.load.image('tank2', 'assets/images/tank2.png');
     this.load.image('tank3', 'assets/images/tank3.png');
     this.load.image('sotor1', 'assets/images/sotor1.png');
     this.load.spritesheet('sotor2', 'assets/images/sotor2.png', 16, 16, 2);
     this.load.spritesheet('policija', 'assets/images/policija.png', 16, 16, 3);
+    this.load.spritesheet('begunec2', 'assets/images/begunec2.png', 16, 16, 3);
+    this.load.spritesheet('begunec3', 'assets/images/begunec3.png', 16, 16, 3);
+    this.load.spritesheet('begunec4', 'assets/images/begunec4.png', 16, 16, 3);
 
     this.load.image('zica', 'assets/images/zica.png');
     this.load.image('vojna', 'assets/images/vojna.png');

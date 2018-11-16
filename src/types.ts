@@ -21,3 +21,10 @@ export type PoliceParams = {
   x: number,
   y: number,
 };
+
+export type NPCParams = {
+  game: Phaser.Game,
+  x: number,
+  y: number,
+  npcTile: string,
+};

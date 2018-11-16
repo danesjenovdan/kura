@@ -23,7 +23,7 @@ export default class extends Selection {
     death.anchor.set(0.5);
     death.smoothed = false;
 
-    this.textObjects.left.text = 'Poskusi še'; // i18n
+    this.textObjects.left.text = 'Na začetek'; // i18n
     this.textObjects.left.position.x = 30;
     this.textObjects.right.text = 'Odnehaj'; // i18n
     this.textObjects.right.position.x = 136;

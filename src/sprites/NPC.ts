@@ -1,4 +1,4 @@
-import { PoliceParams } from '../types';
+import { NPCParams } from '../types';
 
 enum Direction {
   Left = 'Left',
@@ -15,8 +15,8 @@ export default class extends Phaser.Sprite {
   randomFinish: number;
   randomAction: Function;
 
-  constructor({game, x, y}: PoliceParams) {
-    super(game, x, y, 'policija');
+  constructor({game, x, y, npcTile}: NPCParams) {
+    super(game, x, y, npcTile);
 
     this.animations.add('walk', [1, 2], 10, true);
     this.animations.add('idle', [0], 1, false);
@@ -25,7 +25,7 @@ export default class extends Phaser.Sprite {
     this.scale.set(1);
 
     this.counter = 0;
-    this.enemy = true;
+    this.enemy = false;
     this.generateRandomActionPoint();
 
     this.direction = Direction.Right;

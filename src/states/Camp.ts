@@ -1,5 +1,6 @@
 import Refugee from '../sprites/Refugee';
 import Police from '../sprites/Police';
+import NPC from '../sprites/NPC';
 
 export default class extends Phaser.State {
   keys: any;
@@ -7,11 +8,11 @@ export default class extends Phaser.State {
   nextScreenPayload: any;
   refugee: Refugee;
   policeOfficers: Phaser.Group;
+  refugees: Phaser.Group;
   tiles: Phaser.TileSprite;
   map: Phaser.Tilemap;
   mapLayer: Phaser.TilemapLayer;
   tentLayer: Phaser.TilemapLayer;
-  safetyLayer: Phaser.TilemapLayer;
 
   init() {
     console.log('init');
@@ -36,8 +37,6 @@ export default class extends Phaser.State {
     this.map.setCollisionBetween(1, 28, true, this.tentLayer);
     this.tentLayer.resizeWorld();
     // this.mapLayer.wrap = true;
-
-    this.safetyLayer = this.map.createLayer('Safety');
 
     this.keys = this.game.input.keyboard.addKeys({
       enter: Phaser.KeyCode.ENTER,
@@ -64,30 +63,55 @@ export default class extends Phaser.State {
 
     this.policeOfficers = this.game.add.group();
     for (let key in this.map.objects) {
-      this.map.objects[key].forEach((policeOfficer: Police) => {
-        this.policeOfficers.add(new Police({
-          game: this.game,
-          x: policeOfficer.x,
-          y: policeOfficer.y,
-        }));
-      });
+      if (key === 'Police') {
+        this.map.objects[key].forEach((policeOfficer: Police) => {
+          this.policeOfficers.add(new Police({
+            game: this.game,
+            x: policeOfficer.x,
+            y: policeOfficer.y,
+          }));
+        });
+      }
+    }
+
+    this.refugees = this.game.add.group();
+    for (let key in this.map.objects) {
+      if (key !== 'Police') {
+        console.log(key);
+        this.map.objects[key].forEach((npc: NPC) => {
+          this.refugees.add(new NPC({
+            game: this.game,
+            x: npc.x,
+            y: npc.y,
+            npcTile: key,
+          }));
+        });
+      }
     }
 
     this.game.add.existing(this.refugee);
     this.game.add.existing(this.policeOfficers);
+    this.game.add.existing(this.refugees);
 
     console.log('create');
   }
 
   update() {
     // TANK COLLISION DETECTION
-    this.game.physics.arcade.collide(this.policeOfficers, this.policeOfficers, (policeOfficer1, policeOfficer2) => {
-      policeOfficer1.body.velocity.x = 0;
-      policeOfficer1.body.velocity.y = 0;
-      policeOfficer2.body.velocity.x = 0;
-      policeOfficer2.body.velocity.y = 0;
-    });
+    // this.game.physics.arcade.collide(this.policeOfficers, this.policeOfficers, (policeOfficer1, policeOfficer2) => {
+    //   policeOfficer1.body.velocity.x = 0;
+    //   policeOfficer1.body.velocity.y = 0;
+    //   policeOfficer2.body.velocity.x = 0;
+    //   policeOfficer2.body.velocity.y = 0;
+    // });
+    this.game.physics.arcade.collide(this.policeOfficers, this.policeOfficers);
+    this.game.physics.arcade.collide(this.refugees, this.refugees);
+    this.game.physics.arcade.collide(this.refugees, this.policeOfficers);
+
     this.game.physics.arcade.collide(this.policeOfficers, this.tentLayer);
+    this.game.physics.arcade.collide(this.refugees, this.tentLayer);
+    
+    this.game.physics.arcade.collide(this.refugee, this.refugees);
     this.game.physics.arcade.collide(this.refugee, this.policeOfficers, () => {
       this.nextScreen = 'Death';
       this.continue();
