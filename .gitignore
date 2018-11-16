@@ -6,3 +6,6 @@ dist/
 .vscode/
 *.log
 /index.html
+
+
+tiled/*

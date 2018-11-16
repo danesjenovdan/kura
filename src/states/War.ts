@@ -7,6 +7,9 @@ export default class extends Phaser.State {
   nextScreenPayload: any;
   refugee: Refugee;
   tanks: Phaser.Group;
+  tiles: Phaser.TileSprite;
+  map: Phaser.Tilemap;
+  mapLayer: Phaser.TilemapLayer;
 
   init() {
     console.log('init');
@@ -14,6 +17,18 @@ export default class extends Phaser.State {
 
   create() {
     this.nextScreen = 'Win';
+    this.game.stage.smoothed = false;
+
+    // MAP
+    // Load the map.
+    this.map = this.game.add.tilemap('war');
+    this.map.addTilesetImage('ground', 'tiles');
+    console.log(this.map);
+
+    this.mapLayer = this.map.createLayer('Terrain');
+    console.log(this.mapLayer);
+    // this.mapLayer.resizeWorld();
+    // this.mapLayer.wrap = true;
 
     this.keys = this.game.input.keyboard.addKeys({
       enter: Phaser.KeyCode.ENTER,

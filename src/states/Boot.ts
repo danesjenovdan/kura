@@ -21,8 +21,11 @@ export default class extends Phaser.State {
     // this.load.audio('ping', 'assets/audio/ping.mp3');
     // this.load.audio('egg', 'assets/audio/egg.mp3');
 
-    this.load.spritesheet('refugee', 'assets/images/begunec.png', 80, 80, 3);
-    this.load.spritesheet('tank', 'assets/images/tank.png', 120, 80, 4);
+    this.load.spritesheet('refugee', 'assets/images/begunec.png', 16, 16, 3);
+    this.load.spritesheet('tank', 'assets/images/tank.png', 16, 16, 4);
+
+    this.load.tilemap('war', 'assets/maps/war.json', null, Phaser.Tilemap.TILED_JSON);
+    this.load.image('tiles', 'assets/images/tiles.png');
   }
 
   create() {
@@ -30,6 +33,6 @@ export default class extends Phaser.State {
     this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     this.game.cache.getBitmapFont('Munro').font.lineHeight = 11;
 
-    this.state.start('Intro');
+    this.state.start('War');
   }
 }

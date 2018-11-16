@@ -1,0 +1,14 @@
+{ "columns":6,
+ "image":"..\/images\/tank.png",
+ "imageheight":16,
+ "imagewidth":96,
+ "margin":0,
+ "name":"tank",
+ "spacing":0,
+ "tilecount":6,
+ "tiledversion":"2018.11.14",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":1.2
+}

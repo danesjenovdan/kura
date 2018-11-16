@@ -13,11 +13,11 @@ export default class extends Phaser.Sprite {
   constructor({game, x, y}: RefugeeParams) {
     super(game, x, y, 'refugee');
 
-    this.animations.add('walk', [1, 2], 1, true);
+    this.animations.add('walk', [1, 2], 10, true);
     this.animations.add('idle', [0], 1, false);
     this.smoothed = false;
     this.anchor.setTo(0.5);
-    this.scale.set(0.125);
+    // this.scale.set(1);
 
     this.direction = Direction.Right;
     this.angle = 270;

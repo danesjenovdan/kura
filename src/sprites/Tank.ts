@@ -23,7 +23,7 @@ export default class extends Phaser.Sprite {
     this.smoothed = false;
     this.anchor.setTo(0.5);
     this.direction = Direction.Right;
-    this.scale.set(0.125);
+    this.scale.set(1);
 
     this.counter = 0;
     this.enemy = true;

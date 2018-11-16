@@ -20,6 +20,7 @@
     },
     "dependencies": {
         "phaser-ce": "^2.10.3",
+        "phaser-tiled": "^2.0.4",
         "ts-loader": "^3.5.0",
         "tslint": "^5.9.1",
         "typescript": "^2.7.2"
