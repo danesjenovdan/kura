@@ -28,3 +28,10 @@ export type NPCParams = {
   y: number,
   npcTile: string,
 };
+
+export type TruploParams = {
+  game: Phaser.Game,
+  y: number,
+  direction: string,
+  speed: number,
+};

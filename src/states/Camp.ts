@@ -19,7 +19,7 @@ export default class extends Phaser.State {
   }
 
   create() {
-    this.nextScreen = 'Win';
+    this.nextScreen = 'KolpaIntro';
     this.game.stage.smoothed = false;
 
     // MAP
@@ -34,8 +34,8 @@ export default class extends Phaser.State {
     this.mapLayer.resizeWorld();
 
     this.tentLayer = this.map.createLayer('Tents');
-    this.map.setCollisionBetween(1, 28, true, this.tentLayer);
-    this.tentLayer.resizeWorld();
+    this.map.setCollisionBetween(1, 140, true, this.tentLayer);
+    // this.tentLayer.resizeWorld();
     // this.mapLayer.wrap = true;
 
     this.keys = this.game.input.keyboard.addKeys({
@@ -113,7 +113,7 @@ export default class extends Phaser.State {
     
     this.game.physics.arcade.collide(this.refugee, this.refugees);
     this.game.physics.arcade.collide(this.refugee, this.policeOfficers, () => {
-      this.nextScreen = 'Death';
+      this.nextScreen = 'CampDeath';
       this.continue();
     });
     this.game.physics.arcade.collide(this.refugee, this.tentLayer);
@@ -135,7 +135,7 @@ export default class extends Phaser.State {
     } else if (this.keys.up.isDown || this.keys.w.isDown) {
       this.refugee.moveDown(50);
     // } else if (this.keys.esc.isDown) {
-    //   this.state.start('GiveUp', true, false, this.survival);
+    //   this.state.start('BeforeGiveUp', true, false, this.survival);
     } else {
       this.refugee.idle();
     }

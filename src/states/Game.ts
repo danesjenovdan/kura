@@ -123,7 +123,7 @@ export default class extends Phaser.State {
       } else if (this.keys.up.isDown || this.keys.w.isDown) {
         this.chicken.jump();
       } else if (this.keys.esc.isDown) {
-        this.state.start('GiveUp', true, false, this.survival);
+        this.state.start('BeforeGiveUp', true, false, this.survival);
       } else {
         this.chicken.idle();
       }

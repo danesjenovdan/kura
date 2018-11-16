@@ -7,7 +7,7 @@ export default class extends TextScreen {
     super.create();
     this.game.stage.backgroundColor = '#222';
 
-    this.nextScreen = 'Camp';
+    this.nextScreen = 'GiveUp';
     // if (this.game.device.desktop) {
     //   this.textObject.text =
     //     'You find your self in a world of battery chicken, who live for your morning ' + // i18n
@@ -22,12 +22,14 @@ export default class extends TextScreen {
     //   '\n\nTouch the screen to continue!'; // i18n
     // }
     this.textObject.text = 
-      'Poskusiš se okrepčati in nadaljevati pot proti Kolpi.'
-    this.textObject.position.y = 78;
+      'Kot mnogim beguncem tudi tebi ni uspelo priti do meje z EU. A tudi če bi zmogel/-la, bi te na reki Kolpi pričakala žica, ki za marsikoga predstavlja smrtno nevarno oviro.'
+      +
+      '\n\nŽica, ki stoji že 3 leta, je Slovenijo stala najmanj 6,6 milijonov EUR, povzročila je ekonomsko škodo turizmu in lokalnemu prebivalstvu, pobila številne divje živali in simbolno legitimizirala nasilje, ksenofobijo in idejo trdnjave Evrope.'
+    this.textObject.position.y = 18;
 
-    const zica = this.game.add.image(112, 38, 'taborisce');
-    zica.scale.set(2);
-    zica.anchor.set(0.5);
-    zica.smoothed = false;
+    // const zica = this.game.add.image(112, 38, 'kolpa');
+    // zica.scale.set(2);
+    // zica.anchor.set(0.5);
+    // zica.smoothed = false;
   }
 }

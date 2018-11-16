@@ -15,10 +15,10 @@ export default class extends Selection {
     this.textObject = this.game.add.bitmapText(16, 16, 'Munro', '', 10);
     this.textObject.maxWidth = 192;
     this.textObject.text = 
-      `Si eden od mnogih, ki so izgubili življenje v vojnih območjih. Samo v Siriji je letos umrlo že 6 395 civilistov.`
+      'Tvoje truplo so našli zapleteno v žico. Samo v Sredozemlju je na poti proti Evropski uniji od leta 2000 umrlo več kot 35 000 ljudi. V Kolpi se jih je v zadnjem letu utopilo najmanj 9.'
     this.textObject.position.y = 78;
 
-    const death = this.game.add.image(112, 38, 'death');
+    const death = this.game.add.image(112, 38, 'smrt-zica');
     death.scale.set(2);
     death.anchor.set(0.5);
     death.smoothed = false;

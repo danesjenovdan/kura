@@ -7,7 +7,7 @@ export default class extends TextScreen {
     super.create();
     this.game.stage.backgroundColor = '#222';
 
-    this.nextScreen = 'Camp';
+    this.nextScreen = 'Kolpa';
     // if (this.game.device.desktop) {
     //   this.textObject.text =
     //     'You find your self in a world of battery chicken, who live for your morning ' + // i18n
@@ -22,10 +22,10 @@ export default class extends TextScreen {
     //   '\n\nTouch the screen to continue!'; // i18n
     // }
     this.textObject.text = 
-      'Poskusiš se okrepčati in nadaljevati pot proti Kolpi.'
+      'Dosegel/-la si Kolpo. Čeprav ne znaš plavati, upaš, da ti uspe doseči Slovenijo.'
     this.textObject.position.y = 78;
 
-    const zica = this.game.add.image(112, 38, 'taborisce');
+    const zica = this.game.add.image(112, 38, 'kolpa');
     zica.scale.set(2);
     zica.anchor.set(0.5);
     zica.smoothed = false;

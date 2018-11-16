@@ -9,11 +9,19 @@ import Intro3State from './states/Intro3';
 import TutorialState from './states/Tutorial';
 
 import WarState from './states/War';
-import KladusaState from './states/Kladusa';
+import DeathInWarState from './states/DeathInWar';
 
+import KladusaState from './states/Kladusa';
 import CampIntroState from './states/CampIntro';
 import CampState from './states/Camp';
-import DeathInWarState from './states/DeathInWar';
+import DeathInCampState from './states/DeathInCamp';
+
+import KolpaIntroState from './states/KolpaIntro';
+import KolpaState from './states/Kolpa';
+import DeathInKolpaState from './states/DeathInKolpa';
+
+import BeforeGiveUp from './states/BeforeGiveUp';
+import GiveUp from './states/GiveUp';
 
 import config from './config';
 
@@ -24,6 +32,7 @@ class Game extends Phaser.Game {
     this.antialias = false;
 
     this.state.add('Splash', SplashState, true);
+    this.state.add('Boot', BootState, true);
 
     this.state.add('Intro', IntroState);
     this.state.add('Intro2', Intro2State);
@@ -31,13 +40,19 @@ class Game extends Phaser.Game {
     this.state.add('Tutorial', TutorialState);
 
     this.state.add('War', WarState);
+    this.state.add('WarDeath', DeathInWarState);
+    
     this.state.add('Kladusa', KladusaState);
-
     this.state.add('CampIntro', CampIntroState);
     this.state.add('Camp', CampState);
-    this.state.add('Death', DeathInWarState);
+    this.state.add('CampDeath', DeathInCampState);
 
-    this.state.add('Boot', BootState, true);
+    this.state.add('KolpaIntro', KolpaIntroState);
+    this.state.add('Kolpa', KolpaState);
+    this.state.add('KolpaDeath', DeathInKolpaState);
+
+    this.state.add('BeforeGiveUp', BeforeGiveUp);
+    this.state.add('GiveUp', GiveUp);
   }
 }
 

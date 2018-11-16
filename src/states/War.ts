@@ -111,7 +111,7 @@ export default class extends Phaser.State {
     });
     this.game.physics.arcade.collide(this.tanks, this.safetyLayer);
     this.game.physics.arcade.collide(this.refugee, this.tanks, () => {
-      this.nextScreen = 'Death';
+      this.nextScreen = 'WarDeath';
       this.continue();
     });
 
@@ -132,7 +132,7 @@ export default class extends Phaser.State {
     } else if (this.keys.up.isDown || this.keys.w.isDown) {
       this.refugee.moveDown(50);
     // } else if (this.keys.esc.isDown) {
-    //   this.state.start('GiveUp', true, false, this.survival);
+    //   this.state.start('BeforeGiveUp', true, false, this.survival);
     } else {
       this.refugee.idle();
     }

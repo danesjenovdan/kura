@@ -11,7 +11,7 @@ export default abstract class extends Phaser.State {
   }
 
   create() {
-    this.selector = this.game.add.sprite(0, 120, 'zica');
+    this.selector = this.game.add.sprite(0, 115, 'zica');
     this.selector.scale.set(0.7);
     this.selector.anchor.x = 0.5;
     this.choose(Position.LEFT);
