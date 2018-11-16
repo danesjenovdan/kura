@@ -34,15 +34,17 @@ export default class extends Phaser.Sprite {
   }
 
   generateRandomActionPoint() {
-    this.randomAction = [
-      this.moveLeft,
-      this.moveRight,
-      this.moveUp,
-      this.moveDown,
-      this.shoot,
-    ][Math.floor(Math.random() * 5)];
-    this.randomPoint = Math.floor(Math.random() * 90);
-    this.randomFinish = Math.floor(Math.random() * 100) + 10;
+    if (this.y < 130) {
+      this.randomAction = [
+        this.moveLeft,
+        this.moveRight,
+        this.moveUp,
+        this.moveDown,
+        this.shoot,
+      ][Math.floor(Math.random() * 5)];
+      this.randomPoint = Math.floor(Math.random() * 90);
+      this.randomFinish = Math.floor(Math.random() * 100) + 10;
+    }
   }
 
   update() {
@@ -80,15 +82,15 @@ export default class extends Phaser.Sprite {
     this.direction = Direction.Up;
     // this.animations.play('walk');
     this.body.velocity.x = 0;
-    this.body.velocity.y = speed;
-    this.angle = 90;
+    this.body.velocity.y = -speed;
+    this.angle = 270;
   }
   moveDown(speed: number) {
     this.direction = Direction.Down;
     // this.animations.play('walk');
     this.body.velocity.x = 0;
-    this.body.velocity.y = -speed;
-    this.angle = 270;
+    this.body.velocity.y = speed;
+    this.angle = 90;
   }
   shoot() {
     this.animations.play('shoot');

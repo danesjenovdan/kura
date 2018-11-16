@@ -1,5 +1,6 @@
 import Refugee from '../sprites/Refugee';
 import Tank from '../sprites/Tank';
+import ControlsOverlay from '../sprites/ControlsOverlay';
 
 export default class extends Phaser.State {
   keys: any;
@@ -10,6 +11,7 @@ export default class extends Phaser.State {
   tiles: Phaser.TileSprite;
   map: Phaser.Tilemap;
   mapLayer: Phaser.TilemapLayer;
+  safetyLayer: Phaser.TilemapLayer;
 
   init() {
     console.log('init');
@@ -23,12 +25,14 @@ export default class extends Phaser.State {
     // Load the map.
     this.map = this.game.add.tilemap('war');
     this.map.addTilesetImage('ground', 'tiles');
+    this.map.addTilesetImage('tank', 'tank');
     console.log(this.map);
 
     this.mapLayer = this.map.createLayer('Terrain');
-    console.log(this.mapLayer);
-    // this.mapLayer.resizeWorld();
+    this.mapLayer.resizeWorld();
     // this.mapLayer.wrap = true;
+
+    this.safetyLayer = this.map.createLayer('Safety');
 
     this.keys = this.game.input.keyboard.addKeys({
       enter: Phaser.KeyCode.ENTER,
@@ -54,20 +58,27 @@ export default class extends Phaser.State {
     });
 
     this.tanks = this.game.add.group();
+    this.map.objects.Tanks.forEach((tank: Tank) => {
+      this.tanks.add(new Tank({
+        game: this.game,
+        x: tank.x,
+        y: tank.y
+      }));
+    });;
 
-    for (let i = 0; i < 7; i += 1) {
-      for (let j = 0; j < 5; j += 1) {
-        if (i !== 3 || j !== 4) {
-          if (Math.random() > 0.3) {
-            this.tanks.add(new Tank({
-              game: this.game,
-              x: (i * 32) + 16,
-              y: (j * 32) + 16,
-            }));
-          }
-        }
-      }
-    }
+    // for (let i = 0; i < 7; i += 1) {
+    //   for (let j = 0; j < 5; j += 1) {
+    //     if (i !== 3 || j !== 4) {
+    //       if (Math.random() > 0.3) {
+    //         this.tanks.add(new Tank({
+    //           game: this.game,
+    //           x: (i * 32) + 16,
+    //           y: (j * 32) + 16,
+    //         }));
+    //       }
+    //     }
+    //   }
+    // }
 
     this.game.add.existing(this.refugee);
     this.game.add.existing(this.tanks);
@@ -83,6 +94,7 @@ export default class extends Phaser.State {
       tank2.body.velocity.x = 0;
       tank2.body.velocity.y = 0;
     });
+    this.game.physics.arcade.collide(this.tanks, this.safetyLayer);
     this.game.physics.arcade.collide(this.refugee, this.tanks, () => {
       this.nextScreen = 'Death';
       this.continue();
