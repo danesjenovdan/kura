@@ -2,6 +2,7 @@ import 'pixi';
 import 'p2';
 
 import BootState from './states/Boot';
+import SplashState from './states/Splash';
 import IntroState from './states/Intro';
 import Intro2State from './states/Intro2';
 import Intro3State from './states/Intro3';
@@ -21,6 +22,8 @@ class Game extends Phaser.Game {
     super(config.gameWidth, config.gameHeight);
 
     this.antialias = false;
+
+    this.state.add('Splash', SplashState, true);
 
     this.state.add('Intro', IntroState);
     this.state.add('Intro2', Intro2State);
