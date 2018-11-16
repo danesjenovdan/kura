@@ -18,7 +18,7 @@ export default class extends Phaser.State {
   }
 
   create() {
-    this.nextScreen = 'Kladusa';
+    this.nextScreen = 'Win';
     this.game.stage.smoothed = false;
 
     // MAP

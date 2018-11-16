@@ -11,10 +11,9 @@ export default abstract class extends Phaser.State {
   }
 
   create() {
-    this.selector = this.game.add.sprite(0, 80, 'chicken');
+    this.selector = this.game.add.sprite(0, 120, 'zica');
+    this.selector.scale.set(0.7);
     this.selector.anchor.x = 0.5;
-    this.selector.animations.add(Position.LEFT, [0, 0, 0, 0, 0, 0, 0, 0, 10], 3, true);
-    this.selector.animations.add(Position.RIGHT, [9, 9, 9, 9, 9, 9, 9, 9, 11], 3, true);
     this.choose(Position.LEFT);
 
     this.keys = this.game.input.keyboard.addKeys({
@@ -26,8 +25,8 @@ export default abstract class extends Phaser.State {
 
     this.textObjects = {
       title: this.game.add.bitmapText(112, 40, 'FixedSys', '', 16),
-      left: this.game.add.bitmapText(66, 112, 'FixedSys', '', 16),
-      right: this.game.add.bitmapText(158, 112, 'FixedSys', '', 16)
+      left: this.game.add.bitmapText(66, 135, 'FixedSys', '', 16),
+      right: this.game.add.bitmapText(158, 135, 'FixedSys', '', 16)
     }
 
     this.textObjects.title.anchor.setTo(0.5);
@@ -75,7 +74,6 @@ export default abstract class extends Phaser.State {
 
   choose(position: Position) {
     this.selected = position;
-    this.selector.animations.play(position);
     const xOffset = {
       LEFT: 56,
       RIGHT: 164,

@@ -15,8 +15,8 @@ export default class extends Phaser.Sprite {
   randomAction: Function;
   enemy: boolean;
 
-  constructor({game, x, y}: TankParams) {
-    super(game, x, y, 'tank');
+  constructor({game, x, y, tankTile}: TankParams) {
+    super(game, x, y, tankTile);
 
     this.animations.add('shoot', [0, 2, 0], 20, false);
     this.animations.add('idle', [0], 1, false);

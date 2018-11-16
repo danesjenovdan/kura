@@ -8,7 +8,7 @@ export default class extends Phaser.State {
     // this.load.image('cage-horizontal', 'assets/images/cage-horizontal.png');
     // this.load.image('egg', 'assets/images/egg.png');
     // this.load.image('meter', 'assets/images/egg-meter.png');
-    // this.load.image('arrows', 'assets/images/arrows.png');
+    this.load.image('arrows', 'assets/images/arrows.png');
     // this.load.image('space', 'assets/images/space.png');
     // this.load.imageFromTexture('poop', [' 2 ', '212'], 1, 1);
     this.load.bitmapFont('FixedSys', 'assets/fonts/fixedsys.png', 'assets/fonts/fixedsys.fnt');
@@ -22,11 +22,17 @@ export default class extends Phaser.State {
     // this.load.audio('egg', 'assets/audio/egg.mp3');
 
     this.load.spritesheet('refugee', 'assets/images/begunec.png', 16, 16, 3);
-    this.load.spritesheet('tank', 'assets/images/tank.png', 16, 16, 4);
+    // this.load.spritesheet('tank', 'assets/images/tank.png', 16, 16, 4);
 
     this.load.tilemap('war', 'assets/maps/war.json', null, Phaser.Tilemap.TILED_JSON);
     this.load.image('tiles', 'assets/images/tiles.png');
-    // this.load.image('tank', 'assets/images/tank.png');
+    this.load.image('tank', 'assets/images/tank.png');
+    this.load.image('tank2', 'assets/images/tank2.png');
+    this.load.image('tank3', 'assets/images/tank3.png');
+
+    this.load.image('zica', 'assets/images/zica.png');
+    this.load.image('vojna', 'assets/images/vojna.png');
+    this.load.image('death', 'assets/images/umrl.png');
   }
 
   create() {
@@ -34,6 +40,6 @@ export default class extends Phaser.State {
     this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     this.game.cache.getBitmapFont('Munro').font.lineHeight = 11;
 
-    this.state.start('War');
+    this.state.start('Intro');
   }
 }
