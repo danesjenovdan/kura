@@ -112,7 +112,7 @@ export default class extends Phaser.State {
   }
 
   update() {
-    if (!this.game.device.desktop) {
+    // if (!this.game.device.desktop) {
       if (this.input.pointer1.isDown) {
         if (this.input.pointer1.worldX < this.refugee.worldPosition.x - 10) {
           this.refugee.keyXSpeed = -40;
@@ -135,7 +135,7 @@ export default class extends Phaser.State {
         this.refugee.keyXSpeed = 0;
         this.refugee.keyYSpeed = 0;
       }
-    }
+    // }
 
     this.game.physics.arcade.collide(this.policeOfficers, this.safetyLayer);
     this.game.physics.arcade.collide(this.policeOfficers, this.policeOfficers);
