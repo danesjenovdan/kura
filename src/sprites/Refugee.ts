@@ -10,7 +10,7 @@ export default class extends Phaser.Sprite {
     this.baseXSpeed = 0;
     this.baseYSpeed = 0;
 
-    this.animations.add('walk', [1, 2], 10, true);
+    this.animations.add('walk', [1, 1, 2, 2], 15, true);
     this.animations.add('idle', [0], 1, false);
     this.smoothed = false;
     this.anchor.setTo(0.5);
@@ -22,11 +22,10 @@ export default class extends Phaser.Sprite {
     this.body.collideWorldBounds = true;
     this.body.bounce.set(0);
 
-    console.log('bounds', this.body.setSize(10, 16, 4, 0));
+    // console.log('bounds', this.body.setSize(10, 16, 4, 0));
   }
 
   update() {
-    // this.game.physics.arcade.collide(this, this.cage);
     if ((this.body.velocity.x === 0) && (this.body.velocity.y === 0)) {
       this.animations.play('idle');
     }

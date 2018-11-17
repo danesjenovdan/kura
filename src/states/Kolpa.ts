@@ -107,7 +107,6 @@ export default class extends Phaser.State {
     this.keys.left.onUp.add(() => {
       if (this.refugee.body.velocity.x !== 0) {
         this.refugee.body.velocity.x += 40 + this.refugee.baseXSpeed;
-        this.refugee.animations.play('idle');
         this.refugee.angle = 180;
       }
     });
@@ -119,7 +118,6 @@ export default class extends Phaser.State {
     this.keys.right.onUp.add(() => {
       if (this.refugee.body.velocity.x !== 0) {
         this.refugee.body.velocity.x -= 40 + this.refugee.baseXSpeed;
-        this.refugee.animations.play('idle');
         this.refugee.angle = 0;
       } else {
         console.log('dafuq');
@@ -133,7 +131,6 @@ export default class extends Phaser.State {
     this.keys.up.onUp.add(() => {
       if (this.refugee.body.velocity.y !== 0) {
         this.refugee.body.velocity.y += 40 + this.refugee.baseYSpeed;
-        this.refugee.animations.play('idle');
         this.refugee.angle = 270;
       }
     });
@@ -145,7 +142,6 @@ export default class extends Phaser.State {
     this.keys.down.onUp.add(() => {
       if (this.refugee.body.velocity.y !== 0) {
         this.refugee.body.velocity.y -= 40 + this.refugee.baseYSpeed;
-        this.refugee.animations.play('idle');
         this.refugee.angle = 90;
       }
     });
