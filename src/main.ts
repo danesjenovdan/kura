@@ -28,7 +28,7 @@ import config from './config';
 
 class Game extends Phaser.Game {
   constructor() {
-    super(config.gameWidth, config.gameHeight);
+    super(config.gameWidth, config.gameHeight, Phaser.AUTO, 'content');
 
     this.antialias = false;
 

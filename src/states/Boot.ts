@@ -1,7 +1,9 @@
 export default class extends Phaser.State {
-  loaderBg: Phaser.Sprite
-  loaderBar: Phaser.Sprite
-
+  loaderBg: Phaser.Sprite;
+  loaderBar: Phaser.Sprite;
+  music: Phaser.Sound;
+  keys: any;
+  
   preload() {
     this.load.image('arrows', 'assets/images/arrows.png');
     this.load.bitmapFont('FixedSys', 'assets/fonts/fixedsys.png', 'assets/fonts/fixedsys.fnt');
@@ -37,6 +39,8 @@ export default class extends Phaser.State {
     this.load.image('kolpa', 'assets/images/kolpa.png');
     this.load.image('smrt-zica', 'assets/images/smrt-zica.png');
     this.load.image('slovenija', 'assets/images/slovenija.png');
+
+    this.load.audio('gameboy', 'assets/audio/gameboy.mp3');
   }
 
   create() {
@@ -47,6 +51,9 @@ export default class extends Phaser.State {
     // this.game.scale.pageAlignHorizontally = true;
     // this.game.scale.pageAlignVertically = true;
     // this.game.scale.refresh();
+
+    this.music = this.game.add.audio('gameboy', 0.25, true);
+    this.music.play();
 
     this.state.start('Intro');
   }

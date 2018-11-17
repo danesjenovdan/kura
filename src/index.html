@@ -31,6 +31,7 @@
             justify-content: center;
             margin: 0;
             padding: 0;
+            flex-wrap: wrap;
         }
         /* canvas {
             position: absolute;
@@ -39,11 +40,72 @@
             bottom: 0;
             left: 0;
         } */
+        #content {
+            align-items: center;
+            background: #000000;
+            display: flex;
+            height: 100%;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+        #tipke {
+            display: none;
+            position: relative;
+            width: 198px;
+            height: 132px;
+            background: transparent;
+        }
+        .tipka {
+            width: 66px;
+            height: 66px;
+            position: absolute;
+            background: green;
+            background-image: url('assets/images/arrows_big.png');
+            background-size: 300%;
+        }
+        #up {
+            top: 0;
+            left: 66px;
+            background-position: 50% 0;
+        }
+        #down {
+            bottom: 0;
+            left: 66px;
+            background-position: 50% -100%;
+        }
+        #left {
+            bottom: 0;
+            left: 0;
+            background-position: 0 -100%;
+        }
+        #right {
+            bottom: 0;
+            right: 0;
+            background-position: -200% -100%;
+        }
+        .transparent {
+            opacity: 0;
+        }
+        @media (max-width: 767px) {
+            #content {
+                height: calc(100% - 200px);
+            }
+            #tipke {
+                display: block;
+            }
+        }
     </style>
 </head>
 
 <body>
     <div id="content"></div>
+    <div id="tipke">
+        <div class="tipka" id="up"></div>
+        <div class="tipka" id="down"></div>
+        <div class="tipka" id="left"></div>
+        <div class="tipka" id="right"></div>
+    </div>
 
     <!-- Matomo -->
     <script type="text/javascript">

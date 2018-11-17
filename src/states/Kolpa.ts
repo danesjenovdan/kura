@@ -1,5 +1,4 @@
 import Refugee from '../sprites/Refugee';
-import ControlsOverlay from '../sprites/ControlsOverlay';
 import Truplo from '../sprites/Truplo';
 
 export default class extends Phaser.State {
@@ -16,7 +15,7 @@ export default class extends Phaser.State {
   deathLayer: Phaser.TilemapLayer;
 
   init() {
-    console.log('init');
+    document.getElementById('tipke').classList.remove('transparent');
   }
 
   create() {
@@ -105,13 +104,10 @@ export default class extends Phaser.State {
       space: Phaser.KeyCode.SPACEBAR,
 
       up: Phaser.KeyCode.UP,
-      w: Phaser.KeyCode.W,
       down: Phaser.KeyCode.DOWN,
-      s: Phaser.KeyCode.S,
       left: Phaser.KeyCode.LEFT,
-      a: Phaser.KeyCode.A,
       right: Phaser.KeyCode.RIGHT,
-      d: Phaser.KeyCode.D,
+      m: Phaser.KeyCode.M,
 
       // f1: Phaser.KeyCode.F1,
       // esc: Phaser.KeyCode.ESC,
@@ -145,34 +141,44 @@ export default class extends Phaser.State {
     this.keys.down.onUp.add(() => {
       this.refugee.keyYSpeed -= 40;
     });
+
+    if (!this.game.device.desktop) {
+      const upEl = document.getElementById('up');
+      upEl.addEventListener('touchstart', (e) => {
+        this.refugee.keyYSpeed = -40;
+        this.refugee.angle = 270;
+      }, false);
+      upEl.addEventListener('touchend', (e) => {
+        this.refugee.keyYSpeed = 0;
+      });
+      const downEl = document.getElementById('down');
+      downEl.addEventListener('touchstart', (e) => {
+        this.refugee.keyYSpeed = 40;
+        this.refugee.angle = 90;
+      }, false);
+      downEl.addEventListener('touchend', (e) => {
+        this.refugee.keyYSpeed = 0;
+      });
+      const leftEl = document.getElementById('left');
+      leftEl.addEventListener('touchstart', (e) => {
+        this.refugee.keyXSpeed = -40;
+        this.refugee.angle = 180;
+      }, false);
+      leftEl.addEventListener('touchend', (e) => {
+        this.refugee.keyXSpeed = 0;
+      });
+      const rightEl = document.getElementById('right');
+      rightEl.addEventListener('touchstart', (e) => {
+        this.refugee.keyXSpeed = 40;
+        this.refugee.angle = 0;
+      }, false);
+      rightEl.addEventListener('touchend', (e) => {
+        this.refugee.keyXSpeed = 0;
+      });
+    }
   }
 
   update() {
-    if (!this.game.device.desktop) {
-      if (this.input.pointer1.isDown) {
-        if (this.input.pointer1.worldX < this.refugee.worldPosition.x - 10) {
-          this.refugee.keyXSpeed = -40;
-          this.refugee.angle = 180;
-        }
-        if (this.input.pointer1.worldX > this.refugee.worldPosition.x + 10) {
-          this.refugee.keyXSpeed = 40;
-          this.refugee.angle = 0;
-        }
-        if (this.input.pointer1.worldY > this.refugee.worldPosition.y + 10) {
-          this.refugee.keyYSpeed = 40;
-          this.refugee.angle = 90;
-        }
-        if (this.input.pointer1.worldY < this.refugee.worldPosition.y - 10) {
-          this.refugee.keyYSpeed = -40;
-          this.refugee.angle = 270;
-        }
-      } else {
-      // if (this.input.pointer1.isUp) {
-        this.refugee.keyXSpeed = 0;
-        this.refugee.keyYSpeed = 0;
-      }
-    }
-
     if (this.game.physics.arcade.overlap(this.refugee, this.bodies)) {
       this.game.physics.arcade.overlap(this.refugee, this.bodies, (refugee: Refugee, truplo: Truplo) => {
         if (refugee.baseXSpeed !== truplo.body.velocity.x) {
@@ -200,6 +206,11 @@ export default class extends Phaser.State {
 
     if (this.refugee.y < 10) {
       this.continue();
+    }
+
+    if (this.keys.m.justPressed()) {
+      console.log('ping');
+      this.game.sound.mute = !this.game.sound.mute;
     }
   }
 

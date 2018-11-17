@@ -13,6 +13,7 @@ export default class extends Phaser.State {
   safetyLayer: Phaser.TilemapLayer;
 
   init() {
+    document.getElementById('tipke').classList.remove('transparent');
   }
 
   create() {
@@ -37,6 +38,7 @@ export default class extends Phaser.State {
       down: Phaser.KeyCode.DOWN,
       left: Phaser.KeyCode.LEFT,
       right: Phaser.KeyCode.RIGHT,
+      m: Phaser.KeyCode.M,
     });
 
     this.refugee = new Refugee({
@@ -88,34 +90,44 @@ export default class extends Phaser.State {
     this.keys.down.onUp.add(() => {
       this.refugee.keyYSpeed -= 40;
     });
+
+    if (!this.game.device.desktop) {
+      const upEl = document.getElementById('up');
+      upEl.addEventListener('touchstart', (e) => {
+        this.refugee.keyYSpeed = -40;
+        this.refugee.angle = 270;
+      }, false);
+      upEl.addEventListener('touchend', (e) => {
+        this.refugee.keyYSpeed = 0;
+      });
+      const downEl = document.getElementById('down');
+      downEl.addEventListener('touchstart', (e) => {
+        this.refugee.keyYSpeed = 40;
+        this.refugee.angle = 90;
+      }, false);
+      downEl.addEventListener('touchend', (e) => {
+        this.refugee.keyYSpeed = 0;
+      });
+      const leftEl = document.getElementById('left');
+      leftEl.addEventListener('touchstart', (e) => {
+        this.refugee.keyXSpeed = -40;
+        this.refugee.angle = 180;
+      }, false);
+      leftEl.addEventListener('touchend', (e) => {
+        this.refugee.keyXSpeed = 0;
+      });
+      const rightEl = document.getElementById('right');
+      rightEl.addEventListener('touchstart', (e) => {
+        this.refugee.keyXSpeed = 40;
+        this.refugee.angle = 0;
+      }, false);
+      rightEl.addEventListener('touchend', (e) => {
+        this.refugee.keyXSpeed = 0;
+      });
+    }
   }
 
   update() {
-    if (!this.game.device.desktop) {
-      if (this.input.pointer1.isDown) {
-        if (this.input.pointer1.worldX < this.refugee.worldPosition.x - 10) {
-          this.refugee.keyXSpeed = -40;
-          this.refugee.angle = 180;
-        }
-        if (this.input.pointer1.worldX > this.refugee.worldPosition.x + 10) {
-          this.refugee.keyXSpeed = 40;
-          this.refugee.angle = 0;
-        }
-        if (this.input.pointer1.worldY > this.refugee.worldPosition.y + 10) {
-          this.refugee.keyYSpeed = 40;
-          this.refugee.angle = 90;
-        }
-        if (this.input.pointer1.worldY < this.refugee.worldPosition.y - 10) {
-          this.refugee.keyYSpeed = -40;
-          this.refugee.angle = 270;
-        }
-      } else {
-      // if (this.input.pointer1.isUp) {
-        this.refugee.keyXSpeed = 0;
-        this.refugee.keyYSpeed = 0;
-      }
-    }
-
     // TANK COLLISION DETECTION
     this.game.physics.arcade.collide(this.tanks, this.tanks);
     this.game.physics.arcade.collide(this.tanks, this.safetyLayer);
@@ -129,6 +141,11 @@ export default class extends Phaser.State {
 
     if (this.refugee.y < 10) {
       this.continue();
+    }
+
+    if (this.keys.m.justPressed()) {
+      console.log('ping');
+      this.game.sound.mute = !this.game.sound.mute;
     }
   }
 

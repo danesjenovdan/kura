@@ -21,6 +21,7 @@ export default abstract class extends Phaser.State {
       right: Phaser.KeyCode.RIGHT,
       enter: Phaser.KeyCode.ENTER,
       space: Phaser.KeyCode.SPACEBAR,
+      m: Phaser.KeyCode.M,
     });
 
     this.textObjects = {
@@ -55,6 +56,10 @@ export default abstract class extends Phaser.State {
       this.choose(Position.RIGHT);
     } else if (this.keys.enter.isDown || this.keys.space.isDown) {
       this.continue(this.selected);
+    }
+    if (this.keys.m.justPressed()) {
+      console.log('ping');
+      this.game.sound.mute = !this.game.sound.mute;
     }
 
     // else if (this.input.pointer1.isDown && this.input.pointer1.worldX < 112) {
