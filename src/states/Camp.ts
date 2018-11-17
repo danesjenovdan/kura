@@ -114,19 +114,19 @@ export default class extends Phaser.State {
   update() {
     if (!this.game.device.desktop) {
       if (this.input.pointer1.isDown) {
-        if (this.input.pointer1.worldX < this.refugee.worldPosition.x - 15) {
+        if (this.input.pointer1.worldX < this.refugee.worldPosition.x - 10) {
           this.refugee.keyXSpeed = -40;
           this.refugee.angle = 180;
         }
-        if (this.input.pointer1.worldX > this.refugee.worldPosition.x + 15) {
+        if (this.input.pointer1.worldX > this.refugee.worldPosition.x + 10) {
           this.refugee.keyXSpeed = 40;
           this.refugee.angle = 0;
         }
-        if (this.input.pointer1.worldY > this.refugee.worldPosition.y + 15) {
+        if (this.input.pointer1.worldY > this.refugee.worldPosition.y + 10) {
           this.refugee.keyYSpeed = 40;
           this.refugee.angle = 90;
         }
-        if (this.input.pointer1.worldY < this.refugee.worldPosition.y - 15) {
+        if (this.input.pointer1.worldY < this.refugee.worldPosition.y - 10) {
           this.refugee.keyYSpeed = -40;
           this.refugee.angle = 270;
         }

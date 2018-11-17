@@ -31,7 +31,7 @@ export default class extends Selection {
   continue(selectedOption: Position) {
     super.continue(selectedOption);
     if(selectedOption === Position.LEFT) {
-      this.state.start('Tutorial', true, false, true);
+      this.state.start('Kladusa', true, false, true);
     } else {
       this.state.start('BeforeGiveUp', true, false, this.survival);
     }
