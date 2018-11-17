@@ -93,6 +93,57 @@ export default class extends Phaser.State {
     this.game.add.existing(this.policeOfficers);
     this.game.add.existing(this.refugees);
 
+    this.keys.left.onDown.add(() => {
+      this.refugee.body.velocity.x -= 40 + this.refugee.baseXSpeed;
+      this.refugee.animations.play('walk');
+      this.refugee.angle = 180;
+    });
+    this.keys.left.onUp.add(() => {
+      if (this.refugee.body.velocity.x !== 0) {
+        this.refugee.body.velocity.x += 40 + this.refugee.baseXSpeed;
+        this.refugee.animations.play('idle');
+        this.refugee.angle = 180;
+      }
+    });
+    this.keys.right.onDown.add(() => {
+      this.refugee.body.velocity.x += 40 + this.refugee.baseXSpeed;
+      this.refugee.animations.play('walk');
+      this.refugee.angle = 0;
+    });
+    this.keys.right.onUp.add(() => {
+      if (this.refugee.body.velocity.x !== 0) {
+        this.refugee.body.velocity.x -= 40 + this.refugee.baseXSpeed;
+        this.refugee.animations.play('idle');
+        this.refugee.angle = 0;
+      } else {
+        console.log('dafuq');
+      }
+    });
+    this.keys.up.onDown.add(() => {
+      this.refugee.body.velocity.y -= 40 + this.refugee.baseYSpeed;
+      this.refugee.animations.play('walk');
+      this.refugee.angle = 270;
+    });
+    this.keys.up.onUp.add(() => {
+      if (this.refugee.body.velocity.y !== 0) {
+        this.refugee.body.velocity.y += 40 + this.refugee.baseYSpeed;
+        this.refugee.animations.play('idle');
+        this.refugee.angle = 270;
+      }
+    });
+    this.keys.down.onDown.add(() => {
+      this.refugee.body.velocity.y += 40 + this.refugee.baseYSpeed;
+      this.refugee.animations.play('walk');
+      this.refugee.angle = 90;
+    });
+    this.keys.down.onUp.add(() => {
+      if (this.refugee.body.velocity.y !== 0) {
+        this.refugee.body.velocity.y -= 40 + this.refugee.baseYSpeed;
+        this.refugee.animations.play('idle');
+        this.refugee.angle = 90;
+      }
+    });
+
     console.log('create');
   }
 
@@ -120,24 +171,6 @@ export default class extends Phaser.State {
 
     if (this.refugee.y < 10) {
       this.continue();
-    }
-
-    if (this.keys.enter.isDown || this.keys.space.isDown || this.input.pointer1.isDown) {
-      // this.continue();
-      console.log('space or enter');
-    }
-     else if (this.keys.left.isDown || this.keys.a.isDown) {
-      this.refugee.moveLeft(50);
-    } else if (this.keys.right.isDown || this.keys.d.isDown) {
-      this.refugee.moveRight(50);
-    } else if (this.keys.down.isDown || this.keys.s.isDown) {
-      this.refugee.moveUp(50);
-    } else if (this.keys.up.isDown || this.keys.w.isDown) {
-      this.refugee.moveDown(50);
-    // } else if (this.keys.esc.isDown) {
-    //   this.state.start('BeforeGiveUp', true, false, this.survival);
-    } else {
-      this.refugee.idle();
     }
   }
 

@@ -42,6 +42,7 @@ export default class extends Phaser.State {
     this.load.tilemap('kolpa', 'assets/maps/kolpa.json', null, Phaser.Tilemap.TILED_JSON);
     this.load.spritesheet('truplo', 'assets/images/truplo.png', 32, 16, 1);
 
+    this.load.image('selector', 'assets/images/selector2.png');
     this.load.image('zica', 'assets/images/zica.png');
     this.load.image('vojna', 'assets/images/vojna.png');
     this.load.image('taborisce', 'assets/images/taborisce.png');
@@ -56,6 +57,6 @@ export default class extends Phaser.State {
     this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     this.game.cache.getBitmapFont('Munro').font.lineHeight = 11;
 
-    this.state.start('Intro');
+    this.state.start('Kolpa');
   }
 }
