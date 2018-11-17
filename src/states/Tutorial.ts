@@ -16,7 +16,7 @@ export default class extends TextScreen {
 
     if (this.game.device.desktop) {
       text =
-        'Si begunec/-ka, ki poskuša doseči Slovenijo. Najprej se moraš iz vojnega območja prebiti do begunskega taborišča. Za premikanje uporabi:';
+        'Si begunec/-ka, ki poskuša doseči Slovenijo. Najprej se moraš iz vojnega območja prebiti do begunskega taborišča. Glasbo (by: Nerdspasm) utišaš s tipko "M",za premikanje uporabi:';
     } else {
       text =
       'Si begunec/-ka, ki poskuša doseči Slovenijo. Najprej se moraš iz vojnega območja prebiti do begunskega taborišča. Za premikanje se dotakni zaslona.';
