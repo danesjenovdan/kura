@@ -8,7 +8,7 @@ export default class extends Phaser.State {
     this.load.bitmapFont('Munro', 'assets/fonts/munro.png', 'assets/fonts/munro.fnt');
     this.load.bitmapFont('MunroSmall', 'assets/fonts/munro-small.png', 'assets/fonts/munro-small.fnt');
 
-    this.load.spritesheet('refugee', 'assets/images/begunec.png', 16, 16, 3);
+    this.load.spritesheet('refugee', 'assets/images/begunec.png', 16, 16, 4);
 
     this.load.image('tiles', 'assets/images/tla.png');
 

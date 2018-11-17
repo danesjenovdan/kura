@@ -27,16 +27,14 @@ export default class extends Phaser.Sprite {
   }
 
   generateRandomActionPoint() {
-    if (this.y < 130) {
-      this.randomAction = [
-        this.moveLeft,
-        this.moveRight,
-        this.moveUp,
-        this.moveDown,
-      ][Math.floor(Math.random() * 4)];
-      this.randomPoint = Math.floor(Math.random() * 90);
-      this.randomFinish = Math.floor(Math.random() * 100) + 10;
-    }
+    this.randomAction = [
+      this.moveLeft,
+      this.moveRight,
+      this.moveUp,
+      this.moveDown,
+    ][Math.floor(Math.random() * 4)];
+    this.randomPoint = Math.floor(Math.random() * 90);
+    this.randomFinish = Math.floor(Math.random() * 100) + 10;
   }
 
   update() {

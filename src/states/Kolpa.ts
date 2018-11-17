@@ -67,7 +67,7 @@ export default class extends Phaser.State {
         speed: 5,
       }));
     }, this);
-    this.game.time.events.loop(Phaser.Timer.SECOND * 12, () => {
+    this.game.time.events.loop(Phaser.Timer.SECOND * 15, () => {
       this.bodies.add(new Truplo({
         game: this.game,
         y: 64,
@@ -75,7 +75,7 @@ export default class extends Phaser.State {
         speed: 20,
       }));
     }, this);
-    this.game.time.events.loop(Phaser.Timer.SECOND * 11, () => {
+    this.game.time.events.loop(Phaser.Timer.SECOND * 13, () => {
       this.bodies.add(new Truplo({
         game: this.game,
         y: 48,
@@ -91,7 +91,7 @@ export default class extends Phaser.State {
         speed: 4,
       }));
     }, this);
-    this.game.time.events.loop(Phaser.Timer.SECOND * 8, () => {
+    this.game.time.events.loop(Phaser.Timer.SECOND * 11, () => {
       this.bodies.add(new Truplo({
         game: this.game,
         y: 16,
@@ -189,9 +189,12 @@ export default class extends Phaser.State {
       const tileX = Phaser.Math.snapToFloor(Math.floor(this.refugee.x), 16) / 16;
       const tileY = Phaser.Math.snapToFloor(Math.floor(this.refugee.y), 16) / 16;
 
-      if ((tileY < 8) && (tileY > 4)) {
-        this.nextScreen = 'KolpaDeath';
-        this.continue();
+      if ((tileY < 8) && (tileY > 0)) {
+        this.refugee.dying = true;
+        this.game.time.events.add(Phaser.Timer.SECOND * 1.5, () => {
+          this.nextScreen = 'KolpaDeath';
+          this.continue();
+        }
       }
     }
 

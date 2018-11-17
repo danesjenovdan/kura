@@ -13,6 +13,7 @@ export default class extends Phaser.State {
   map: Phaser.Tilemap;
   mapLayer: Phaser.TilemapLayer;
   tentLayer: Phaser.TilemapLayer;
+  safetyLayer: Phaser.TilemapLayer;
 
   init() {
   }
@@ -29,10 +30,12 @@ export default class extends Phaser.State {
     this.map.addTilesetImage('sotor2', 'sotor2');
 
     this.mapLayer = this.map.createLayer('Terrain');
-    this.mapLayer.resizeWorld();
 
     this.tentLayer = this.map.createLayer('Tents');
-    this.map.setCollisionBetween(1, 140, true, this.tentLayer);
+    this.map.setCollisionBetween(1, 160, true, this.tentLayer);
+
+    this.safetyLayer = this.map.createLayer('Safety');
+    this.map.setCollisionBetween(1, 160, true, this.safetyLayer);
 
     this.keys = this.game.input.keyboard.addKeys({
       up: Phaser.KeyCode.UP,
@@ -134,6 +137,7 @@ export default class extends Phaser.State {
       }
     }
 
+    this.game.physics.arcade.collide(this.policeOfficers, this.safetyLayer);
     this.game.physics.arcade.collide(this.policeOfficers, this.policeOfficers);
     this.game.physics.arcade.collide(this.refugees, this.refugees);
     this.game.physics.arcade.collide(this.refugees, this.policeOfficers);
@@ -143,8 +147,11 @@ export default class extends Phaser.State {
     
     this.game.physics.arcade.collide(this.refugee, this.refugees);
     this.game.physics.arcade.collide(this.refugee, this.policeOfficers, () => {
+    this.refugee.dying = true;
+    this.game.time.events.add(Phaser.Timer.SECOND * 1.5, () => {
       this.nextScreen = 'CampDeath';
       this.continue();
+    });
     });
     this.game.physics.arcade.collide(this.refugee, this.tentLayer);
 

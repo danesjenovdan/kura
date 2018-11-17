@@ -10,6 +10,7 @@ export default class extends Phaser.State {
   tiles: Phaser.TileSprite;
   map: Phaser.Tilemap;
   mapLayer: Phaser.TilemapLayer;
+  safetyLayer: Phaser.TilemapLayer;
 
   init() {
   }
@@ -27,6 +28,9 @@ export default class extends Phaser.State {
     this.map.addTilesetImage('tank3', 'tank3');
 
     this.mapLayer = this.map.createLayer('Terrain');
+
+    this.safetyLayer = this.map.createLayer('Safety');
+    this.map.setCollisionBetween(1, 160, true, this.safetyLayer);
 
     this.keys = this.game.input.keyboard.addKeys({
       up: Phaser.KeyCode.UP,
@@ -113,15 +117,14 @@ export default class extends Phaser.State {
     }
 
     // TANK COLLISION DETECTION
-    this.game.physics.arcade.collide(this.tanks, this.tanks, (tank1, tank2) => {
-      tank1.body.velocity.x = 0;
-      tank1.body.velocity.y = 0;
-      tank2.body.velocity.x = 0;
-      tank2.body.velocity.y = 0;
-    });
+    this.game.physics.arcade.collide(this.tanks, this.tanks);
+    this.game.physics.arcade.collide(this.tanks, this.safetyLayer);
     this.game.physics.arcade.collide(this.refugee, this.tanks, () => {
-      this.nextScreen = 'WarDeath';
-      this.continue();
+      this.refugee.dying = true;
+      this.game.time.events.add(Phaser.Timer.SECOND * 1.5, () => {
+        this.nextScreen = 'WarDeath';
+        this.continue();
+      });
     });
 
     if (this.refugee.y < 10) {
