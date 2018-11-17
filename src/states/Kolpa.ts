@@ -20,15 +20,17 @@ export default class extends Phaser.State {
   }
 
   create() {
-    this.nextScreen = 'Kladusa';
+    this.nextScreen = 'Win';
     this.game.stage.smoothed = false;
 
     // MAP
     this.map = this.game.add.tilemap('kolpa');
     this.map.addTilesetImage('ground', 'tiles');
+    this.map.addTilesetImage('zica', 'zica');
 
     this.mapLayer = this.map.createLayer('Terrain');
     this.waterLayer = this.map.createLayer('Water');
+    this.waterLayer = this.map.createLayer('Wire');
 
     this.refugee = new Refugee({
       game: this.game,
@@ -41,44 +43,60 @@ export default class extends Phaser.State {
     this.game.add.existing(this.bodies);
     this.game.add.existing(this.refugee);
 
-    this.game.time.events.loop(Phaser.Timer.SECOND * 2, () => {
+    this.game.time.events.loop(Phaser.Timer.SECOND * 6, () => {
+      this.bodies.add(new Truplo({
+        game: this.game,
+        y: 112,
+        direction: 'left',
+        speed: 20,
+      }));
+    }, this);
+    this.game.time.events.loop(Phaser.Timer.SECOND * 10, () => {
+      this.bodies.add(new Truplo({
+        game: this.game,
+        y: 96,
+        direction: 'left',
+        speed: 10,
+      }));
+    }, this);
+    this.game.time.events.loop(Phaser.Timer.SECOND * 12, () => {
       this.bodies.add(new Truplo({
         game: this.game,
         y: 80,
         direction: 'left',
-        speed: 30,
+        speed: 5,
       }));
     }, this);
-    this.game.time.events.loop(Phaser.Timer.SECOND * 3, () => {
+    this.game.time.events.loop(Phaser.Timer.SECOND * 12, () => {
       this.bodies.add(new Truplo({
         game: this.game,
         y: 64,
-        direction: 'right',
-        speed: 30,
+        direction: 'left',
+        speed: 20,
       }));
     }, this);
-    this.game.time.events.loop(Phaser.Timer.SECOND * 3.5, () => {
+    this.game.time.events.loop(Phaser.Timer.SECOND * 11, () => {
       this.bodies.add(new Truplo({
         game: this.game,
         y: 48,
         direction: 'left',
-        speed: 35,
+        speed: 15,
       }));
     }, this);
-    this.game.time.events.loop(Phaser.Timer.SECOND * 3, () => {
+    this.game.time.events.loop(Phaser.Timer.SECOND * 21, () => {
       this.bodies.add(new Truplo({
         game: this.game,
         y: 32,
-        direction: 'right',
-        speed: 25,
+        direction: 'left',
+        speed: 4,
       }));
     }, this);
-    this.game.time.events.loop(Phaser.Timer.SECOND * 4, () => {
+    this.game.time.events.loop(Phaser.Timer.SECOND * 8, () => {
       this.bodies.add(new Truplo({
         game: this.game,
         y: 16,
-        direction: 'right',
-        speed: 30,
+        direction: 'left',
+        speed: 20,
       }));
     }, this);
 
@@ -100,62 +118,67 @@ export default class extends Phaser.State {
     });
 
     this.keys.left.onDown.add(() => {
-      this.refugee.body.velocity.x -= 40 + this.refugee.baseXSpeed;
-      this.refugee.animations.play('walk');
+      this.refugee.keyXSpeed -= 40;
       this.refugee.angle = 180;
     });
     this.keys.left.onUp.add(() => {
-      if (this.refugee.body.velocity.x !== 0) {
-        this.refugee.body.velocity.x += 40 + this.refugee.baseXSpeed;
-        this.refugee.angle = 180;
-      }
+      this.refugee.keyXSpeed += 40;
     });
     this.keys.right.onDown.add(() => {
-      this.refugee.body.velocity.x += 40 + this.refugee.baseXSpeed;
-      this.refugee.animations.play('walk');
+      this.refugee.keyXSpeed += 40;
       this.refugee.angle = 0;
     });
     this.keys.right.onUp.add(() => {
-      if (this.refugee.body.velocity.x !== 0) {
-        this.refugee.body.velocity.x -= 40 + this.refugee.baseXSpeed;
-        this.refugee.angle = 0;
-      } else {
-        console.log('dafuq');
-      }
+      this.refugee.keyXSpeed -= 40;
     });
     this.keys.up.onDown.add(() => {
-      this.refugee.body.velocity.y -= 40 + this.refugee.baseYSpeed;
-      this.refugee.animations.play('walk');
+      this.refugee.keyYSpeed -= 40;
       this.refugee.angle = 270;
     });
     this.keys.up.onUp.add(() => {
-      if (this.refugee.body.velocity.y !== 0) {
-        this.refugee.body.velocity.y += 40 + this.refugee.baseYSpeed;
-        this.refugee.angle = 270;
-      }
+      this.refugee.keyYSpeed += 40;
     });
     this.keys.down.onDown.add(() => {
-      this.refugee.body.velocity.y += 40 + this.refugee.baseYSpeed;
-      this.refugee.animations.play('walk');
+      this.refugee.keyYSpeed += 40;
       this.refugee.angle = 90;
     });
     this.keys.down.onUp.add(() => {
-      if (this.refugee.body.velocity.y !== 0) {
-        this.refugee.body.velocity.y -= 40 + this.refugee.baseYSpeed;
-        this.refugee.angle = 90;
-      }
+      this.refugee.keyYSpeed -= 40;
     });
-
-    console.log('create');
   }
 
   update() {
-    if (this.game.physics.arcade.overlap(this.refugee, this.bodies)) {
-      this.game.physics.arcade.overlap(this.refugee, this.bodies, (r, b) => {
-        if (r.baseXSpeed !== b.body.velocity.x) {
-          r.body.velocity.x += b.body.velocity.x - r.baseXSpeed;
+    if (!this.game.device.desktop) {
+      if (this.input.pointer1.isDown) {
+        if (this.input.pointer1.worldX < this.refugee.worldPosition.x - 15) {
+          this.refugee.keyXSpeed = -40;
+          this.refugee.angle = 180;
         }
-        r.baseXSpeed = b.body.velocity.x;
+        if (this.input.pointer1.worldX > this.refugee.worldPosition.x + 15) {
+          this.refugee.keyXSpeed = 40;
+          this.refugee.angle = 0;
+        }
+        if (this.input.pointer1.worldY > this.refugee.worldPosition.y + 15) {
+          this.refugee.keyYSpeed = 40;
+          this.refugee.angle = 90;
+        }
+        if (this.input.pointer1.worldY < this.refugee.worldPosition.y - 15) {
+          this.refugee.keyYSpeed = -40;
+          this.refugee.angle = 270;
+        }
+      } else {
+      // if (this.input.pointer1.isUp) {
+        this.refugee.keyXSpeed = 0;
+        this.refugee.keyYSpeed = 0;
+      }
+    }
+
+    if (this.game.physics.arcade.overlap(this.refugee, this.bodies)) {
+      this.game.physics.arcade.overlap(this.refugee, this.bodies, (refugee: Refugee, truplo: Truplo) => {
+        if (refugee.baseXSpeed !== truplo.body.velocity.x) {
+          refugee.body.velocity.x += truplo.body.velocity.x - refugee.baseXSpeed;
+        }
+        refugee.baseXSpeed = truplo.body.velocity.x;
       });
     } else {
       if (this.refugee.baseXSpeed !== 0) {
@@ -166,7 +189,7 @@ export default class extends Phaser.State {
       const tileX = Phaser.Math.snapToFloor(Math.floor(this.refugee.x), 16) / 16;
       const tileY = Phaser.Math.snapToFloor(Math.floor(this.refugee.y), 16) / 16;
 
-      if (tileY < 5) {
+      if ((tileY < 8) && (tileY > 4)) {
         this.nextScreen = 'KolpaDeath';
         this.continue();
       }
@@ -180,6 +203,5 @@ export default class extends Phaser.State {
   continue() {
     // this.game.sound.play('ping');
     this.state.start(this.nextScreen, true, false, this.nextScreenPayload);
-    console.log('continue');
   }
 }

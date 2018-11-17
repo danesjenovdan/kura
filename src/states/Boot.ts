@@ -36,6 +36,7 @@ export default class extends Phaser.State {
     this.load.image('nazaj', 'assets/images/nazaj.png');
     this.load.image('kolpa', 'assets/images/kolpa.png');
     this.load.image('smrt-zica', 'assets/images/smrt-zica.png');
+    this.load.image('slovenija', 'assets/images/slovenija.png');
   }
 
   create() {
@@ -43,6 +44,6 @@ export default class extends Phaser.State {
     this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     this.game.cache.getBitmapFont('Munro').font.lineHeight = 11;
 
-    this.state.start('War');
+    this.state.start('Intro');
   }
 }

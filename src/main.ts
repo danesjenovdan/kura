@@ -22,6 +22,7 @@ import DeathInKolpaState from './states/DeathInKolpa';
 
 import BeforeGiveUp from './states/BeforeGiveUp';
 import GiveUp from './states/GiveUp';
+import WinState from './states/Win';
 
 import config from './config';
 
@@ -53,6 +54,7 @@ class Game extends Phaser.Game {
 
     this.state.add('BeforeGiveUp', BeforeGiveUp);
     this.state.add('GiveUp', GiveUp);
+    this.state.add('Win', WinState);
   }
 }
 
@@ -61,7 +63,4 @@ new Game();
 window.addEventListener('deviceorientation', event => {
   var x = event.beta;  // In degree in the range [-180,180]
   var y = event.gamma; // In degree in the range [-90,90]
-
-  console.log("beta : " + x);
-  console.log("gamma: " + y);
 });

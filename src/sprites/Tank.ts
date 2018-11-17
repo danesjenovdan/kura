@@ -48,57 +48,43 @@ export default class extends Phaser.Sprite {
 
   update() {
     super.update();
-    this.randomAction(20);
+    // this.randomAction(20);
 
-    // if (this.counter === this.randomFinish) {
-    //   this.counter = 0;
-    //   this.generateRandomActionPoint();
-    // } else {
-    //   this.counter += 1;
-    // }
+    if (this.counter === this.randomFinish) {
+      this.counter = 0;
+      this.generateRandomActionPoint();
+    } else {
+      this.counter += 1;
+    }
 
-    // if (this.counter > this.randomPoint && this.counter < this.randomPoint + 20) {
-    //   this.randomAction(20);
-    // } else {
-    //   this.idle();
-    // }
+    if (this.counter > this.randomPoint && this.counter < this.randomPoint + 20) {
+      this.randomAction(20);
+    } else {
+      this.idle();
+    }
   }
 
   moveLeft(speed: number) {
     this.direction = Direction.Left;
-    // this.animations.play('walk');
     this.body.velocity.x = -speed;
-    this.body.velocity.y = 0;
     this.angle = 180;
   }
   moveRight(speed: number) {
     this.direction = Direction.Right;
-    // this.animations.play('walk');
     this.body.velocity.x = speed;
-    this.body.velocity.y = 0;
     this.angle = 0;
   }
   moveUp(speed: number) {
     this.direction = Direction.Up;
-    // this.animations.play('walk');
-    this.body.velocity.x = 0;
     this.body.velocity.y = -speed;
     this.angle = 270;
   }
   moveDown(speed: number) {
     this.direction = Direction.Down;
-    // this.animations.play('walk');
-    this.body.velocity.x = 0;
     this.body.velocity.y = speed;
     this.angle = 90;
   }
-  shoot() {
-    this.animations.play('shoot');
-  }
   idle() {
-    // if (this.jumping) return;
-
     this.animations.play('idle');
-    // this.body.velocity.x = 0;
   }
 }

@@ -14,11 +14,10 @@ export default class extends Selection {
 
     this.textObject = this.game.add.bitmapText(16, 16, 'Munro', '', 10);
     this.textObject.maxWidth = 192;
-    this.textObject.text = 
-      'Opozori svoje prijatelje, da žica stoji že 3 leta!';
+    this.textObject.text =  'Opozori svoje prijatelje, da žica stoji že 3 leta!';
     this.textObject.position.y = 78;
 
-    const death = this.game.add.image(112, 38, 'smrt-zica');
+    const death = this.game.add.image(112, 38, 'slovenija');
     death.scale.set(2);
     death.anchor.set(0.5);
     death.smoothed = false;
@@ -30,14 +29,13 @@ export default class extends Selection {
   }
 
   continue(selectedOption: Position) {
-    const title = 'Break Free SI';
-    const text = 'Čas je zdaj: osvobodimo se fosilnih goriv!';
-    const hashtags = '#breakfree';
+    const text = 'Postavi se v vlogo begunca/-ke in se sooči z realnostjo kot britev ostrih rezil na obmejni žici!';
+    const hashtags = '#odstranimožico';
 
     super.continue(selectedOption);
     if(selectedOption === Position.LEFT) {
       // this.state.start('Tutorial', true, false, true);
-      const url = `https://www.facebook.com/dialog/feed?app_id=301375193309601&redirect_uri=${encodeURIComponent(document.location.href)}&link=${encodeURIComponent(document.location.href)}&ref=responsive&name=${encodeURIComponent(title)}`;
+      const url = `https://www.facebook.com/dialog/feed?app_id=301375193309601&redirect_uri=${encodeURIComponent(document.location.href)}&link=${encodeURIComponent(document.location.href)}&ref=responsive`;
       document.location.href = url;
     } else {
       // this.state.start('Intro', true, false, this.survival);
