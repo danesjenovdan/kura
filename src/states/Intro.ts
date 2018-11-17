@@ -8,7 +8,7 @@ export default class extends TextScreen {
     this.game.stage.backgroundColor = '#222';
 
     this.nextScreen = 'Intro2';
-    this.textObject.text =  'Letošnji november zaznamuje 3 leta, odkar je vlada na južni meji začela postavljati žico. T.i. tehnične ovire niso zmanjšale števila vstopov v Slovenijo, so jih pa naredile bolj nevarne.';
+    this.textObject.text =  'Letošnji november zaznamuje 3 leta, odkar je vlada na južni meji začela postavljati žico. T.i. tehnične ovire niso zmanjšale števila vstopov v Slovenijo, so jih pa naredile bolj nevarne.\n\nPritisni SPACE ali ENTER za nadaljevanje.';
     this.textObject.position.y = 78;
 
     const zica = this.game.add.image(112, 38, 'zica');
