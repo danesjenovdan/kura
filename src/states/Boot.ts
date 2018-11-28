@@ -3,12 +3,16 @@ export default class extends Phaser.State {
   loaderBar: Phaser.Sprite;
   music: Phaser.Sound;
   keys: any;
-  
+  textObject: Phaser.BitmapText;
+
   preload() {
-    this.load.image('arrows', 'assets/images/arrows.png');
     this.load.bitmapFont('FixedSys', 'assets/fonts/fixedsys.png', 'assets/fonts/fixedsys.fnt');
     this.load.bitmapFont('Munro', 'assets/fonts/munro.png', 'assets/fonts/munro.fnt');
     this.load.bitmapFont('MunroSmall', 'assets/fonts/munro-small.png', 'assets/fonts/munro-small.fnt');
+  }
+
+  loadStart() {
+    this.load.image('arrows', 'assets/images/arrows.png');
 
     this.load.spritesheet('refugee', 'assets/images/begunec.png', 16, 16, 4);
 
@@ -18,7 +22,7 @@ export default class extends Phaser.State {
     this.load.image('tank', 'assets/images/tank.png');
     this.load.image('tank2', 'assets/images/tank2.png');
     this.load.image('tank3', 'assets/images/tank3.png');
-    
+
     this.load.tilemap('camp', 'assets/maps/camp.json', null, Phaser.Tilemap.TILED_JSON);
     this.load.image('sotor1', 'assets/images/sotor1.png');
     this.load.spritesheet('sotor2', 'assets/images/sotor2.png', 16, 16, 2);
@@ -43,6 +47,14 @@ export default class extends Phaser.State {
     this.load.audio('gameboy', 'assets/audio/gameboy.mp3');
   }
 
+  loadComplete() {
+    this.music = this.game.add.audio('gameboy', 0.25, true);
+    this.music.play();
+
+    this.textObject.text = 'Naloženo!';
+    this.state.start('Intro');
+  }
+
   create() {
     Phaser.Canvas.setImageRenderingCrisp(this.game.canvas);
     this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
@@ -52,9 +64,12 @@ export default class extends Phaser.State {
     // this.game.scale.pageAlignVertically = true;
     // this.game.scale.refresh();
 
-    this.music = this.game.add.audio('gameboy', 0.25, true);
-    this.music.play();
+    this.textObject = this.game.add.bitmapText(16, 16, 'Munro', 'Nalaganje...', 10);
+    this.textObject.maxWidth = 192;
 
-    this.state.start('Intro');
+    this.game.load.onLoadComplete.add(this.loadComplete, this);
+
+    this.loadStart();
+    this.game.load.start();
   }
 }

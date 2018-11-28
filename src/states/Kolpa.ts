@@ -200,7 +200,7 @@ export default class extends Phaser.State {
         this.game.time.events.add(Phaser.Timer.SECOND * 1.5, () => {
           this.nextScreen = 'KolpaDeath';
           this.continue();
-        }
+        });
       }
     }
 
