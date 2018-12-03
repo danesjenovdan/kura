@@ -14,7 +14,7 @@ export default class extends Selection {
 
     this.textObject = this.game.add.bitmapText(16, 16, 'Munro', '', 10);
     this.textObject.maxWidth = 192;
-    this.textObject.text =  'Opozori svoje prijatelje, da žica stoji že 3 leta!';
+    this.textObject.text =  'Let your friends know the razor-wire fence has been standing on the Slovenian border for already 3 years!';
     this.textObject.position.y = 78;
 
     const death = this.game.add.image(112, 38, 'slovenija');
@@ -29,8 +29,8 @@ export default class extends Selection {
   }
 
   continue(selectedOption: Position) {
-    const text = 'Postavi se v vlogo begunca/-ke in se sooči z realnostjo kot britev ostrih rezil na obmejni žici!';
-    const hashtags = '#odstranimožico';
+    const text = 'Put yourself in the shoes of a refugee and face reality of razor sharp barriers on the border of Schengen.';
+    const hashtags = '#removethewire';
 
     super.continue(selectedOption);
     if(selectedOption === Position.LEFT) {

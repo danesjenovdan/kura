@@ -14,7 +14,7 @@ export default class extends Selection {
 
     this.textObject = this.game.add.bitmapText(16, 16, 'Munro', '', 10);
     this.textObject.maxWidth = 192;
-    this.textObject.text = 'Si ena/eden od mnogih, ki so izgubili življenje v vojnih območjih. Samo v Siriji je letos umrlo že 6 395 civilistov.';
+    this.textObject.text = 'You are one of many who lost their life in a war zone. In Syria this year alone 6 395 civilians lost their life.';
     this.textObject.position.y = 78;
 
     const death = this.game.add.image(112, 38, 'death');
@@ -22,9 +22,9 @@ export default class extends Selection {
     death.anchor.set(0.5);
     death.smoothed = false;
 
-    this.textObjects.left.text = 'Na začetek'; // i18n
+    this.textObjects.left.text = 'Try again'; // i18n
     this.textObjects.left.position.x = 30;
-    this.textObjects.right.text = 'Odnehaj'; // i18n
+    this.textObjects.right.text = 'Quit'; // i18n
     this.textObjects.right.position.x = 136;
   }
 

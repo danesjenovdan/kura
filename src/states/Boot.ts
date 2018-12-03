@@ -51,7 +51,7 @@ export default class extends Phaser.State {
     this.music = this.game.add.audio('gameboy', 0.25, true);
     this.music.play();
 
-    this.textObject.text = 'Naloženo!';
+    this.textObject.text = 'Done!';
     this.state.start('Intro');
   }
 
@@ -64,7 +64,7 @@ export default class extends Phaser.State {
     // this.game.scale.pageAlignVertically = true;
     // this.game.scale.refresh();
 
-    this.textObject = this.game.add.bitmapText(16, 16, 'Munro', 'Nalaganje...', 10);
+    this.textObject = this.game.add.bitmapText(16, 16, 'Munro', 'Loading...', 10);
     this.textObject.maxWidth = 192;
 
     this.game.load.onLoadComplete.add(this.loadComplete, this);

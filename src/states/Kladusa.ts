@@ -8,7 +8,7 @@ export default class extends TextScreen {
     this.game.stage.backgroundColor = '#222';
 
     this.nextScreen = 'CampIntro';
-    this.textObject.text = 'Uspelo ti je doseči begunsko taborišče, ki je prenatrpano, higienske razmere so neprimerne, manjka osnovnih potrebščin. Na Lezbosu je v enem takih kampov nastanjenih 6000 beguncev, prostora pa je le za 2000 oseb.'
+    this.textObject.text = 'You have managed to reach an overcrowded refugee camp. Hygiene is unsatisfactory and there is lack of basic necessities. One such camp on Lesbos for 2000 people hosts 6000 refugees.'
     this.textObject.position.y = 78;
 
     const zica = this.game.add.image(112, 38, 'taborisce');

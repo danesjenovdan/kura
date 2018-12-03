@@ -14,7 +14,7 @@ export default class extends Selection {
 
     this.textObject = this.game.add.bitmapText(16, 16, 'Munro', '', 10);
     this.textObject.maxWidth = 192;
-    this.textObject.text = 'V begunskem taborišču te je med poskusom nadaljevanja poti ujela policija. Ker nimaš dokumentov, te vrnejo nazaj domov.';
+    this.textObject.text = 'In the refugee camp the police caught you trying to escape. Because you don’t have your documents they bring you back.';
     this.textObject.position.y = 78;
 
     const death = this.game.add.image(112, 38, 'nazaj');
@@ -22,9 +22,9 @@ export default class extends Selection {
     death.anchor.set(0.5);
     death.smoothed = false;
 
-    this.textObjects.left.text = 'Na začetek'; // i18n
+    this.textObjects.left.text = 'Try again'; // i18n
     this.textObjects.left.position.x = 30;
-    this.textObjects.right.text = 'Odnehaj'; // i18n
+    this.textObjects.right.text = 'Quit'; // i18n
     this.textObjects.right.position.x = 136;
   }
 

@@ -16,10 +16,10 @@ export default class extends TextScreen {
 
     if (this.game.device.desktop) {
       text =
-        'Si begunec/-ka, ki poskuša doseči Slovenijo. Najprej se moraš iz vojnega območja prebiti do begunskega taborišča. Glasbo (by: Nerdspasm) utišaš s tipko "M",za premikanje uporabi:';
+        'You are a refugee trying to reach the EU. To reach a refugee camp you first need to escape the war zone. To reduce volume of the music (by: Nerdspasm) use "M", to move use:';
     } else {
       text =
-      'Si begunec/-ka, ki poskuša doseči Slovenijo. Najprej se moraš iz vojnega območja prebiti do begunskega taborišča. Za premikanje se dotakni zaslona.';
+      'You are a refugee trying to reach the EU. To reach a refugee camp you first need to escape the war zone. To move touch the screen.';
     }
 
     const zica = this.game.add.image(112, 38, 'vojna');

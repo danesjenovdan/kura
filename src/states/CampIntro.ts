@@ -8,7 +8,7 @@ export default class extends TextScreen {
     this.game.stage.backgroundColor = '#222';
 
     this.nextScreen = 'Camp';
-    this.textObject.text = 'Poskusiš se okrepčati in nadaljevati pot proti Evropi.'
+    this.textObject.text = 'You try to gather your strenghts and continue your journey.'
     this.textObject.position.y = 78;
 
     const zica = this.game.add.image(112, 38, 'taborisce');
