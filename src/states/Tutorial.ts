@@ -16,7 +16,7 @@ export default class extends TextScreen {
 
     if (this.game.device.desktop) {
       text =
-        'You are a refugee trying to reach the EU. To reach a refugee camp you first need to escape the war zone. To reduce the volume of music (by: Nerdspasm) use "M", to move use:';
+        'You are a refugee trying to reach the EU. To reach a refugee camp you first need to escape the war zone. To mute the music (by: Nerdspasm) use "M", to move use:';
     } else {
       text =
       'You are a refugee trying to reach the EU. To reach a refugee camp you first need to escape the war zone. To move touch the screen.';
