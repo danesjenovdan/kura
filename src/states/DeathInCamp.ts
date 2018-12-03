@@ -14,7 +14,7 @@ export default class extends Selection {
 
     this.textObject = this.game.add.bitmapText(16, 16, 'Munro', '', 10);
     this.textObject.maxWidth = 192;
-    this.textObject.text = 'In the refugee camp the police caught you trying to escape. Because you don’t have your documents they bring you back.';
+    this.textObject.text = 'In the refugee camp the police caught you trying to escape. Because you do not have your documents they bring you back.';
     this.textObject.position.y = 78;
 
     const death = this.game.add.image(112, 38, 'nazaj');

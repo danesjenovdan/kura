@@ -14,7 +14,7 @@ export default class extends Selection {
 
     this.textObject = this.game.add.bitmapText(16, 16, 'Munro', '', 10);
     this.textObject.maxWidth = 192;
-    this.textObject.text =  'Your body was found in the river. Since 2000 more than 35 000 people died in the Mediterranean trying to reach the EU. In the last year at least 9 people drowned trying to enter Slovenia.';
+    this.textObject.text =  'Your body was found. Since 2000 more than 35 000 people died in the Mediterranean trying to reach the EU. In the last year at least 9 people drowned trying to enter Slovenia.';
     this.textObject.position.y = 78;
 
     const death = this.game.add.image(112, 38, 'smrt-zica');
