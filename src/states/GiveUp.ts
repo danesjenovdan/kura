@@ -14,7 +14,7 @@ export default class extends Selection {
 
     this.textObject = this.game.add.bitmapText(16, 16, 'Munro', '', 10);
     this.textObject.maxWidth = 192;
-    this.textObject.text =  'Let your friends know the razor-wire fence has been standing on the Slovenian border for already 3 years!';
+    this.textObject.text =  'Remind your friends that it has already been 3 years since we put razor wire on our border.';
     this.textObject.position.y = 78;
 
     const death = this.game.add.image(112, 38, 'slovenija');
@@ -29,7 +29,7 @@ export default class extends Selection {
   }
 
   continue(selectedOption: Position) {
-    const text = 'Put yourself in the shoes of a refugee and face reality of razor sharp barriers on the border of Schengen.';
+    const text = 'Put yourself in the shoes of a refugee and face the reality of razor sharp barriers on the Schengen border.';
     const hashtags = '#removethewire';
 
     super.continue(selectedOption);

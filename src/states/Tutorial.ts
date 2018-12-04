@@ -16,10 +16,10 @@ export default class extends TextScreen {
 
     if (this.game.device.desktop) {
       text =
-        'You are a refugee trying to reach the EU. To reach a refugee camp you first need to escape the war zone. To mute the music (by: Nerdspasm) use "M", to move use:';
+        'You are a refugee trying to escape war and reach the EU.\n\nTo mute the music (by: Nerdspasm) use "M", to move use:';
     } else {
       text =
-      'You are a refugee trying to reach the EU. To reach a refugee camp you first need to escape the war zone. To move touch the screen.';
+        'You are a refugee trying to reach the EU. To reach a refugee camp you first need to escape the war zone.\n\nTo move touch the screen.';
     }
 
     const zica = this.game.add.image(112, 38, 'vojna');

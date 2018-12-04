@@ -14,7 +14,7 @@ export default class extends Selection {
 
     this.textObject = this.game.add.bitmapText(16, 16, 'Munro', '', 10);
     this.textObject.maxWidth = 192;
-    this.textObject.text = 'You are one of many who died in a war zone. In Syria this year alone 6 395 civilians lost their life.';
+    this.textObject.text = 'You are one of many who died in the war zone. In Syria this year alone 6395 civilians lost their lives.';
     this.textObject.position.y = 78;
 
     const death = this.game.add.image(112, 38, 'death');

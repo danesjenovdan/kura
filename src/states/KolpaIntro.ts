@@ -8,7 +8,7 @@ export default class extends TextScreen {
     this.game.stage.backgroundColor = '#222';
 
     this.nextScreen = 'Kolpa';
-    this.textObject.text = 'You have reached the river Kolpa - the border between Croatia and Slovenia. Although you cannot swim you hope you will manage to enter Slovenia.';
+    this.textObject.text = 'You find yourself on the bank of the river Kolpa, which marks the border between Croatia and Slovenia. Although you cannot swim you still hope you will manage to enter Slovenia.';
     this.textObject.position.y = 78;
 
     const zica = this.game.add.image(112, 38, 'kolpa');

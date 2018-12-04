@@ -8,7 +8,7 @@ export default class extends TextScreen {
     this.game.stage.backgroundColor = '#222';
 
     this.nextScreen = 'Intro3';
-    this.textObject.text = 'Razor-wire fence legitimises politics of fear and hatred. It puts us next to countries such as Italy, which sentenced many to drowning by refusing to accept refugee boats, and Hungary, which is ruled by one of the most racist and xenophobic governments in the EU.';
+    this.textObject.text = 'The razor wire legitimises policies of fear and hatred. It puts us in the company of countries such as Italy, which sentenced many to drowning by refusing to accept refugee boats, and Hungary, which is ruled by one of the most racist and xenophobic governments in the EU.';
     this.textObject.position.y = 78;
 
     const zica = this.game.add.image(112, 38, 'zica');
