@@ -7,11 +7,14 @@ export default class extends TextScreen {
     super.create();
     this.game.stage.backgroundColor = '#222';
 
-    this.nextScreen = 'GiveUp';
+    this.nextScreen = 'AfterBeforeGiveUp';
     this.textObject.text = 
-      'Uspelo ti je prepotovati na tisoče kilometrov in se soočiti z neštetimi ovirami. A odrešitve ni: znajdeš se pred z britvicami prepredeno žico. Poskus prečkanja je nemogoč.'
-      +
-      '\n\nŽica, ki stoji že 3 leta, je Slovenijo stala najmanj 6,6 milijonov EUR, povzročila je ekonomsko škodo turizmu in lokalnemu prebivalstvu, pobila številne divje živali in simbolno legitimizirala nasilje, ksenofobijo in idejo trdnjave Evrope.'
-    this.textObject.position.y = 18;
+      'Uspelo ti je prepotovati na tisoče kilometrov in se soočiti z neštetimi ovirami. A odrešitve ni: znajdeš se pred z britvicami prepredeno žico, ki za marsikoga predstavlja smrtno nevarno oviro.';
+    this.textObject.position.y = 78;
+
+    const zica = this.game.add.image(112, 38, 'slovenija');
+    zica.scale.set(2);
+    zica.anchor.set(0.5);
+    zica.smoothed = false;
   }
 }

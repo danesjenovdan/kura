@@ -14,7 +14,7 @@ export default class extends Selection {
 
     this.textObject = this.game.add.bitmapText(16, 16, 'Munro', '', 10);
     this.textObject.maxWidth = 192;
-    this.textObject.text =  'Opozori svoje prijatelje, da žica stoji že 3 leta!';
+    this.textObject.text =  'Opozori svoje prijatelje, da žica stoji že 5 let!';
     this.textObject.position.y = 78;
 
     const death = this.game.add.image(112, 38, 'slovenija');
@@ -29,7 +29,7 @@ export default class extends Selection {
   }
 
   continue(selectedOption: Position) {
-    const text = 'Postavi se v vlogo begunca/-ke in se sooči z realnostjo kot britev ostrih rezil na obmejni žici!';
+    const text = 'Pred 5 leti je vlada Mira Cerarja na južni meji začela postavljati žico. Vlada Janeza Janše pa politiko oteževanja prestopa meje seveda nadaljuje. Postavi se v vlogo begunca/-ke in se sooči z realnostjo kot britev ostrih rezil na obmejni žici!';
     const hashtags = '#odstranimožico';
 
     super.continue(selectedOption);

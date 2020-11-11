@@ -80,7 +80,7 @@ export default abstract class extends Phaser.State {
   choose(position: Position) {
     this.selected = position;
     const xOffset = {
-      LEFT: 74,
+      LEFT: 54,
       RIGHT: 164,
     };
     this.selector.position.x = xOffset[position];

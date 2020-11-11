@@ -21,6 +21,8 @@ import KolpaState from './states/Kolpa';
 import DeathInKolpaState from './states/DeathInKolpa';
 
 import BeforeGiveUp from './states/BeforeGiveUp';
+import AfterBeforeGiveUp from './states/AfterBeforeGiveUp';
+import AfterAfterBeforeGiveUp from './states/AfterAfterBeforeGiveUp';
 import GiveUp from './states/GiveUp';
 import WinState from './states/Win';
 
@@ -53,6 +55,8 @@ class Game extends Phaser.Game {
     this.state.add('KolpaDeath', DeathInKolpaState);
 
     this.state.add('BeforeGiveUp', BeforeGiveUp);
+    this.state.add('AfterBeforeGiveUp', AfterBeforeGiveUp);
+    this.state.add('AfterAfterBeforeGiveUp', AfterAfterBeforeGiveUp);
     this.state.add('GiveUp', GiveUp);
     this.state.add('Win', WinState);
   }
