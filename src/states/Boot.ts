@@ -52,7 +52,7 @@ export default class extends Phaser.State {
     this.music.play();
 
     this.textObject.text = 'Naloženo!';
-    this.state.start('Win');
+    this.state.start('Intro');
   }
 
   create() {
