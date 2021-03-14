@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kura-deployment
+  labels:
+    app: kura
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kura
+  template:
+    metadata:
+      labels:
+        app: kura
+    spec:
+      containers:
+      - name: kura
+        image: rg.fr-par.scw.cloud/djnd/kura:latest
+        ports:
+        - containerPort: 80
+        env:
+          - name: NGINX_HOST
+            value: mato.k8s.djnd.si
+          - name: NGINX_PORT
+            value: "80"

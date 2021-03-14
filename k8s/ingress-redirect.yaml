@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kura-ingress-redirect
+  annotations:
+    nginx.ingress.kubernetes.io/permanent-redirect: http://mato.k8s.djnd.si/kura/
+spec:
+  rules:
+  - host: mato.k8s.djnd.si
+    http:
+      paths:
+      - path: /kura
+        pathType: Exact
+        backend:
+          service:
+            name: kura
+            port:
+              number: 80
