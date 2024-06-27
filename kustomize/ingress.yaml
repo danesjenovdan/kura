@@ -1,15 +1,21 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: kura-ingress
+  name: kura
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
 spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - imasjajca.lb.djnd.si
+      secretName: kura-tls
+
   rules:
-  - host: mato.k8s.djnd.si
+  - host: imasjajca.lb.djnd.si
     http:
       paths:
-      - path: /kura/(.*)
+      - path: /
         pathType: Prefix
         backend:
           service:
