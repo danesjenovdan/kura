@@ -8,11 +8,11 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - imasjajca.lb.djnd.si
+        - kura.lb.djnd.si
       secretName: kura-tls
 
   rules:
-  - host: imasjajca.lb.djnd.si
+  - host: kura.lb.djnd.si
     http:
       paths:
       - path: /
