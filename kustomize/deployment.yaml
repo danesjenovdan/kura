@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zicar
+  labels:
+    app: zicar
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zicar
+  template:
+    metadata:
+      labels:
+        app: zicar
+    spec:
+      containers:
+        - name: zicar
+          image: zicar
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: 50Mi
+              cpu: 50m
+            limits:
+              memory: 50Mi
+              cpu: 50m

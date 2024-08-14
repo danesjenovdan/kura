@@ -58,7 +58,7 @@ module.exports = {
   ],
   module: {
     rules: [
-      { test: /\.ts$/, use: ['ts-loader'], exclude: /node_modules/},
+      { test: /\.ts$/, use: [{ loader: 'ts-loader', options: { transpileOnly: true }}], exclude: /node_modules/},
       { test: /pixi\.js/, use: ['expose-loader?PIXI'] },
       { test: /phaser-split\.js$/, use: ['expose-loader?Phaser'] },
       { test: /p2\.js/, use: ['expose-loader?p2'] }
