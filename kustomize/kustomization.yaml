@@ -8,4 +8,4 @@ resources:
 images:
   - name: zicar
     newName: rg.fr-par.scw.cloud/djnd/zicar
-    newTag: "latest"
+    newTag: 'f3351597980b131e789b2195da00bf9fcef8da0d'
