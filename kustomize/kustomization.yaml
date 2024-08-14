@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: zicar
+resources:
+  - deployment.yaml
+  - service.yaml
+  - ingress.yaml
+images:
+  - name: zicar-en
+    newName: rg.fr-par.scw.cloud/djnd/zicar-en
+    newTag: "latest"
