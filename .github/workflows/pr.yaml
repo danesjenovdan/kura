@@ -1,0 +1,19 @@
+name: Automatic PRs
+on:
+  push:
+    branches:
+      - en
+jobs:
+  pull-requests:
+    name: Automatic PRs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: pull-request-k8s-en
+        uses: repo-sync/pull-request@v2
+        with:
+          destination_branch: "k8s-en"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_title: "Pulling ${{ github.ref }} into k8s-en"

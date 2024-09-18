@@ -1,0 +1,37 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kura-en
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      rewrite ^(/en)$ $1/ redirect; # add trailing slash
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - kura.djnd.si
+        - kura.danesjenovdan.si
+      secretName: kura-en-tls
+  rules:
+    - host: kura.djnd.si
+      http:
+        paths:
+          - path: /en(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: kura
+                port:
+                  number: 80
+    - host: kura.danesjenovdan.si
+      http:
+        paths:
+          - path: /en(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: kura-en
+                port:
+                  number: 80

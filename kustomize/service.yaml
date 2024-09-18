@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kura-en
+spec:
+  selector:
+    app: kura-en
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
