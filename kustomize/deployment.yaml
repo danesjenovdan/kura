@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kura
+  labels:
+    app: kura
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kura
+  template:
+    metadata:
+      labels:
+        app: kura
+    spec:
+      containers:
+        - name: kura
+          image: kura
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: 50Mi
+              cpu: 50m
+            limits:
+              memory: 50Mi
+              cpu: 50m
