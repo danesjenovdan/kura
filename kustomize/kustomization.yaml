@@ -4,7 +4,7 @@ namespace: zicar
 resources:
   - deployment.yaml
   - service.yaml
-  - ingress.yaml
+  # - ingress.yaml
 images:
   - name: zicar
     newName: rg.fr-par.scw.cloud/djnd/zicar
