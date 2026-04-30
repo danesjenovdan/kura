@@ -8,4 +8,4 @@ resources:
 images:
   - name: kura-en
     newName: rg.fr-par.scw.cloud/djnd/kura-en
-    newTag: '45e349f7372d9dda1aefdfcbc37b563852609f23'
+    newTag: '0cf5893e8620b2f3de58116e09c7af7d831ff34b'
